@@ -87,7 +87,66 @@ h3{font-family:'Libre Baskerville',Georgia,serif;font-size:16px;font-weight:700;
 .spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(11,11,11,.3);border-top-color:var(--bg);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-@media(max-width:640px){.sec{padding:70px 14px 80px}.br-row{flex-direction:column}.btn{width:100%;justify-content:center}.inp-row{grid-template-columns:1fr}}
+/* ── Monthly Support ─────────────────────────────────────────────────────── */
+.monthly-support{background:var(--s1);border:1px solid var(--br);border-left:3px solid var(--gold);border-radius:12px;padding:24px;margin:16px 0}
+.ms-eyebrow{font-size:10px;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.ms-title{font-family:'Libre Baskerville',serif;font-size:16px;font-weight:700;color:var(--tx);margin-bottom:10px}
+.ms-body{font-size:12px;color:var(--td);line-height:1.8;margin-bottom:16px;max-width:560px}
+.ms-item{display:flex;flex-direction:column;gap:3px;padding:10px 0;border-bottom:1px solid var(--br)}
+.ms-item:last-of-type{border-bottom:none}
+.ms-item-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.ms-item-name{font-size:12px;color:var(--tx)}
+.ms-item-price{font-size:12px;color:var(--gold);white-space:nowrap}
+.ms-item-why{font-size:11px;color:var(--td);line-height:1.65}
+.ms-total{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0 0;border-top:1px solid var(--gold);margin-top:8px}
+.ms-total-l{font-size:13px;color:var(--td)}
+.ms-total-v{font-family:'Libre Baskerville',serif;font-size:16px;color:var(--gold);font-weight:700}
+.ms-close{font-size:11px;color:var(--tm);margin-top:12px;line-height:1.7;font-style:italic;border-top:1px solid var(--br);padding-top:10px}
+
+/* ── Notes Section ───────────────────────────────────────────────────────── */
+.notes-section{background:var(--s1);border:1px solid var(--br);border-radius:12px;padding:24px;margin:16px 0}
+.notes-eyebrow{font-size:10px;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.notes-title{font-family:'Libre Baskerville',serif;font-size:15px;font-weight:700;color:var(--tx);margin-bottom:4px}
+.notes-helper{font-size:11px;color:var(--tm);margin-bottom:14px}
+.notes-ta{width:100%;min-height:220px;background:var(--bg);border:1px solid var(--br);border-radius:6px;padding:12px 14px;color:var(--tx);font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.75;outline:none;resize:vertical;transition:border .3s}
+.notes-ta:focus{border-color:var(--gold)}
+.notes-print{display:none}
+.print-btn-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+
+/* ── Print-only header ───────────────────────────────────────────────────── */
+.print-header{display:none}
+
+/* ── @media print ────────────────────────────────────────────────────────── */
+@media print{
+  body{background:#fff!important;color:#000!important;font-size:11px;line-height:1.6}
+  .prog,#tierBadge,.monthly-support .ms-body,.monthly-support .ms-close,.br-row,.print-btn-row,
+  .sms-opt,.form-err,#successSection,#formSection{display:none!important}
+  .sec{min-height:unset;padding:0!important;max-width:100%;animation:none}
+  .sb{background:#fff!important;border:1px solid #ccc!important;border-radius:0!important;page-break-inside:avoid}
+  .sc{color:#444!important;border-top:1px solid #ddd}
+  .sln .l{color:#555!important}.sln .v{color:#000!important}
+  .stot .l{color:#000!important}.stot .v{color:#000!important}
+  h2{font-size:18px!important;color:#000!important}
+  .sl,.sn,.sub{color:#555!important}
+  .monthly-support{background:#fff!important;border:1px solid #ccc!important;border-left:3px solid #333!important;border-radius:0!important;page-break-inside:avoid}
+  .ms-eyebrow{color:#333!important}.ms-title{color:#000!important}
+  .ms-item-name{color:#000!important}.ms-item-price{color:#333!important}.ms-item-why{color:#555!important}
+  .ms-item{border-bottom:1px solid #eee!important}
+  .ms-total{border-top:1px solid #999!important}.ms-total-l{color:#555!important}.ms-total-v{color:#000!important}
+  .notes-section{background:#fff!important;border:1px solid #ccc!important;border-radius:0!important;page-break-inside:avoid}
+  .notes-eyebrow{color:#333!important}.notes-title{color:#000!important}.notes-helper{display:none}
+  .notes-ta{display:none!important}
+  .notes-print{display:block!important;white-space:pre-wrap;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#000;padding:12px;border:1px solid #ddd;background:#fafafa;min-height:80px;line-height:1.7}
+  .print-header{display:block!important;padding-bottom:14px;margin-bottom:20px;border-bottom:2px solid #000}
+  .ph-row{display:flex;justify-content:space-between;align-items:flex-end}
+  .ph-logo{font-family:'Libre Baskerville',serif;font-size:17px;font-weight:700;color:#000;letter-spacing:.02em}
+  .ph-sub{font-size:10px;color:#555;margin-top:3px}
+  .ph-prospect{font-size:11px;color:#000;font-weight:700;margin-top:4px}
+  .ph-date{font-size:10px;color:#555;text-align:right}
+  @page{margin:.75in}
+}
+
+@media(max-width:640px){.sec{padding:70px 14px 80px}.br-row{flex-direction:column}.btn{width:100%;justify-content:center}.inp-row{grid-template-columns:1fr}.print-btn-row{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -98,6 +157,19 @@ h3{font-family:'Libre Baskerville',Georgia,serif;font-size:16px;font-weight:700;
 </div>
 
 <div class="sec">
+
+  <!-- Print-only header (hidden on screen) -->
+  <div class="print-header">
+    <div class="ph-row">
+      <div>
+        <div class="ph-logo">Real Space Digital</div>
+        <div class="ph-sub">Fit Assessment Report &middot; qualify.rsddirect.com &middot; realspacedigital.net</div>
+        <div class="ph-prospect" id="phProspect"></div>
+      </div>
+      <div class="ph-date" id="phDate"></div>
+    </div>
+  </div>
+
   <div class="sl">Final — Review & Request Your Fit Call</div>
   <h2>Here's what you built.</h2>
   <p class="sub">Your custom package. Review it, then request your Launch Your Marketing / Fit Your Market call.</p>
@@ -109,6 +181,22 @@ h3{font-family:'Libre Baskerville',Georgia,serif;font-size:16px;font-weight:700;
 
   <!-- Tier Badge (dynamic) -->
   <div id="tierBadge"></div>
+
+  <!-- Monthly Support Section (rendered dynamically when monthly items exist) -->
+  <div id="monthlySupport"></div>
+
+  <!-- Meeting Notes + Print Report -->
+  <div id="notesSection" class="notes-section" style="display:none">
+    <div class="notes-eyebrow">Meeting Prep</div>
+    <div class="notes-title">Your Fit Call Notes</div>
+    <div class="notes-helper">Auto-filled from your selections — edit freely before your call. Use the print button to save a PDF to bring to the meeting.</div>
+    <textarea class="notes-ta" id="notesTA" placeholder="Suggested notes will load here..." oninput="syncNotesPrint()"></textarea>
+    <div class="notes-print" id="notesPrint"></div>
+    <div class="print-btn-row">
+      <button class="bg btn" onclick="printReport()">⬇ Save as PDF / Print Report</button>
+      <button class="bgh btn" onclick="copyNotes(event)">Copy Notes</button>
+    </div>
+  </div>
 
   <!-- Contact Form (hidden after success) -->
   <div id="formSection">
@@ -288,6 +376,186 @@ function buildQ(){
   return p.toString();
 }
 function goBack(){window.location.href=URL_PREV+'?'+buildQ();}
+
+// ── Monthly Support ──────────────────────────────────────────────────────
+const M_WHY={
+  ao_ai_base:'Your AI assistant handles inquiries, qualifies leads, and routes conversations — 24/7, no staff required.',
+  ao_ai_heavy:'High-volume AI engagement: booking, follow-up, and qualification running in the background while you build.',
+  rep_mkt:'Your reputation gets actively marketed — not just managed. Review content becomes conversion fuel.',
+  soc3:'3 branded posts per week keeps your audience engaged and your authority growing without you lifting a finger.',
+  soc5:'5 posts per week: consistent presence that compounds — turning attention into inbound pipeline over time.',
+  soc7:'Daily content output builds an audience that warms before they ever contact you.',
+  ad_mgmt:'Your ad spend is actively optimized — not just running. Monthly management means better return, month over month.',
+  rr_recep:'Every missed call becomes a captured lead. Your AI receptionist handles after-hours and overflow automatically.',
+  rr_text:'Missed-call text back fires within seconds — the fastest way to turn a near-miss into a booked conversation.',
+  rr_sms:'SMS Q&A answers questions in real time, pre-qualifies intent, and routes directly to your calendar.',
+  rr_full:'Your full Rapid Response system: no lead falls through the cracks, no matter when they reach out.'
+};
+const PKG_MS_INTRO={
+  pkg_t2b:'Your Tour2Booking™ system launches with media and presence — the monthly services below keep it converting after day one. Without this layer, even the best assets go quiet within weeks.',
+  pkg_ao:'AlwaysOn means exactly that. Your visibility loop, AI tools, and ad presence run continuously — compounding authority and inbound while your team stays focused on delivering work.',
+  pkg_os:'The Digital Twin Conversion OS™ is a living system. The monthly layer is the intelligence: AI, ads, content, and follow-up running in parallel — turning your digital presence into a 24/7 revenue engine.'
+};
+
+function renderMonthlySupport(){
+  const el=document.getElementById('monthlySupport');if(!el)return;
+  const monthlyItems=S.items.filter(id=>D_TYPE[id]==='mo');
+  if(!monthlyItems.length){el.style.display='none';return;}
+
+  let mT=0;
+  for(const id of monthlyItems)mT+=D_PRICE[id]||0;
+
+  const intro=(S.pkg&&PKG_MS_INTRO[S.pkg])||'Your monthly services keep your system active and compounding after your initial launch.';
+
+  let h=`<div class="monthly-support">
+    <div class="ms-eyebrow">Monthly Investment · Why It's In There</div>
+    <div class="ms-title">Your System Runs While You Work</div>
+    <div class="ms-body">${intro}</div>`;
+
+  for(const id of monthlyItems){
+    const pr=D_PRICE[id]||0;
+    const why=M_WHY[id]||'Ongoing service that keeps your system producing results month after month.';
+    h+=`<div class="ms-item">
+      <div class="ms-item-row">
+        <span class="ms-item-name">${D_NAME[id]||id}</span>
+        <span class="ms-item-price">$${pr.toLocaleString()}/mo</span>
+      </div>
+      <div class="ms-item-why">${why}</div>
+    </div>`;
+  }
+
+  h+=`<div class="ms-total">
+    <span class="ms-total-l">Monthly Total</span>
+    <span class="ms-total-v">$${mT.toLocaleString()}/mo</span>
+  </div>
+  <div class="ms-close">The businesses that win long-term are still running the machine 90 days after everyone else stopped. This is not overhead — it's the difference between a launch and a system that lasts.</div>
+  </div>`;
+  el.innerHTML=h;
+}
+renderMonthlySupport();
+
+// ── Qual Criteria Labels ─────────────────────────────────────────────────
+const QUAL_CRITERIA=[
+  'Established revenue ($250K+/yr)',
+  'Currently running advertising',
+  'Strong physical/media capture opportunity',
+  'Decision maker available',
+  'Discretionary budget available',
+  'Ready to move within 30–60 days'
+];
+
+// ── Suggested Notes Builder ──────────────────────────────────────────────
+function buildSuggestedNotes(){
+  const met=[],missing=[];
+  for(let i=0;i<6;i++){
+    if(S.qual[i]>0)met.push(QUAL_CRITERIA[i]);
+    else missing.push(QUAL_CRITERIA[i]);
+  }
+  const score=met.length;
+  const pkgLabel=S.pkg?PKG_NAME[S.pkg]:'À La Carte Build';
+  const gfLabel=S.gf?GF_NAME[S.gf]:'No Founder Lock selected';
+  let oT=0,mT=0;
+  for(const id of S.items){
+    if(D_TYPE[id]==='one')oT+=D_PRICE[id]||0;
+    else mT+=D_PRICE[id]||0;
+  }
+  if(S.pkg&&PKG_PRICE[S.pkg])oT+=PKG_PRICE[S.pkg];
+  const dp=Math.round(oT*.25);
+  const today=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+
+  let n='';
+  n+=`RSD FIT ASSESSMENT — ${today}\n`;
+  n+=`${'─'.repeat(44)}\n\n`;
+
+  n+=`QUALIFICATION SCORE: ${score}/6\n`;
+  if(met.length){n+=`\nCriteria Met:\n`;for(const c of met)n+=`  ✓ ${c}\n`;}
+  if(missing.length){n+=`\nTo Confirm on Call:\n`;for(const c of missing)n+=`  ○ ${c}\n`;}
+  n+=`\n`;
+
+  n+=`SELECTED PACKAGE\n`;
+  n+=`  ${pkgLabel}\n`;
+  n+=`  Founder Lock: ${gfLabel}\n\n`;
+
+  if(S.items.length){
+    n+=`SELECTED SERVICES\n`;
+    for(const id of S.items){
+      const sf=D_TYPE[id]==='mo'?'/mo':'';
+      n+=`  · ${D_NAME[id]||id} — $${(D_PRICE[id]||0).toLocaleString()}${sf}\n`;
+    }
+    n+=`\n`;
+  }
+
+  n+=`INVESTMENT SUMMARY\n`;
+  n+=`  One-Time Total:    $${oT.toLocaleString()}\n`;
+  if(mT)n+=`  Monthly Total:     $${mT.toLocaleString()}/mo\n`;
+  n+=`  25% Down to Start: $${dp.toLocaleString()}\n\n`;
+
+  n+=`MEETING FOCUS AREAS\n`;
+  if(score>=5)n+=`  → Strong fit — move to proposal framing and close logistics.\n`;
+  else if(score>=3)n+=`  → Moderate fit — confirm missing criteria, identify primary objection.\n`;
+  else n+=`  → Early stage — focus on discovery, pain quantification, and fit education.\n`;
+  if(missing.includes('Currently running advertising'))
+    n+=`  → Confirm: are they actively advertising? What's their current monthly ad spend?\n`;
+  if(missing.includes('Decision maker available'))
+    n+=`  → Confirm: who else needs to be on the call to move forward?\n`;
+  if(missing.includes('Discretionary budget available'))
+    n+=`  → Address budget fit: tie investment to revenue gap and cost of inaction.\n`;
+  if(missing.includes('Ready to move within 30–60 days'))
+    n+=`  → Address timeline: what would need to be true to move forward now?\n`;
+  if(S.gf)
+    n+=`  → Founder lock confirmed — emphasize permanent rate protection and seat scarcity.\n`;
+  n+=`\n`;
+
+  n+=`PERSONAL NOTES\n`;
+  n+=`${'─'.repeat(44)}\n`;
+  n+=`\n\n\n`;
+
+  return n;
+}
+
+function setupNotes(){
+  const ns=document.getElementById('notesSection');
+  const ta=document.getElementById('notesTA');
+  const phd=document.getElementById('phDate');
+  if(!ns||!ta)return;
+  const today=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  if(phd)phd.textContent=today;
+  ta.value=buildSuggestedNotes();
+  syncNotesPrint();
+  ns.style.display='block';
+}
+
+function syncNotesPrint(){
+  const ta=document.getElementById('notesTA');
+  const np=document.getElementById('notesPrint');
+  if(ta&&np)np.textContent=ta.value;
+}
+
+function printReport(){
+  const first=document.getElementById('cfFirst')?.value.trim()||'';
+  const last=document.getElementById('cfLast')?.value.trim()||'';
+  const biz=document.getElementById('cfBiz')?.value.trim()||'';
+  const ph=document.getElementById('phProspect');
+  if(ph){
+    const nameStr=first?(first+(last?' '+last:'')):'';
+    const bizStr=biz?( nameStr?' · '+biz:biz):'';
+    ph.textContent=nameStr+bizStr;
+  }
+  syncNotesPrint();
+  window.print();
+}
+
+function copyNotes(ev){
+  const ta=document.getElementById('notesTA');
+  if(!ta)return;
+  const btn=ev.currentTarget;
+  const orig=btn.textContent;
+  navigator.clipboard.writeText(ta.value).then(()=>{
+    btn.textContent='Copied ✓';setTimeout(()=>{btn.textContent=orig;},2200);
+  }).catch(()=>{ta.select();document.execCommand('copy');btn.textContent='Copied ✓';setTimeout(()=>{btn.textContent=orig;},2200);});
+}
+
+setupNotes();
 
 // ── Form Validation ──────────────────────────────────────────────────────
 function showError(msg){
