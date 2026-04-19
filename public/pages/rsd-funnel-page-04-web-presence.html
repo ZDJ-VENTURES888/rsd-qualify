@@ -38,6 +38,9 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .ct{font-family:var(--fd);font-size:15px;font-weight:700;margin-bottom:4px}
 .cd{font-size:12px;color:var(--td);line-height:1.6;margin-bottom:10px}
 .cp{font-size:12px;color:var(--gold);letter-spacing:.04em}
+.cn{font-size:10px;color:var(--tm);margin-top:3px}
+.inc{font-size:10px;color:var(--td);margin-top:8px;line-height:1.7}
+.inc strong{color:var(--gold);font-weight:400;letter-spacing:.05em}
 .ar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:var(--s1);border:1px solid var(--br);border-radius:10px;margin-bottom:10px;cursor:pointer;transition:all .3s;flex-wrap:wrap;gap:8px}
 .ar:hover{border-color:var(--ba)}.ar.act{border-color:var(--gold);background:var(--gg)}
 .ai{flex:1;min-width:150px}.anm{font-size:14px;margin-bottom:2px}.adt{font-size:11px;color:var(--td)}
@@ -55,7 +58,29 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .cart.vis{transform:none}
 .cart-i{font-size:12px;color:var(--td)}.cart-i strong{color:var(--gold);font-weight:400}
 .cart-t{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--gold)}
-@media(max-width:640px){.sec{padding:70px 14px 90px}.g2{grid-template-columns:1fr}.cart{flex-direction:column;gap:6px;text-align:center}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
+
+/* ── AlwaysOn AI Tier Selector ───────────────────────────── */
+.ao-disc{background:var(--gg2);border:1px solid rgba(201,169,110,.2);border-radius:10px;margin-bottom:14px;overflow:hidden;animation:fadeUp .35s both}
+.ao-disc-body{padding:20px}
+.ao-disc-eyebrow{font-size:10px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.ao-disc-intro{font-size:12px;color:var(--td);line-height:1.8;margin-bottom:14px}
+.ao-disc-intro strong{color:var(--tx);font-weight:400}
+.ao-hosting{background:rgba(201,169,110,.06);border:1px solid rgba(201,169,110,.12);border-radius:7px;padding:10px 14px;margin-bottom:14px;font-size:11px;color:var(--td);line-height:1.7}
+.ao-hosting strong{color:var(--gold);font-weight:400}
+.ao-tier-label{font-size:10px;color:var(--td);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.ao-tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:14px}
+.ao-tier{background:var(--s1);border:1px solid var(--br);border-radius:8px;padding:14px 16px;cursor:pointer;transition:all .3s}
+.ao-tier:hover{border-color:var(--ba)}.ao-tier.sel{border-color:var(--gold);background:var(--gg)}
+.ao-tier-top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.ao-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--br);flex-shrink:0;transition:all .3s}
+.ao-tier.sel .ao-dot{background:var(--gold);border-color:var(--gold)}
+.ao-tier-name{flex:1;font-size:12px;color:var(--tx);font-weight:400}
+.ao-tier-price{font-size:13px;color:var(--gold)}
+.ao-tier-desc{font-size:10px;color:var(--tm);line-height:1.65}
+.ao-legal{font-size:10px;color:var(--tm);line-height:1.7;padding-top:12px;border-top:1px solid var(--br)}
+.ao-legal a{color:var(--td);text-decoration:underline}
+
+@media(max-width:640px){.sec{padding:70px 14px 90px}.g2{grid-template-columns:1fr}.cart{flex-direction:column;gap:6px;text-align:center}.br{flex-direction:column}.btn{width:100%;justify-content:center}.ao-tiers{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -83,14 +108,24 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
     <div class="card" data-id="lp_base" onclick="togCard(this,'lp_base')">
       <div class="ck">✓</div><span class="ci">🌐</span>
       <div class="ct">Base Landing Page</div>
-      <div class="cd">Your branding, media, social link, inquiry form. Clean and professional.</div>
-      <div class="cp">$550</div><div style="font-size:10px;color:var(--tm);margin-top:3px">2 years hosting included</div>
+      <div class="cd">Your branding, media, social links, and inquiry form — built clean, mobile-ready, and conversion-conscious.</div>
+      <div class="cp">$1,800</div>
+      <div class="cn">2 years hosting included</div>
+      <div class="inc">
+        <strong>Includes à la carte:</strong><br>
+        Branded design build · Inquiry / contact form · Social profile links · Media gallery embed · Mobile responsive · SSL secured · Basic SEO meta setup
+      </div>
     </div>
     <div class="card" data-id="lp_conv" onclick="togCard(this,'lp_conv')">
       <div class="ck">✓</div><span class="ci">⚡</span>
       <div class="ct">Conversion Capture Page</div>
-      <div class="cd">Base + virtual tour, calendar booking, video embed, optimized lead capture.</div>
-      <div class="cp">$800</div>
+      <div class="cd">Everything in the Base Page, purpose-built to turn visitors into booked appointments and qualified leads.</div>
+      <div class="cp">$2,800</div>
+      <div class="cn">2 years hosting included</div>
+      <div class="inc">
+        <strong>Includes à la carte:</strong><br>
+        All Base Page features · 3D virtual tour embed · Calendar / booking integration · Brand video embed · Conversion-optimized lead capture form · Lead routing to CRM · Thank-you / confirmation flow
+      </div>
     </div>
   </div>
 
@@ -117,9 +152,52 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
   </div>
 
   <div class="sh">AlwaysOn Upgrade</div>
-  <div class="ar" data-id="ao_page" onclick="togRow(this,'ao_page')">
-    <div class="ai"><div class="anm">AlwaysOn Conversion Business Page</div><div class="adt">24/7 conversion engine — AI chat, lead capture, booking, nurture, tracking all built in.</div></div>
-    <div class="apr">$997</div><div class="tg"></div>
+  <div class="ar" data-id="ao_page" id="aoRow" onclick="togAlwaysOn(this,'ao_page')">
+    <div class="ai">
+      <div class="anm">AlwaysOn Conversion Business Page</div>
+      <div class="adt">24/7 conversion engine — AI chat, lead capture, booking, nurture, and performance tracking. Always working.</div>
+    </div>
+    <div class="apr">$997 <span style="font-size:10px;color:var(--tm)">+ AI access</span></div>
+    <div class="tg"></div>
+  </div>
+
+  <!-- ── AI Membership Disclosure + Tier Selector ── -->
+  <div class="ao-disc" id="aoDisc" style="display:none">
+    <div class="ao-disc-body">
+      <div class="ao-disc-eyebrow">⚡ AI Operations Infrastructure — Active Subscription Required</div>
+      <p class="ao-disc-intro">
+        Your AlwaysOn page is not static — it is a <strong>live AI system</strong> running continuously in the background. It qualifies every inbound visitor, responds to inquiries in real time, routes leads, books appointments, executes follow-up sequences, and generates performance data without any manual input. Keeping this system operational requires continuous AI compute, model inference, and automation orchestration — billed as a monthly AI access subscription that activates at project launch.
+      </p>
+      <div class="ao-hosting">
+        <strong>Hosting:</strong> Your first 2 years of hosting are included in the build fee. Beginning Year 3, hosting renews monthly at the rate of your selected domain hosting plan. You will be notified 60 days prior to the transition. Hosting rates are determined at the time of onboarding based on your domain provider and plan tier.
+      </div>
+      <div class="ao-tier-label">Select Your AI Access Tier</div>
+      <div class="ao-tiers">
+        <div class="ao-tier" id="aoTierBase" onclick="selAoTier('base')">
+          <div class="ao-tier-top">
+            <div class="ao-dot" id="dotBase"></div>
+            <div class="ao-tier-name">Foundational Scaling</div>
+            <div class="ao-tier-price">$49 / mo</div>
+          </div>
+          <div class="ao-tier-desc">
+            Allocated compute budget covers up to ~1,000 qualified AI interactions per month — conversations, lead captures, booking automations, and nurture triggers. Designed for businesses in active growth mode generating 0–100 inbound leads per month. Includes monthly performance summary and AI interaction log.
+          </div>
+        </div>
+        <div class="ao-tier" id="aoTierHeavy" onclick="selAoTier('heavy')">
+          <div class="ao-tier-top">
+            <div class="ao-dot" id="dotHeavy"></div>
+            <div class="ao-tier-name">Heavy User</div>
+            <div class="ao-tier-price">$99 / mo</div>
+          </div>
+          <div class="ao-tier-desc">
+            Extended compute budget for high-volume operations — multi-location pages, aggressive ad traffic, or lead volumes exceeding 100/month. Covers up to ~5,000 AI interactions per month with priority model access, faster response queues, and expanded nurture automation depth.
+          </div>
+        </div>
+      </div>
+      <div class="ao-legal">
+        By enabling AlwaysOn, you authorize Real Space Digital to place a card on file for your selected AI access tier. Billing begins at project launch — not at selection. You may upgrade, downgrade, or cancel with 30 days written notice. AI compute budgets are allocated, not metered — your system operates within its tier without surprise overages. Should volume consistently exceed your tier, RSD will recommend an upgrade. Unused compute does not roll over.
+      </div>
+    </div>
   </div>
 
   <div id="webWin" style="display:none"><div class="mw">✓ Online presence dialed in</div></div>
@@ -134,22 +212,25 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 // ╔══════════════════════════════════════════════════════════╗
 // ║  RSD FUNNEL — Page 4 of 11: Online Presence             ║
 // ╠══════════════════════════════════════════════════════════╣
-// ║  CONFIGURE: Set these to match your GHL funnel step URLs ║
 const URL_PREV = 'rsd-funnel-page-03-capture.html';
 const URL_NEXT = 'rsd-funnel-page-05-reputation.html';
 // ╚══════════════════════════════════════════════════════════╝
 
 const D_PRICE={
   scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,
-  lp_base:550,lp_conv:800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,
-  gbp_setup:350,gbp_scale:275,gbp_support:175,meta_setup:450,meta_scale:325,meta_own:225,
+  vid_authority:1800,vid_testimonial:1800,photo_half:400,photo_full:800,
+  lp_base:1800,lp_conv:2800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,
+  ao_ai_base:49,ao_ai_heavy:99,
+  gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,
   rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,
   soc3:497,soc5:797,soc7:1097,ad_mgmt:497,
   rr_recep:397,rr_text:197,rr_sms:297,rr_full:497
 };
 const D_TYPE={
   scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',
+  vid_authority:'one',vid_testimonial:'one',photo_half:'one',photo_full:'one',
   lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',
+  ao_ai_base:'mo',ao_ai_heavy:'mo',
   gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',
   rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',
   soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',
@@ -157,9 +238,16 @@ const D_TYPE={
 };
 const PKG_PRICE={pkg_t2b:5549,pkg_ao:6549,pkg_os:9549};
 
+// ── Active AlwaysOn AI tier: 'base' | 'heavy' | null
+let _aoTier = null;
+
 function getState(){
   const p=new URLSearchParams(window.location.search);
-  return{items:p.get('items')?p.get('items').split(',').filter(Boolean):[],pkg:p.get('pkg')||null,gf:p.get('gf')||null,qual:p.get('qual')?p.get('qual').split(',').map(Number):[0,0,0,0,0,0]};
+  return{
+    items:p.get('items')?p.get('items').split(',').filter(Boolean):[],
+    pkg:p.get('pkg')||null,gf:p.get('gf')||null,
+    qual:p.get('qual')?p.get('qual').split(',').map(Number):[0,0,0,0,0,0]
+  };
 }
 function buildQ(s){
   const p=new URLSearchParams();
@@ -179,24 +267,94 @@ function updCart(s){
 }
 
 const S=getState();
-const WEB_IDS=['lp_base','lp_conv','lp_about','lp_vt','lp_vid','lp_cal','lp_social','ao_page'];
+const WEB_IDS=['lp_base','lp_conv','lp_about','lp_vt','lp_vid','lp_cal','lp_social','ao_page','ao_ai_base','ao_ai_heavy'];
 
-// Restore selections
-document.querySelectorAll('.card[data-id]').forEach(c=>{if(S.items.includes(c.dataset.id))c.classList.add('sel');});
-document.querySelectorAll('.ar[data-id]').forEach(a=>{if(S.items.includes(a.dataset.id))a.classList.add('act');});
+// ── Restore selections on load
+document.querySelectorAll('.card[data-id]').forEach(c=>{
+  if(S.items.includes(c.dataset.id))c.classList.add('sel');
+});
+document.querySelectorAll('.ar[data-id]').forEach(a=>{
+  if(S.items.includes(a.dataset.id))a.classList.add('act');
+});
+// Restore AlwaysOn tier if previously selected
+if(S.items.includes('ao_page')){
+  document.getElementById('aoDisc').style.display='block';
+  if(S.items.includes('ao_ai_heavy')){
+    _aoTier='heavy';
+    document.getElementById('aoTierHeavy').classList.add('sel');
+    document.getElementById('dotHeavy').style.cssText='background:var(--gold);border-color:var(--gold)';
+  } else {
+    _aoTier='base';
+    document.getElementById('aoTierBase').classList.add('sel');
+    document.getElementById('dotBase').style.cssText='background:var(--gold);border-color:var(--gold)';
+    if(!S.items.includes('ao_ai_base'))S.items.push('ao_ai_base');
+  }
+}
 updCart(S);
 if(S.items.some(id=>WEB_IDS.includes(id)))document.getElementById('webWin').style.display='block';
 
+// ── Standard card toggle
 function togCard(el,id){
   el.classList.toggle('sel');
   const i=S.items.indexOf(id);if(i>-1)S.items.splice(i,1);else S.items.push(id);
   updCart(S);checkWin();
 }
+// ── Standard row toggle
 function togRow(el,id){
   el.classList.toggle('act');
   const i=S.items.indexOf(id);if(i>-1)S.items.splice(i,1);else S.items.push(id);
   updCart(S);checkWin();
 }
+
+// ── AlwaysOn toggle — shows/hides AI tier panel
+function togAlwaysOn(el,id){
+  el.classList.toggle('act');
+  const disc=document.getElementById('aoDisc');
+  const isOn=el.classList.contains('act');
+  disc.style.display=isOn?'block':'none';
+
+  if(isOn){
+    // Add ao_page to cart; auto-select foundational tier as default
+    if(!S.items.includes('ao_page'))S.items.push('ao_page');
+    if(_aoTier===null){
+      selAoTier('base');
+      return; // selAoTier calls updCart
+    }
+  } else {
+    // Remove ao_page and any AI tier from cart
+    S.items=S.items.filter(i=>i!=='ao_page'&&i!=='ao_ai_base'&&i!=='ao_ai_heavy');
+    _aoTier=null;
+    document.getElementById('aoTierBase').classList.remove('sel');
+    document.getElementById('aoTierHeavy').classList.remove('sel');
+    document.getElementById('dotBase').style.cssText='';
+    document.getElementById('dotHeavy').style.cssText='';
+  }
+  updCart(S);checkWin();
+}
+
+// ── AI tier selection
+function selAoTier(tier){
+  _aoTier=tier;
+  // Remove both tiers from cart first
+  S.items=S.items.filter(i=>i!=='ao_ai_base'&&i!=='ao_ai_heavy');
+  // Reset UI
+  document.getElementById('aoTierBase').classList.remove('sel');
+  document.getElementById('aoTierHeavy').classList.remove('sel');
+  document.getElementById('dotBase').style.cssText='';
+  document.getElementById('dotHeavy').style.cssText='';
+  // Apply selection
+  if(tier==='base'){
+    S.items.push('ao_ai_base');
+    document.getElementById('aoTierBase').classList.add('sel');
+    document.getElementById('dotBase').style.cssText='background:var(--gold);border-color:var(--gold)';
+  } else {
+    S.items.push('ao_ai_heavy');
+    document.getElementById('aoTierHeavy').classList.add('sel');
+    document.getElementById('dotHeavy').style.cssText='background:var(--gold);border-color:var(--gold)';
+  }
+  updCart(S);checkWin();
+}
+
 function checkWin(){
   document.getElementById('webWin').style.display=S.items.some(id=>WEB_IDS.includes(id))?'block':'none';
 }

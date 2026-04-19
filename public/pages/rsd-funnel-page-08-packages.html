@@ -65,7 +65,26 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .tg-body{flex:1}.tg-lbl{font-family:var(--fd);font-size:13px;font-weight:700;margin-bottom:4px}
 .tg-qual .tg-lbl{color:var(--grn)}.tg-promo .tg-lbl{color:var(--gold)}
 .tg-txt{font-size:12px;color:var(--td);line-height:1.7}.tg-txt strong{color:var(--tx);font-weight:400}
-@media(max-width:640px){.sec{padding:70px 14px 90px}.g3{grid-template-columns:1fr}.cart{flex-direction:column;gap:6px;text-align:center}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
+
+/* ── Phased Delivery ── */
+.phase-wrap{margin-top:36px;border-top:1px solid var(--br);padding-top:28px}
+.phase-hdr{font-size:10px;color:var(--td);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.phase-intro{font-size:12px;color:var(--td);line-height:1.8;max-width:680px;margin-bottom:24px}
+.phase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:20px}
+.phase-col{background:var(--s1);border:1px solid var(--br);border-radius:10px;padding:20px 18px}
+.phase-col-feat{border-color:rgba(201,169,110,.3);background:var(--gg2)}
+.phase-pkg-name{font-family:var(--fd);font-size:13px;font-weight:700;margin-bottom:4px;color:var(--tx)}
+.phase-timeline{font-size:10px;color:var(--gold);letter-spacing:.06em;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--br)}
+.phase-item{display:flex;gap:12px;margin-bottom:14px}
+.phase-item:last-child{margin-bottom:0}
+.phase-num{font-size:10px;color:var(--gold);font-weight:500;letter-spacing:.08em;flex-shrink:0;width:18px;margin-top:2px}
+.phase-body{flex:1}
+.phase-title{font-size:12px;color:var(--tx);margin-bottom:3px}
+.phase-title span{font-size:10px;color:var(--tm);margin-left:6px}
+.phase-desc{font-size:11px;color:var(--td);line-height:1.65}
+.phase-note{font-size:10px;color:var(--tm);line-height:1.7;max-width:720px;margin:0 auto}
+
+@media(max-width:640px){.sec{padding:70px 14px 90px}.g3{grid-template-columns:1fr}.phase-grid{grid-template-columns:1fr}.cart{flex-direction:column;gap:6px;text-align:center}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
 </style>
 </head>
 <body>
@@ -175,6 +194,99 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 
   <p style="font-size:11px;color:var(--tm);text-align:center;margin-top:8px">Immersive Systems + Custom Integration Suite: Custom scoped. Book a Fit Call to discuss.</p>
 
+  <!-- ── Phased Delivery Section ── -->
+  <div class="phase-wrap">
+    <div class="phase-hdr">How RSD Builds — The 3-Phase Delivery Model</div>
+    <p class="phase-intro">Every RSD system follows the same structured build sequence — Capture, Build, and Launch. Scope determines depth per phase. Phased delivery means you see real progress at every milestone, and launch happens on a defined schedule — not "when it's ready."</p>
+
+    <div class="phase-grid">
+
+      <!-- Tour2Booking -->
+      <div class="phase-col">
+        <div class="phase-pkg-name">Tour2Booking™</div>
+        <div class="phase-timeline">Est. 14–21 days to launch</div>
+        <div class="phase-item">
+          <div class="phase-num">01</div>
+          <div class="phase-body">
+            <div class="phase-title">Capture & Foundation <span>Days 1–7</span></div>
+            <div class="phase-desc">Discovery call + brand intake. On-site capture day: Matterport 360° venue scan, drone aerial photo + video, StoryBrand hero film shoot (1 day). Raw media delivered to post-production queue.</div>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-num">02</div>
+          <div class="phase-body">
+            <div class="phase-title">Build & Assemble <span>Days 8–14</span></div>
+            <div class="phase-desc">Post-production edit: 90–120s hero film + 3 social clips. Virtual tour processing and tagging. Conversion landing page build with embedded booking CTAs. Client review round.</div>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-num">03</div>
+          <div class="phase-body">
+            <div class="phase-title">Launch & Activate <span>Days 15–21</span></div>
+            <div class="phase-desc">Final QA and go-live. Booking system wired and tested. Media published across all platforms. 30-day post-launch check-in to confirm conversion activity and resolve any issues.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AlwaysOn Tour2Booking -->
+      <div class="phase-col phase-col-feat">
+        <div class="phase-pkg-name">AlwaysOn Tour2Booking™</div>
+        <div class="phase-timeline">Est. 21–30 days to launch</div>
+        <div class="phase-item">
+          <div class="phase-num">01</div>
+          <div class="phase-body">
+            <div class="phase-title">Capture & Architecture <span>Days 1–10</span></div>
+            <div class="phase-desc">Deep discovery: brand positioning, ICP definition, competitive positioning. On-site capture: 360° portfolio scan, drone, hero VSL film shoot (3–9 min full production). Simultaneous system architecture mapping.</div>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-num">02</div>
+          <div class="phase-body">
+            <div class="phase-title">Build & Integrate <span>Days 11–21</span></div>
+            <div class="phase-desc">Post-production: full StoryBrand hero film + clip suite. Hero VSL landing page built and optimized. 360° explorable portfolio integrated. Google Ads + LSA campaign setup and audience configuration.</div>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-num">03</div>
+          <div class="phase-body">
+            <div class="phase-title">AlwaysOn Activation <span>Days 22–30</span></div>
+            <div class="phase-desc">AlwaysOn visibility loop activated. Automated lead routing and nurture engaged. Full system QA and live testing. 21-Day Guarantee clock starts at launch. Weekly check-in through Day 30.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Digital Twin OS -->
+      <div class="phase-col">
+        <div class="phase-pkg-name">AlwaysOn Digital Twin OS™</div>
+        <div class="phase-timeline">Est. 30–45 days to full build</div>
+        <div class="phase-item">
+          <div class="phase-num">01</div>
+          <div class="phase-body">
+            <div class="phase-title">Capture & System Design <span>Days 1–14</span></div>
+            <div class="phase-desc">Full discovery and AI system architecture. On-site capture: 360° scan, drone, hero VSL, Digital Twin or custom avatar production begins. Brand voice and persona modeling. Funnel architecture and copy strategy mapped.</div>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-num">02</div>
+          <div class="phase-body">
+            <div class="phase-title">Platform Build <span>Days 15–28</span></div>
+            <div class="phase-desc">AI receptionist + text AI deployment. Real-time answers engine trained and tested. VSL funnels + landing pages built. Google + Meta ads setup and creative loaded. Fit assessment funnel built and wired to CRM.</div>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-num">03</div>
+          <div class="phase-body">
+            <div class="phase-title">Integration, Testing & Go-Live <span>Days 29–45</span></div>
+            <div class="phase-desc">Full system integration: Digital Twin / avatar live. Nurture sequences active. End-to-end testing across all channels. Performance baseline established. 21-Day Guarantee clock starts at confirmed launch. 30-day hypercare support period included.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end phase-grid -->
+
+    <p class="phase-note">Timelines begin at confirmed kickoff — the first business day after 25% down payment is received and onboarding call is completed. Capture scheduling is coordinated by your dedicated RSD build coordinator. Timeline extensions apply only when client deliverables (access, approvals, on-site availability) are delayed beyond 72 hours of request.</p>
+  </div>
+
   <div id="pkgWin" style="display:none"><div class="mw" style="justify-content:center">✓ Full system selected</div></div>
 
   <div class="br">
@@ -191,8 +303,8 @@ const URL_PREV = 'rsd-funnel-page-07-rapid-response.html';
 const URL_NEXT = 'rsd-funnel-page-09-lock-rate.html';
 // ╚══════════════════════════════════════════════════════════╝
 
-const D_PRICE={scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,lp_base:550,lp_conv:800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,gbp_setup:350,gbp_scale:275,gbp_support:175,meta_setup:450,meta_scale:325,meta_own:225,rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,ad_mgmt:497,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497};
-const D_TYPE={scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo'};
+const D_PRICE={scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,vid_authority:1800,vid_testimonial:1800,photo_half:400,photo_full:800,lp_base:1800,lp_conv:2800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,ao_ai_base:49,ao_ai_heavy:99,gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,ad_mgmt:497,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497};
+const D_TYPE={scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',vid_authority:'one',vid_testimonial:'one',photo_half:'one',photo_full:'one',lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',ao_ai_base:'mo',ao_ai_heavy:'mo',gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo'};
 const PKG_PRICE={pkg_t2b:5549,pkg_ao:6549,pkg_os:9549};
 
 function getState(){const p=new URLSearchParams(window.location.search);return{items:p.get('items')?p.get('items').split(',').filter(Boolean):[],pkg:p.get('pkg')||null,gf:p.get('gf')||null,qual:p.get('qual')?p.get('qual').split(',').map(Number):[0,0,0,0,0,0]};}

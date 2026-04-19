@@ -120,6 +120,38 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
     </div>
   </div>
 
+  <div class="sh">Authority & Interview Video</div>
+  <div class="grid g2">
+    <div class="card" data-id="vid_authority" onclick="togCard(this,'vid_authority')">
+      <div class="ck">✓</div><span class="ci">🎤</span>
+      <div class="ct">Owner / Stakeholder Authority Video</div>
+      <div class="cd">Professional on-site interview shoot. Positions you as the authority in your space — used for ads, website, and social proof.</div>
+      <div class="cp">$1,800</div><div class="cn">On-site production · edited deliverable</div>
+    </div>
+    <div class="card" data-id="vid_testimonial" onclick="togCard(this,'vid_testimonial')">
+      <div class="ck">✓</div><span class="ci">🌟</span>
+      <div class="ct">Testimonial Video</div>
+      <div class="cd">On-site client or stakeholder testimonial capture. Edited and social-ready. Strongest trust signal available.</div>
+      <div class="cp">$1,800</div><div class="cn">On-site production · edited deliverable</div>
+    </div>
+  </div>
+
+  <div class="sh">Product Photography</div>
+  <div class="grid g2">
+    <div class="card" data-id="photo_half" onclick="togCard(this,'photo_half')">
+      <div class="ck">✓</div><span class="ci">📷</span>
+      <div class="ct">Product Photography — Half Day</div>
+      <div class="cd">Professional on-site 4K product shoot. Ideal for e-commerce, service showcases, and website hero imagery.</div>
+      <div class="cp">$400</div><div class="cn">Half-day session · edited gallery</div>
+    </div>
+    <div class="card" data-id="photo_full" onclick="togCard(this,'photo_full')">
+      <div class="ck">✓</div><span class="ci">🖼️</span>
+      <div class="ct">Product Photography — Full Day</div>
+      <div class="cd">Extended shoot for larger catalogs, multiple setups, or full brand campaigns. Maximum coverage and variety.</div>
+      <div class="cp">$800</div><div class="cn">Full-day session · edited gallery</div>
+    </div>
+  </div>
+
   <div id="captureWin" style="display:none"><div class="mw">✓ Capture plan set</div></div>
 
   <div class="br">
@@ -139,15 +171,17 @@ const URL_NEXT = 'rsd-funnel-page-04-web-presence.html';
 
 const D={
   scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,
-  lp_base:550,lp_conv:800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,
-  gbp_setup:350,gbp_scale:275,gbp_support:175,meta_setup:450,meta_scale:325,meta_own:225,
+  vid_authority:1800,vid_testimonial:1800,photo_half:400,photo_full:800,
+  lp_base:1800,lp_conv:2800,ao_ai_base:49,ao_ai_heavy:99,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,
+  gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,
   rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,
   soc3:497,soc5:797,soc7:1097,ad_mgmt:497,
   rr_recep:397,rr_text:197,rr_sms:297,rr_full:497
 };
 const D_TYPE={
   scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',
-  lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',
+  vid_authority:'one',vid_testimonial:'one',photo_half:'one',photo_full:'one',
+  lp_base:'one',lp_conv:'one',ao_ai_base:'mo',ao_ai_heavy:'mo',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',
   gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',
   rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',
   soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',
@@ -188,7 +222,8 @@ document.querySelectorAll('.card[data-id]').forEach(c=>{
   if(S.items.includes(c.dataset.id))c.classList.add('sel');
 });
 updCart(S);
-if(S.items.some(id=>['scan_base','scan_guided','vid_single','vid_pack','drone_half','drone_full'].includes(id))){
+const CAPTURE_IDS=['scan_base','scan_guided','vid_single','vid_pack','drone_half','drone_full','vid_authority','vid_testimonial','photo_half','photo_full'];
+if(S.items.some(id=>CAPTURE_IDS.includes(id))){
   document.getElementById('captureWin').style.display='block';
 }
 
@@ -197,8 +232,7 @@ function togCard(el, id){
   const i=S.items.indexOf(id);
   if(i>-1)S.items.splice(i,1);else S.items.push(id);
   updCart(S);
-  const hasSel = S.items.some(x=>['scan_base','scan_guided','vid_single','vid_pack','drone_half','drone_full'].includes(x));
-  document.getElementById('captureWin').style.display = hasSel ? 'block' : 'none';
+  document.getElementById('captureWin').style.display = S.items.some(x=>CAPTURE_IDS.includes(x)) ? 'block' : 'none';
 }
 
 function goBack(){ const q=buildQ(S); window.location.href=URL_PREV+(q?'?'+q:''); }

@@ -64,14 +64,16 @@ module.exports = async function handler(req, res) {
   // Compute totals for GHL custom fields
   const D_PRICE_MAP = {
     scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,
-    lp_base:550,lp_conv:800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,
-    gbp_setup:350,gbp_scale:275,gbp_support:175,meta_setup:450,meta_scale:325,meta_own:225,
+    vid_authority:1800,vid_testimonial:1800,photo_half:400,photo_full:800,
+    lp_base:1800,lp_conv:2800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,ao_ai_base:49,ao_ai_heavy:99,
+    gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,
     rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,
     ad_mgmt:497,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497,
   };
   const D_TYPE_MAP = {
     scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',
-    lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',
+    vid_authority:'one',vid_testimonial:'one',photo_half:'one',photo_full:'one',
+    lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',ao_ai_base:'mo',ao_ai_heavy:'mo',
     gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',
     rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',soc3:'mo',soc5:'mo',soc7:'mo',
     ad_mgmt:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo',
@@ -119,7 +121,10 @@ module.exports = async function handler(req, res) {
     scan_base:'3D Matterport Scan — Base', scan_guided:'Virtual Guided Tour',
     vid_single:'1 Conversion Video', vid_pack:'Video Starter Pack',
     drone_half:'Drone — Half Day', drone_full:'Drone — Full Day',
-    lp_base:'Landing Page — Base', lp_conv:'Landing Page — Conversion Optimized',
+    vid_authority:'Owner / Stakeholder Authority Video', vid_testimonial:'Testimonial Video',
+    photo_half:'Product Photography — Half Day', photo_full:'Product Photography — Full Day',
+    lp_base:'Base Landing Page', lp_conv:'Conversion Capture Page',
+    ao_ai_base:'AI Access Membership — Foundational Scaling ($49/mo)', ao_ai_heavy:'AI Access Membership — Heavy User ($99/mo)',
     lp_about:'About / Story Page', lp_vt:'Virtual Tour Embed Page',
     lp_vid:'Video Embed Add-on', lp_cal:'Calendar / Booking Add-on',
     lp_social:'Social Proof Page', ao_page:'Authority Outreach Page',

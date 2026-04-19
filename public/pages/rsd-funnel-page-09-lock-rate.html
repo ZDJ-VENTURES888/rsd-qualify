@@ -10,7 +10,7 @@
   --bg:#0b0b0b;--s1:#141414;--sh:#1f1f1f;--br:#262626;--ba:#c9a96e;
   --gold:#c9a96e;--gd:#a68a52;--gg:rgba(201,169,110,.12);--gg2:rgba(201,169,110,.06);
   --tx:#e8e4dc;--td:#9a9590;--tm:#5e5955;
-  --grn:#5cb85c;--gb:rgba(92,184,92,.08);--red:#d9534f;
+  --grn:#5cb85c;--gb:rgba(92,184,92,.08);--grn2:rgba(92,184,92,.15);--red:#d9534f;
   --fd:'Libre Baskerville',Georgia,serif;--fm:'JetBrains Mono',monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -20,39 +20,91 @@ body{background:var(--bg);color:var(--tx);font-family:var(--fm);font-weight:300;
 .prog-t{flex:1;height:3px;background:var(--br);border-radius:2px;overflow:hidden}
 .prog-f{height:100%;background:var(--gold);border-radius:2px}
 .prog-l{font-size:10px;color:var(--td);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
-.sec{min-height:100vh;padding:80px 20px 100px;max-width:960px;margin:0 auto;animation:fadeUp .6s both}
+.sec{min-height:100vh;padding:80px 20px 120px;max-width:960px;margin:0 auto;animation:fadeUp .6s both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .sl{font-size:10px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px}
 h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-height:1.3;margin-bottom:10px}
-.sub{font-size:14px;color:var(--td);max-width:540px;margin-bottom:32px;line-height:1.8}
+.sub{font-size:14px;color:var(--td);max-width:600px;margin-bottom:32px;line-height:1.8}
 .g{color:var(--gold)}
+
+/* ── Tier cards ── */
 .grid{display:grid;gap:14px;margin-bottom:24px}
 .g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.tier{background:var(--s1);border:1px solid var(--br);border-radius:12px;padding:28px 22px;cursor:pointer;transition:all .4s;position:relative}
+.tier{background:var(--s1);border:1px solid var(--br);border-radius:12px;padding:28px 22px;cursor:pointer;transition:border-color .3s,background .3s,transform .3s;position:relative;overflow:hidden}
 .tier:hover{border-color:var(--ba);transform:translateY(-2px)}
-.tier.feat{border-color:var(--gold);box-shadow:0 0 40px var(--gg2)}
-.tier.sel{border-color:var(--gold);background:var(--gg)}
+.tier.feat{border-color:rgba(201,169,110,.4);box-shadow:0 0 40px var(--gg2)}
+.tier.sel{border-color:var(--grn);background:rgba(92,184,92,.04)}
+.tier.sel.feat{box-shadow:0 0 40px rgba(92,184,92,.12)}
 .tb{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 14px;border-radius:16px;white-space:nowrap}
 .tn{font-family:var(--fd);font-size:18px;font-weight:700;text-align:center;margin-bottom:2px}
 .tv{font-size:10px;color:var(--gold);text-align:center;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
 .tt{font-size:11px;color:var(--td);text-align:center;margin-bottom:16px}
-.tpb{text-align:center;margin-bottom:16px}
-.tp{font-family:var(--fd);font-size:28px;font-weight:700;color:var(--gold)}
-.tpe{font-size:12px;color:var(--td)}
-.tfl{list-style:none;margin:16px 0}
+.tpb{text-align:center;margin-bottom:6px}
+.tp{font-family:var(--fd);font-size:28px;font-weight:700;color:var(--gold);transition:color .3s}
+.tier.sel .tp{color:var(--grn)}
+.tpe{font-size:11px;color:var(--td)}
+.tpe-disc{font-size:10px;color:var(--tm);margin-top:2px}
+.tfl{list-style:none;margin:16px 0 0}
 .tfl li{font-size:12px;color:var(--td);padding:5px 0;border-bottom:1px solid var(--br);display:flex;align-items:flex-start;gap:8px}
 .tfl li:last-child{border:none}
-.fc{color:var(--gold);font-size:12px;flex-shrink:0;margin-top:1px}
+.fc{flex-shrink:0;margin-top:1px;font-size:13px;color:var(--gold);transition:color .3s}
+.tier.sel .fc{color:var(--grn)}
+.fc-no{flex-shrink:0;margin-top:1px;font-size:13px;color:var(--tm)}
+
+/* ── Check flash animation (triggered via JS) ── */
+@keyframes checkFlash{
+  0%{transform:scale(1);color:var(--gold)}
+  25%{transform:scale(1.6);color:var(--grn);filter:drop-shadow(0 0 4px var(--grn))}
+  55%{transform:scale(1.15);color:var(--grn)}
+  100%{transform:scale(1);color:var(--grn)}
+}
+@keyframes tierPop{
+  0%{box-shadow:0 0 0 0 rgba(92,184,92,0)}
+  30%{box-shadow:0 0 0 8px rgba(92,184,92,.18)}
+  70%{box-shadow:0 0 0 14px rgba(92,184,92,.06)}
+  100%{box-shadow:0 0 20px rgba(92,184,92,.08)}
+}
+.tier.animating{animation:tierPop .7s both}
+
+/* ── Priority badge on Growth Lock ── */
+.priority-badge{display:inline-block;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.25);color:var(--gold);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-top:6px}
+
+/* ── Selected win banner ── */
+.mw{display:inline-flex;align-items:center;gap:6px;background:var(--gb);color:var(--grn);font-size:11px;padding:5px 12px;border-radius:16px;margin:14px auto 0;display:flex;justify-content:center}
+
+/* ── Tier Legend ── */
+.legend{margin-top:32px;border-top:1px solid var(--br);padding-top:24px}
+.legend-hdr{font-size:10px;color:var(--td);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.legend-row{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--br)}
+.legend-row:last-child{border:none;padding-bottom:0}
+.legend-icon{font-size:16px;flex-shrink:0;width:22px;margin-top:2px}
+.legend-body{flex:1}
+.legend-name{font-family:var(--fd);font-size:13px;font-weight:700;margin-bottom:3px;color:var(--tx)}
+.legend-name span{font-size:10px;color:var(--gold);font-family:var(--fm);font-weight:300;letter-spacing:.08em;margin-left:8px}
+.legend-desc{font-size:11px;color:var(--td);line-height:1.75}
+.legend-desc strong{color:var(--tx);font-weight:400}
+.legend-meta{font-size:10px;color:var(--tm);margin-top:4px;line-height:1.6}
+
+/* ── Scarcity bar ── */
+.scarcity{background:var(--s1);border:1px solid var(--br);border-radius:8px;padding:12px 16px;margin-bottom:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.scarcity-dot{width:8px;height:8px;border-radius:50%;background:var(--grn);flex-shrink:0;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(92,184,92,.4)}50%{opacity:.8;box-shadow:0 0 0 4px rgba(92,184,92,0)}}
+.scarcity-txt{font-size:11px;color:var(--td);flex:1}
+.scarcity-txt strong{color:var(--gold);font-weight:400}
+
+/* ── Buttons ── */
 .btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:12px 28px;border-radius:7px;border:none;cursor:pointer;transition:all .3s}
 .bg{background:var(--gold);color:var(--bg);font-weight:400}.bg:hover{background:var(--gd);transform:translateY(-1px)}
 .bgh{background:transparent;color:var(--td);border:1px solid var(--br)}.bgh:hover{border-color:var(--td);color:var(--tx)}
 .br{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;justify-content:center}
-.mw{display:inline-flex;align-items:center;gap:6px;background:var(--gb);color:var(--grn);font-size:11px;padding:5px 12px;border-radius:16px;margin-top:14px}
+
+/* ── Cart ── */
 .cart{position:fixed;bottom:0;left:0;right:0;background:var(--s1);border-top:1px solid var(--br);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;z-index:199;transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
 .cart.vis{transform:none}
 .cart-i{font-size:12px;color:var(--td)}.cart-i strong{color:var(--gold);font-weight:400}
 .cart-t{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--gold)}
-@media(max-width:640px){.sec{padding:70px 14px 90px}.g3{grid-template-columns:1fr}.cart{flex-direction:column;gap:6px;text-align:center}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
+
+@media(max-width:640px){.sec{padding:70px 14px 100px}.g3{grid-template-columns:1fr}.cart{flex-direction:column;gap:6px;text-align:center}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
 </style>
 </head>
 <body>
@@ -70,60 +122,120 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 <div class="sec">
   <div class="sl">Step 7 — Founder Pricing (Limited)</div>
   <h2>Lock in today's rate.<br><span class="g">It goes up next quarter.</span></h2>
-  <p class="sub">First 25 partners per tier. Rate locked as long as your account is active.</p>
+  <p class="sub">RSD prices increase as we add capacity, refine our systems, and grow our case library. Founder partners lock the rate they choose today — permanently — for as long as the account is active. First 25 seats per tier. Once filled, that tier closes.</p>
+
+  <!-- ── Scarcity indicator ── -->
+  <div class="scarcity">
+    <div class="scarcity-dot"></div>
+    <div class="scarcity-txt">Founder pricing is <strong>active and open now</strong>. Rates increase next quarter. Locking today means your investment never goes up, regardless of what we charge future clients.</div>
+  </div>
 
   <div class="grid g3">
+
+    <!-- Starter Lock -->
     <div class="tier" data-id="gf1" onclick="selGF(this,'gf1')">
+      <div class="tv">5% Founder Discount</div>
       <div class="tn">Starter Lock</div>
-      <div class="tt">Your picks, rate-protected.</div>
+      <div class="tt">Your picks, rate-protected for life.</div>
       <div class="tpb">
         <div class="tp" id="gf1p">—</div>
-        <div class="tpe">locked</div>
+        <div class="tpe">locked investment</div>
+        <div class="tpe-disc" id="gf1s"></div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">✓</span>Your à la carte selections</li>
-        <li><span class="fc">✓</span>Founder rate for life</li>
-        <li><span style="color:var(--tm);font-size:12px;flex-shrink:0;margin-top:1px">—</span><span style="color:var(--tm)">Priority lane</span></li>
+        <li><span class="fc">✓</span>Your à la carte selections, locked</li>
+        <li><span class="fc">✓</span>Founder rate held for life of account</li>
+        <li><span class="fc">✓</span>Standard delivery queue</li>
+        <li><span class="fc-no">—</span><span style="color:var(--tm)">Priority build lane</span></li>
+        <li><span class="fc-no">—</span><span style="color:var(--tm)">Strategy review included</span></li>
       </ul>
     </div>
 
+    <!-- Growth Lock -->
     <div class="tier feat" data-id="gf2" onclick="selGF(this,'gf2')">
       <div class="tb">Best Value</div>
+      <div class="tv">10% Founder Discount</div>
       <div class="tn">Growth Lock</div>
-      <div class="tt">Everything + priority access.</div>
+      <div class="tt">Rate locked + move ahead in the build queue.</div>
       <div class="tpb">
         <div class="tp" id="gf2p">—</div>
-        <div class="tpe">locked + priority</div>
+        <div class="tpe">locked + priority access</div>
+        <div class="tpe-disc" id="gf2s"></div>
+        <div class="priority-badge">+ $497 Priority Lane</div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">✓</span>All selections</li>
-        <li><span class="fc">✓</span>Founder rate for life</li>
-        <li><span class="fc">✓</span>Priority build lane</li>
+        <li><span class="fc">✓</span>All selections, locked at 10% off</li>
+        <li><span class="fc">✓</span>Founder rate held for life of account</li>
+        <li><span class="fc">✓</span>Priority build lane — jump the queue</li>
+        <li><span class="fc">✓</span>2–3 weeks faster delivery vs. standard</li>
+        <li><span class="fc-no">—</span><span style="color:var(--tm)">Quarterly strategy review</span></li>
       </ul>
     </div>
 
+    <!-- Dominate Lock -->
     <div class="tier" data-id="gf3" onclick="selGF(this,'gf3')">
+      <div class="tv">15% Founder Discount</div>
       <div class="tn">Dominate Lock</div>
-      <div class="tt">Everything. First in line.</div>
+      <div class="tt">Everything. First in line. Maximum leverage.</div>
       <div class="tpb">
         <div class="tp" id="gf3p">—</div>
         <div class="tpe">all-in locked</div>
+        <div class="tpe-disc" id="gf3s"></div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">✓</span>All selections</li>
-        <li><span class="fc">✓</span>Founder rate for life</li>
-        <li><span class="fc">✓</span>First-priority lane</li>
-        <li><span class="fc">✓</span>Quarterly strategy review</li>
+        <li><span class="fc">✓</span>All selections, locked at 15% off</li>
+        <li><span class="fc">✓</span>Founder rate held for life of account</li>
+        <li><span class="fc">✓</span>First-priority build slot — you're next</li>
+        <li><span class="fc">✓</span>Quarterly strategy review (1 hr/qtr)</li>
+        <li><span class="fc">✓</span>Priority support channel access</li>
       </ul>
     </div>
+
   </div>
 
-  <div id="gfWin" style="display:none"><div class="mw" style="justify-content:center">✓ Rate locked</div></div>
+  <div id="gfWin" style="display:none">
+    <div class="mw">✓ Rate locked — you're in</div>
+  </div>
 
   <div class="br">
     <button class="bgh btn" onclick="goBack()">← Back</button>
     <button class="bg btn" onclick="goNext()">Review My Package →</button>
   </div>
+
+  <!-- ── Tier Legend ── -->
+  <div class="legend">
+    <div class="legend-hdr">What each tier actually means</div>
+
+    <div class="legend-row">
+      <div class="legend-icon">🔒</div>
+      <div class="legend-body">
+        <div class="legend-name">Starter Lock <span>gf1 · 5% off</span></div>
+        <div class="legend-desc">Your selections are locked at today's rate — permanently. You enter the <strong>standard build queue</strong> alongside all active projects. Standard delivery timelines apply: most builds launch within 3–4 weeks of kickoff. Your investment never increases as long as your account stays active, regardless of what we charge future clients.</div>
+        <div class="legend-meta">Ideal for: Businesses ready to move but not in a rush. Strong choice for those building thoughtfully.</div>
+      </div>
+    </div>
+
+    <div class="legend-row">
+      <div class="legend-icon">⚡</div>
+      <div class="legend-body">
+        <div class="legend-name">Growth Lock <span>gf2 · 10% off + $497 priority fee</span></div>
+        <div class="legend-desc">Everything in Starter Lock, plus access to the <strong>priority build lane</strong>. Your project is queued ahead of standard accounts. The $497 priority access fee is a one-time investment in speed — not a recurring charge. In a competitive market, launching 2–3 weeks earlier than your competitors is often the difference between winning the lead and losing it. Growth Lock partners also receive a dedicated build coordinator contact during their build phase.</div>
+        <div class="legend-meta">Ideal for: Businesses in active growth mode, running ads, or entering a competitive season. The math often favors paying for the lane.</div>
+      </div>
+    </div>
+
+    <div class="legend-row">
+      <div class="legend-icon">🏆</div>
+      <div class="legend-body">
+        <div class="legend-name">Dominate Lock <span>gf3 · 15% off · all-in</span></div>
+        <div class="legend-desc">The highest tier of founder access. You receive the deepest discount, <strong>first available build slot</strong> (you are literally next in the queue), a dedicated priority support channel, and a quarterly strategy review session with RSD leadership — 1 hour per quarter focused on performance, expansion opportunities, and positioning. Dominate partners are treated as long-term strategic accounts, not transactions.</div>
+        <div class="legend-meta">Ideal for: Established operators who understand that speed, attention, and strategic alignment are worth more than the discount itself. This is a relationship tier.</div>
+      </div>
+    </div>
+
+    <p style="font-size:10px;color:var(--tm);margin-top:20px;line-height:1.7">Founder rates are locked at the time of down payment receipt. Lock tier cannot be downgraded after confirmation. Upgrades between tiers are permitted with difference paid. Priority lane scheduling is subject to current project load — RSD will confirm estimated kickoff date within 48 hours of confirmed payment. Quarterly strategy reviews begin 90 days post-launch.</p>
+  </div>
+
 </div>
 
 <script>
@@ -134,9 +246,11 @@ const URL_PREV = 'rsd-funnel-page-08-packages.html';
 const URL_NEXT = 'rsd-funnel-page-10-summary.html';
 // ╚══════════════════════════════════════════════════════════╝
 
-const D_PRICE={scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,lp_base:550,lp_conv:800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,gbp_setup:350,gbp_scale:275,gbp_support:175,meta_setup:450,meta_scale:325,meta_own:225,rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,ad_mgmt:497,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497};
-const D_TYPE={scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo'};
+const D_PRICE={scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,vid_authority:1800,vid_testimonial:1800,photo_half:400,photo_full:800,lp_base:1800,lp_conv:2800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,ao_ai_base:49,ao_ai_heavy:99,gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,ad_mgmt:497,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497};
+const D_TYPE={scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',vid_authority:'one',vid_testimonial:'one',photo_half:'one',photo_full:'one',lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',ao_ai_base:'mo',ao_ai_heavy:'mo',gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo'};
 const PKG_PRICE={pkg_t2b:5549,pkg_ao:6549,pkg_os:9549};
+const GF_DISC={gf1:0.05,gf2:0.10,gf3:0.15};
+const PRIORITY_FEE=497; // Growth Lock priority build lane fee
 
 function getState(){const p=new URLSearchParams(window.location.search);return{items:p.get('items')?p.get('items').split(',').filter(Boolean):[],pkg:p.get('pkg')||null,gf:p.get('gf')||null,qual:p.get('qual')?p.get('qual').split(',').map(Number):[0,0,0,0,0,0]};}
 function buildQ(s){const p=new URLSearchParams();if(s.items&&s.items.length)p.set('items',s.items.join(','));if(s.pkg)p.set('pkg',s.pkg);if(s.gf)p.set('gf',s.gf);if(s.qual&&s.qual.some(Boolean))p.set('qual',s.qual.join(','));return p.toString();}
@@ -145,27 +259,84 @@ function fmtPrice(o,m){let t='';if(o)t='$'+o.toLocaleString();if(o&&m)t+=' + ';i
 function updCart(s){const ct=s.items.length+(s.pkg?1:0);const{o,m}=calcTotals(s);document.getElementById('cI').innerHTML='<strong>'+ct+'</strong> item'+(ct!==1?'s':'');document.getElementById('cT').textContent=fmtPrice(o,m)||'$0';document.getElementById('cart').classList.toggle('vis',ct>0);}
 
 const S=getState();
-if(S.gf){const el=document.querySelector('.tier[data-id="'+S.gf+'"]');if(el)el.classList.add('sel');document.getElementById('gfWin').style.display='block';}
 updCart(S);
 
-// Populate tier prices from current cart
+// ── Compute and display tier prices
 (function populatePrices(){
   const{o,m}=calcTotals(S);
-  const s1=fmtPrice(o,m);
-  const s2=fmtPrice(o,m);
-  // Dominate lock: all-in max (includes full social 1097 + ad mgmt 497)
-  const dominateO=o+(S.items.includes('soc7')?0:1097)+(S.items.includes('ad_mgmt')?0:497);
-  const dominateM=m+(S.items.includes('soc7')?0:1097)+(S.items.includes('ad_mgmt')?0:497);
-  document.getElementById('gf1p').textContent=s1;
-  document.getElementById('gf2p').textContent=s2;
-  document.getElementById('gf3p').textContent=fmtPrice(dominateO,dominateM);
+
+  // gf1 — Starter Lock: 5% off one-time
+  const gf1O = Math.round(o * 0.95);
+  const gf1Save = o - gf1O;
+  document.getElementById('gf1p').textContent = fmtPrice(gf1O, m);
+  if(gf1Save > 0) document.getElementById('gf1s').textContent = 'saves $'+gf1Save.toLocaleString();
+
+  // gf2 — Growth Lock: 10% off + $497 priority fee
+  const gf2Disc = Math.round(o * 0.10);
+  const gf2O = Math.round(o * 0.90) + PRIORITY_FEE;
+  document.getElementById('gf2p').textContent = fmtPrice(gf2O, m);
+  document.getElementById('gf2s').textContent = '10% off (−$'+gf2Disc.toLocaleString()+') + $'+PRIORITY_FEE+' priority fee';
+
+  // gf3 — Dominate Lock: 15% off, show all-in vision (add soc7 + ad_mgmt if not already selected)
+  const bonusItems=['soc7','ad_mgmt'];
+  let bonusO=o,bonusM=m;
+  bonusItems.forEach(id=>{
+    if(!S.items.includes(id)){
+      if(D_TYPE[id]==='one')bonusO+=D_PRICE[id]||0;
+      else bonusM+=D_PRICE[id]||0;
+    }
+  });
+  const gf3O = Math.round(bonusO * 0.85);
+  const gf3M = Math.round(bonusM * 0.85);
+  const gf3Save = bonusO - gf3O;
+  document.getElementById('gf3p').textContent = fmtPrice(gf3O, gf3M > 0 ? gf3M : m);
+  if(gf3Save > 0) document.getElementById('gf3s').textContent = 'saves $'+gf3Save.toLocaleString()+' all-in';
 })();
 
-function selGF(el,id){
-  document.querySelectorAll('.tier').forEach(t=>t.classList.remove('sel'));
-  el.classList.add('sel');S.gf=id;
-  updCart(S);document.getElementById('gfWin').style.display='block';
+// ── Restore previously selected tier
+if(S.gf){
+  const el=document.querySelector('.tier[data-id="'+S.gf+'"]');
+  if(el){el.classList.add('sel');applyCheckColors(el);}
+  document.getElementById('gfWin').style.display='block';
 }
+
+function applyCheckColors(el){
+  el.querySelectorAll('.fc').forEach(fc=>{fc.style.color='var(--grn)';});
+}
+
+function selGF(el,id){
+  // Clear previous selection
+  document.querySelectorAll('.tier').forEach(t=>{
+    t.classList.remove('sel','animating');
+    t.querySelectorAll('.fc').forEach(fc=>{
+      fc.style.animation='';fc.style.color='var(--gold)';
+    });
+  });
+
+  // Apply new selection
+  el.classList.add('sel','animating');
+  S.gf=id;
+
+  // Staggered check flash: gold → green pop per checkmark
+  el.querySelectorAll('.fc').forEach((fc,i)=>{
+    fc.style.animation='none';
+    fc.style.color='var(--gold)';
+    // Use double-rAF to allow style reset before re-applying animation
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>{
+        fc.style.animation='checkFlash 0.55s '+( i * 90 )+'ms both';
+      });
+    });
+  });
+
+  // Remove animation class after it completes so re-clicks work
+  setTimeout(()=>{el.classList.remove('animating');},800);
+
+  updCart(S);
+  document.getElementById('gfWin').style.display='block';
+  document.getElementById('gfWin').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
 function goBack(){const q=buildQ(S);window.location.href=URL_PREV+(q?'?'+q:'');}
 function goNext(){const q=buildQ(S);window.location.href=URL_NEXT+(q?'?'+q:'');}
 </script>
