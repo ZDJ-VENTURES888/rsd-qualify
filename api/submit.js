@@ -101,6 +101,46 @@ module.exports = async function handler(req, res) {
   const isPromo   = !isQual && combined >= 6000;
   const tierRoute = isQual ? 'Guarantee Qualified' : isPromo ? 'Speed to Prosperity' : 'Building Foundation';
 
+  // Qual criteria labels
+  const QUAL_LABELS = [
+    'Google Business Profile (claimed + verified)',
+    'Meta Business Suite / Ad Manager account ownership',
+    'Existing media (photos, video, or tour footage)',
+    'Active website or landing page',
+    'Working phone number and email for lead routing',
+    'Clear service or product offering with pricing'
+  ];
+  const qualMet     = QUAL_LABELS.filter((_, i) => qual[i] === 1);
+  const qualMissing = QUAL_LABELS.filter((_, i) => qual[i] === 0);
+  const qualSummary = `${qualMet.length} of 6 prerequisites met — ${tierRoute}`;
+
+  // Item labels
+  const ITEM_LABELS = {
+    scan_base:'3D Matterport Scan — Base', scan_guided:'Virtual Guided Tour',
+    vid_single:'1 Conversion Video', vid_pack:'Video Starter Pack',
+    drone_half:'Drone — Half Day', drone_full:'Drone — Full Day',
+    lp_base:'Landing Page — Base', lp_conv:'Landing Page — Conversion Optimized',
+    lp_about:'About / Story Page', lp_vt:'Virtual Tour Embed Page',
+    lp_vid:'Video Embed Add-on', lp_cal:'Calendar / Booking Add-on',
+    lp_social:'Social Proof Page', ao_page:'Authority Outreach Page',
+    gbp_setup:'Google Business Profile Setup', gbp_scale:'GBP Scale Package',
+    gbp_support:'GBP Monthly Support', meta_setup:'Meta Ads Setup',
+    meta_scale:'Meta Ads Scale Package', meta_own:'Meta Ads Self-Management',
+    rev_roadmap:'Reputation Roadmap', rev_referral:'Referral System',
+    rev_mailer:'Review Mailer Campaign', rep_mkt:'Reputation Marketing (mo)',
+    soc3:'Social Content — 3 posts/wk', soc5:'Social Content — 5 posts/wk',
+    soc7:'Social Content — 7 posts/wk', ad_mgmt:'Ad Management (mo)',
+    rr_recep:'Rapid Response — Reception', rr_text:'Rapid Response — Text',
+    rr_sms:'Rapid Response — SMS Drip', rr_full:'Rapid Response — Full Suite'
+  };
+  const PKG_LABELS = {
+    pkg_t2b:'The Total Business Package',
+    pkg_ao:'Authority & Outreach Package',
+    pkg_os:'Online Sovereignty Package'
+  };
+  const selectedItemsReadable = items.map(id => ITEM_LABELS[id] || id).join(', ');
+  const selectedPkgReadable   = pkg ? `${PKG_LABELS[pkg] || pkg} ($${PKG_PRICE_MAP[pkg]?.toLocaleString() || ''})` : '';
+
   const ghlPayload = {
     contact: {
       firstName:    contact.firstName,
@@ -125,6 +165,11 @@ module.exports = async function handler(req, res) {
       pipeline_route:      tierRoute,
       source_url:          'qualify.rsddirect.com',
       submission_date:     new Date().toISOString(),
+      qual_criteria_met:      qualMet.join(', '),
+      qual_criteria_missing:  qualMissing.join(', '),
+      qual_summary:           qualSummary,
+      selected_items_readable: selectedItemsReadable,
+      selected_package_readable: selectedPkgReadable,
     },
   };
 
