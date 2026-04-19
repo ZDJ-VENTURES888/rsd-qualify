@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSD — Full System Packages</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b0b;--s1:#141414;--sh:#1f1f1f;--br:#262626;--ba:#c9a96e;
+  --gold:#c9a96e;--gd:#a68a52;--gg:rgba(201,169,110,.12);--gg2:rgba(201,169,110,.06);
+  --tx:#e8e4dc;--td:#9a9590;--tm:#5e5955;
+  --grn:#5cb85c;--gb:rgba(92,184,92,.08);--red:#d9534f;
+  --fd:'Libre Baskerville',Georgia,serif;--fm:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:var(--fm);font-weight:300;font-size:14px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.prog{position:fixed;top:0;left:0;width:100%;z-index:200;background:var(--s1);border-bottom:1px solid var(--br);padding:10px 20px;display:flex;align-items:center;gap:8px}
+.prog-t{flex:1;height:3px;background:var(--br);border-radius:2px;overflow:hidden}
+.prog-f{height:100%;background:var(--gold);border-radius:2px}
+.prog-l{font-size:10px;color:var(--td);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.sec{min-height:100vh;padding:80px 20px 100px;max-width:960px;margin:0 auto;animation:fadeUp .6s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.sl{font-size:10px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px}
+h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-height:1.3;margin-bottom:10px}
+.sub{font-size:14px;color:var(--td);max-width:540px;margin-bottom:32px;line-height:1.8}
+.g{color:var(--gold)}
+.grid{display:grid;gap:14px;margin-bottom:24px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.tier{background:var(--s1);border:1px solid var(--br);border-radius:12px;padding:28px 22px;cursor:pointer;transition:all .4s;position:relative}
+.tier:hover{border-color:var(--ba);transform:translateY(-2px)}
+.tier.feat{border-color:var(--gold);box-shadow:0 0 40px var(--gg2)}
+.tier.sel{border-color:var(--gold);background:var(--gg)}
+.tb{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 14px;border-radius:16px;white-space:nowrap}
+.tn{font-family:var(--fd);font-size:18px;font-weight:700;text-align:center;margin-bottom:2px}
+.tv{font-size:10px;color:var(--gold);text-align:center;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.tt{font-size:11px;color:var(--td);text-align:center;margin-bottom:16px}
+.tpb{text-align:center;margin-bottom:16px}
+.ta{font-size:13px;color:var(--tm);text-decoration:line-through;margin-bottom:1px}
+.tp{font-family:var(--fd);font-size:32px;font-weight:700;color:var(--gold)}
+.tpe{font-size:12px;color:var(--td)}
+.tdn{display:inline-block;background:var(--gb);color:var(--grn);font-size:10px;padding:2px 10px;border-radius:10px;margin-top:4px}
+.tfl{list-style:none;margin:16px 0}
+.tfl li{font-size:12px;color:var(--td);padding:5px 0;border-bottom:1px solid var(--br);display:flex;align-items:flex-start;gap:8px}
+.tfl li:last-child{border:none}
+.fc{color:var(--gold);font-size:12px;flex-shrink:0;margin-top:1px}
+.guarantee{background:var(--gb);border:1px solid rgba(92,184,92,.2);border-radius:10px;padding:18px 20px;margin:24px 0;text-align:center}
+.guarantee-icon{font-size:32px;margin-bottom:8px;display:block}
+.guarantee-text{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--grn);margin-bottom:4px}
+.guarantee-sub{font-size:12px;color:var(--td);line-height:1.6}
+.btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:12px 28px;border-radius:7px;border:none;cursor:pointer;transition:all .3s}
+.bg{background:var(--gold);color:var(--bg);font-weight:400}.bg:hover{background:var(--gd);transform:translateY(-1px)}
+.bgh{background:transparent;color:var(--td);border:1px solid var(--br)}.bgh:hover{border-color:var(--td);color:var(--tx)}
+.br{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;justify-content:center}
+.mw{display:inline-flex;align-items:center;gap:6px;background:var(--gb);color:var(--grn);font-size:11px;padding:5px 12px;border-radius:16px;margin-top:14px}
+.cart{position:fixed;bottom:0;left:0;right:0;background:var(--s1);border-top:1px solid var(--br);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;z-index:199;transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.cart.vis{transform:none}
+.cart-i{font-size:12px;color:var(--td)}.cart-i strong{color:var(--gold);font-weight:400}
+.cart-t{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--gold)}
+.tier-guar{background:var(--s1);border:1px solid var(--br);border-radius:10px;padding:20px;margin:20px 0}
+.tg-hdr{font-size:10px;color:var(--td);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--br)}
+.tg-row{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--br)}
+.tg-row:last-child{border:none;padding-bottom:0}.tg-ico{font-size:18px;flex-shrink:0;width:24px;margin-top:2px}
+.tg-body{flex:1}.tg-lbl{font-family:var(--fd);font-size:13px;font-weight:700;margin-bottom:4px}
+.tg-qual .tg-lbl{color:var(--grn)}.tg-promo .tg-lbl{color:var(--gold)}
+.tg-txt{font-size:12px;color:var(--td);line-height:1.7}.tg-txt strong{color:var(--tx);font-weight:400}
+@media(max-width:640px){.sec{padding:70px 14px 90px}.g3{grid-template-columns:1fr}.cart{flex-direction:column;gap:6px;text-align:center}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+
+<div class="prog">
+  <span class="prog-l">6 / 7 — Systems · Page 8 of 11</span>
+  <div class="prog-t"><div class="prog-f" style="width:72%"></div></div>
+</div>
+
+<div class="cart" id="cart">
+  <div class="cart-i" id="cI">0 items</div>
+  <div class="cart-t" id="cT">$0</div>
+</div>
+
+<div class="sec">
+  <div class="sl">Step 6 — Or Go All-In (Done-For-You)</div>
+  <h2>Want the fastest path<br>to <span class="g">real results?</span></h2>
+  <p class="sub">These are complete done-for-you systems. 25% down to start. Phased delivery.</p>
+
+  <div class="grid g3">
+    <div class="tier" data-id="pkg_t2b" onclick="selPkg(this,'pkg_t2b')">
+      <div class="tv">Event Venues</div>
+      <div class="tn">Tour2Booking™</div>
+      <div class="tt">First click to confirmed booking.</div>
+      <div class="tpb">
+        <div class="ta">$7,999</div>
+        <div class="tp">$5,549</div>
+        <div class="tpe">base install</div>
+        <div class="tdn">25% down — $1,387</div>
+      </div>
+      <ul class="tfl">
+        <li><span class="fc">✓</span>Cinematic 360° venue tour</li>
+        <li><span class="fc">✓</span>Embedded booking CTAs</li>
+        <li><span class="fc">✓</span>Drone aerial photo + video</li>
+        <li><span class="fc">✓</span>StoryBrand Hero Film (1 shoot day)</li>
+        <li><span class="fc">✓</span>90–120s hero film + 3 clips</li>
+        <li><span class="fc">✓</span>Conversion landing page</li>
+      </ul>
+    </div>
+
+    <div class="tier feat" data-id="pkg_ao" onclick="selPkg(this,'pkg_ao')">
+      <div class="tb">Most Popular</div>
+      <div class="tv">Builders / Design-Build</div>
+      <div class="tn">AlwaysOn Tour2Booking™</div>
+      <div class="tt">Elevate listings. Close faster.</div>
+      <div class="tpb">
+        <div class="ta">$9,999</div>
+        <div class="tp">$6,549</div>
+        <div class="tpe">starting investment</div>
+        <div class="tdn">25% down — $1,637</div>
+      </div>
+      <ul class="tfl">
+        <li><span class="fc">✓</span>Everything in Tour2Booking™</li>
+        <li><span class="fc">✓</span>360° explorable portfolio</li>
+        <li><span class="fc">✓</span>Hero VSL landing page</li>
+        <li><span class="fc">✓</span>Google Ads + LSA setup</li>
+        <li><span class="fc">✓</span>StoryBrand Hero Film (3–9 min)</li>
+        <li><span class="fc">✓</span>AlwaysOn visibility loop</li>
+      </ul>
+    </div>
+
+    <div class="tier" data-id="pkg_os" onclick="selPkg(this,'pkg_os')">
+      <div class="tv">AI + Custom Integration</div>
+      <div class="tn">AlwaysOn Digital Twin Conversion OS™</div>
+      <div class="tt">Intelligent booking engine.</div>
+      <div class="tpb">
+        <div class="ta">$14,999</div>
+        <div class="tp">$9,549</div>
+        <div class="tpe">starting install</div>
+        <div class="tdn">25% down — $2,387</div>
+      </div>
+      <ul class="tfl">
+        <li><span class="fc">✓</span>Everything in AlwaysOn T2B</li>
+        <li><span class="fc">✓</span>AI receptionist + text AI</li>
+        <li><span class="fc">✓</span>Real-time answers engine</li>
+        <li><span class="fc">✓</span>VSL funnels + landing pages</li>
+        <li><span class="fc">✓</span>Google + Meta ads setup</li>
+        <li><span class="fc">✓</span>Nurture + fit assessments</li>
+        <li><span class="fc">✓</span>Custom avatar or Digital Twin</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="guarantee">
+    <span class="guarantee-icon">🛡️</span>
+    <div class="guarantee-text">21-Day Build Guarantee on all systems.</div>
+    <div class="guarantee-sub">For qualified businesses: 3+ inbound conversations within 30 days of launch — or your money back.</div>
+  </div>
+
+  <div class="tier-guar">
+    <div class="tg-hdr">Guarantee Details</div>
+    <div class="tg-row tg-qual">
+      <div class="tg-ico">🛡️</div>
+      <div class="tg-body">
+        <div class="tg-lbl">You're Guarantee Qualified</div>
+        <div class="tg-txt">Any Core Package (Tour2Booking™+) includes the full 21-Day Launch Guarantee. We build, launch, and activate your system — and guarantee 3 qualified inbound conversation engagements within 30 days, or we refund your investment in full. Know that we run a brief assessment to confirm your business foundation is ready to convert before activating the guarantee.</div>
+      </div>
+    </div>
+    <div class="tg-row tg-promo">
+      <div class="tg-ico">⚡</div>
+      <div class="tg-body">
+        <div class="tg-lbl">Speed to Prosperity — 15% Early Conviction Rate</div>
+        <div class="tg-txt">Not yet holding a qualifying package or base social add-on? Businesses committing to <strong>$6,000 or more</strong> in services — and ready to lock in a plan forward — qualify for our 15% early conviction rate on the full engagement. The rate is valid for <strong>7 business days</strong> from the date of your official RSD offer. Extended once, to businesses serious enough to move with intention. Know that this is not a promotional discount — it's a recognition of forward conviction on a defined path to guarantee eligibility.</div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:11px;color:var(--tm);text-align:center;margin-top:8px">Immersive Systems + Custom Integration Suite: Custom scoped. Book a Fit Call to discuss.</p>
+
+  <div id="pkgWin" style="display:none"><div class="mw" style="justify-content:center">✓ Full system selected</div></div>
+
+  <div class="br">
+    <button class="bgh btn" onclick="goBack()">← Back</button>
+    <button class="bg btn" onclick="goNext()">Next: Lock My Rate →</button>
+  </div>
+</div>
+
+<script>
+// ╔══════════════════════════════════════════════════════════╗
+// ║  RSD FUNNEL — Page 8 of 11: Full System Packages        ║
+// ╠══════════════════════════════════════════════════════════╣
+const URL_PREV = '/rapid-response';   // → Page 7
+const URL_NEXT = '/lock-rate';         // → Page 9
+// ╚══════════════════════════════════════════════════════════╝
+
+const D_PRICE={scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,lp_base:550,lp_conv:800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,gbp_setup:350,gbp_scale:275,gbp_support:175,meta_setup:450,meta_scale:325,meta_own:225,rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,ad_mgmt:497,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497};
+const D_TYPE={scan_base:'one',scan_guided:'o

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSD — Capture Your Space</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b0b;--s1:#141414;--sh:#1f1f1f;--br:#262626;--ba:#c9a96e;
+  --gold:#c9a96e;--gd:#a68a52;--gg:rgba(201,169,110,.12);--gg2:rgba(201,169,110,.06);
+  --tx:#e8e4dc;--td:#9a9590;--tm:#5e5955;
+  --grn:#5cb85c;--gb:rgba(92,184,92,.08);--red:#d9534f;
+  --fd:'Libre Baskerville',Georgia,serif;--fm:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:var(--fm);font-weight:300;font-size:14px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.prog{position:fixed;top:0;left:0;width:100%;z-index:200;background:var(--s1);border-bottom:1px solid var(--br);padding:10px 20px;display:flex;align-items:center;gap:8px}
+.prog-t{flex:1;height:3px;background:var(--br);border-radius:2px;overflow:hidden}
+.prog-f{height:100%;background:var(--gold);border-radius:2px}
+.prog-l{font-size:10px;color:var(--td);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.sec{min-height:100vh;padding:80px 20px 100px;max-width:960px;margin:0 auto;animation:fadeUp .6s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.sl{font-size:10px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px}
+h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-height:1.3;margin-bottom:10px}
+.sub{font-size:14px;color:var(--td);max-width:540px;margin-bottom:32px;line-height:1.8}
+.g{color:var(--gold)}
+.grid{display:grid;gap:14px;margin-bottom:24px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--s1);border:1px solid var(--br);border-radius:10px;padding:22px 20px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
+.card:hover{border-color:var(--ba);background:var(--sh)}.card:hover::before{transform:scaleX(1)}
+.card.sel{border-color:var(--gold);background:var(--gg)}.card.sel::before{transform:scaleX(1)}
+.ck{position:absolute;top:14px;right:14px;width:22px;height:22px;border-radius:50%;border:2px solid var(--br);display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .3s}
+.card.sel .ck{background:var(--gold);border-color:var(--gold);color:var(--bg)}
+.ci{font-size:24px;margin-bottom:10px;display:block}
+.ct{font-family:var(--fd);font-size:15px;font-weight:700;margin-bottom:4px}
+.cd{font-size:12px;color:var(--td);line-height:1.6;margin-bottom:10px}
+.cp{font-size:12px;color:var(--gold);letter-spacing:.04em}
+.cn{font-size:10px;color:var(--tm);margin-top:3px}
+.sh{font-size:11px;color:var(--td);letter-spacing:.1em;text-transform:uppercase;margin:24px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--br)}
+.btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:12px 28px;border-radius:7px;border:none;cursor:pointer;transition:all .3s}
+.bg{background:var(--gold);color:var(--bg);font-weight:400}.bg:hover{background:var(--gd);transform:translateY(-1px)}
+.bgh{background:transparent;color:var(--td);border:1px solid var(--br)}.bgh:hover{border-color:var(--td);color:var(--tx)}
+.br{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.mw{display:inline-flex;align-items:center;gap:6px;background:var(--gb);color:var(--grn);font-size:11px;padding:5px 12px;border-radius:16px;margin-top:14px}
+.cart{position:fixed;bottom:0;left:0;right:0;background:var(--s1);border-top:1px solid var(--br);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;z-index:199;transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.cart.vis{transform:none}
+.cart-i{font-size:12px;color:var(--td)}.cart-i strong{color:var(--gold);font-weight:400}
+.cart-t{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--gold)}
+@media(max-width:640px){.sec{padding:70px 14px 90px}.g2{grid-template-columns:1fr}.cart{flex-direction:column;gap:6px;text-align:center}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+
+<!-- ── Progress Bar ── -->
+<div class="prog">
+  <span class="prog-l">1 / 7 — Capture · Page 3 of 11</span>
+  <div class="prog-t"><div class="prog-f" style="width:27%"></div></div>
+</div>
+
+<!-- ── Cart Bar ── -->
+<div class="cart" id="cart">
+  <div class="cart-i" id="cI">0 items</div>
+  <div class="cart-t" id="cT">$0</div>
+</div>
+
+<!-- ── Page Content ── -->
+<div class="sec">
+  <div class="sl">Step 1 — Capture Your Space</div>
+  <h2>Show people what makes<br>your business special.</h2>
+  <p class="sub">Pick how you'd like your space captured. Every great system starts here.</p>
+
+  <div class="sh">3D Matterport Scan</div>
+  <div class="grid g2">
+    <div class="card" data-id="scan_base" onclick="togCard(this,'scan_base')">
+      <div class="ck">✓</div><span class="ci">🏠</span>
+      <div class="ct">Scan Your Space</div>
+      <div class="cd">Self-guided 3D virtual tour. Walk-through experience on any device.</div>
+      <div class="cp">$1,299 — up to 3,000 sqft</div><div class="cn">+$0.50/sqft above 3,000 sqft</div>
+    </div>
+    <div class="card" data-id="scan_guided" onclick="togCard(this,'scan_guided')">
+      <div class="ck">✓</div><span class="ci">🎯</span>
+      <div class="ct">Virtual Guided Tour</div>
+      <div class="cd">Tagged elements, informational callouts, interactive navigation through your space.</div>
+      <div class="cp">$1,799 — Standard Tag Package included</div><div class="cn">10 media tags + 5 custom tags</div>
+    </div>
+  </div>
+
+  <div class="sh">Conversion Media</div>
+  <div class="grid g2">
+    <div class="card" data-id="vid_single" onclick="togCard(this,'vid_single')">
+      <div class="ck">✓</div><span class="ci">🎬</span>
+      <div class="ct">1 Conversion Video</div>
+      <div class="cd">30–60 second highlight reel. Social-ready.</div>
+      <div class="cp">$500</div>
+    </div>
+    <div class="card" data-id="vid_pack" onclick="togCard(this,'vid_pack')">
+      <div class="ck">✓</div><span class="ci">📦</span>
+      <div class="ct">Video Starter Pack</div>
+      <div class="cd">1×90–120s YouTube reel, 1×60s social reel, 2×30s clips.</div>
+      <div class="cp">$1,200</div><div class="cn">Save vs. individual editing rates</div>
+    </div>
+  </div>
+
+  <div class="sh">Drone Capture</div>
+  <div class="grid g2">
+    <div class="card" data-id="drone_half" onclick="togCard(this,'drone_half')">
+      <div class="ck">✓</div><span class="ci">📸</span>
+      <div class="ct">Drone — Half Day</div>
+      <div class="cd">20 edited aerial photos + 1 basic 30–60s video. 4K.</div>
+      <div class="cp">$350</div>
+    </div>
+    <div class="card" data-id="drone_full" onclick="togCard(this,'drone_full')">
+      <div class="ck">✓</div><span class="ci">🚁</span>
+      <div class="ct">Drone — Full Day</div>
+      <div class="cd">Extended shoot. Multiple angles and locations.</div>
+      <div class="cp">$600</div>
+    </div>
+  </div>
+
+  <div id="captureWin" style="display:none"><div class="mw">✓ Capture plan set</div></div>
+
+  <div class="br">
+    <button class="bgh btn" onclick="goBack()">← Back</button>
+    <button class="bg btn" onclick="goNext()">Next: Online Presence →</button>
+  </div>
+</div>
+
+<script>
+// ╔══════════════════════════════════════════════════════════╗
+// ║  RSD FUNNEL — Page 3 of 11: Capture & Media             ║
+// ╠══════════════════════════════════════════════════════════╣
+// ║  CONFIGURE: Set these to match your GHL funnel step URLs ║
+const URL_PREV = '/welcome';       // → Page 1: Hero
+const URL_NEXT = '/web-presence';  // → Page 4: Online Presence
+// ╚══════════════════════════════════════════════════════════╝
+
+const D={
+  scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,
+  lp_base:550,lp_conv:800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,
+  gbp_setup:350,gbp_scale:275,gbp_support:175,meta_setup:450,meta_scale:325,meta_own:225,
+  rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,
+  soc3:497,soc5:797,soc7:1097,ad_mgmt:497,
+  rr_recep:397,rr_text:197,rr_sms:297,rr_full:497
+};
+const D_TYPE={
+  scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',
+  lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',
+  gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',
+  rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',
+  soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',
+  rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo'
+};
+const PKG_PRICE={pkg_t2b:5549,pkg_ao:6549,pkg_os:9549};
+
+function getState(){
+  const p=new URLSearchParams(window.location.search);
+  return{
+    items:p.get('items')?p.get('items').split(',').filter(Boolean):[],
+    pkg:p.get('pkg')||null,gf:p.get('gf')||null,
+    qual:p.get('qual')?p.get('qual').split(',').map(Number):[0,0,0,0,0,0]
+  };
+}
+function buildQ(s){
+  const p=new URLSearchParams();
+  if(s.items&&s.items.length)p.set('items',s.items.join(','));
+  if(s.pkg)p.set('pkg',s.pkg);if(s.gf)p.set('gf',s.gf);
+  if(s.qual&&s.qual.some(Boolean))p.set('qual',s.qual.join(','));
+  return p.toString();
+}
+function updCart(s){
+  const ct=s.items.length+(s.pkg?1:0);
+  let o=0,m=0;
+  for(const id of s.items){const price=D[id];if(!price)continue;if(D_TYPE[id]==='one')o+=price;else m+=price;}
+  if(s.pkg&&PKG_PRICE[s.pkg])o+=PKG_PRICE[s.pkg];
+  document.getElementById('cI').innerHTML='<strong>'+ct+'</strong> item'+(ct!==1?'s':'');
+  let txt='';if(o)txt='$'+o.toLocaleString();if(o&&m)txt+=' + ';if(m)txt+='$'+m.toLocaleString()+'/mo';
+  document.getElementById('cT').textContent=txt||'$0';
+  document.getElementById('cart').classList.toggle('vis',ct>0);
+}
+
+const S = getState();
+
+// Restore selections on load
+document.querySelectorAll('.card[data-id]').forEach(c=>{
+  if(S.items.includes(c.dataset.id))c.classList.add('sel');
+});
+updCart(S);
+if(S.items.some(id=>['scan_base','scan_guided','vid_single','vid_pack','drone_half','drone_full'].includes(id))){
+  document.getElementById('captureWin').style.display='block';
+}
+
+function togCard(el, id){
+  el.classList.toggle('sel');
+  const i=S.items.indexOf(id);
+  if(i>-1)S.items.splice(i,1);else S.items.push(id);
+  updCart(S);
+  const hasSel = S.items.some(x=>['scan_base','scan_guided','vid_single','vid_pack','drone_half','drone_full'].includes(x));
+  document.getElementById('captureWin').style.display = hasSel ? 'block' : 'none';
+}
+
+function goBack(){ const q=buildQ(S); window.location.href=URL_PREV+(q?'?'+q:''); }
+function goNext(){ const q=buildQ(S); window.location.href=URL_NEXT+(q?'?'+q:''); }
+</script>
+</body>
+</html>

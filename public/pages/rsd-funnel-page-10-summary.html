@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSD — Review & Request Your Fit Call</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b0b;--s1:#141414;--sh:#1f1f1f;--br:#262626;
+  --gold:#c9a96e;--gd:#a68a52;--gg:rgba(201,169,110,.12);--gg2:rgba(201,169,110,.06);
+  --tx:#e8e4dc;--td:#9a9590;--tm:#5e5955;
+  --grn:#5cb85c;--gb:rgba(92,184,92,.08);--red:#d9534f;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:'JetBrains Mono',monospace;font-weight:300;font-size:14px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.prog{position:fixed;top:0;left:0;width:100%;z-index:200;background:var(--s1);border-bottom:1px solid var(--br);padding:10px 20px;display:flex;align-items:center;gap:8px}
+.prog-t{flex:1;height:3px;background:var(--br);border-radius:2px;overflow:hidden}
+.prog-f{height:100%;background:var(--gold);border-radius:2px}
+.prog-l{font-size:10px;color:var(--td);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.sec{min-height:100vh;padding:80px 20px 100px;max-width:960px;margin:0 auto;animation:fadeUp .6s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.sl{font-size:10px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px}
+h2{font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(20px,4vw,30px);font-weight:700;line-height:1.3;margin-bottom:10px}
+h3{font-family:'Libre Baskerville',Georgia,serif;font-size:16px;font-weight:700;margin-bottom:6px}
+.sub{font-size:14px;color:var(--td);max-width:540px;margin-bottom:32px;line-height:1.8}
+.sb{background:var(--s1);border:1px solid var(--br);border-radius:12px;padding:28px 24px;margin-bottom:16px}
+.sc{font-size:10px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin:16px 0 6px;padding-top:10px;border-top:1px solid var(--br)}
+.sc:first-child{margin-top:0;padding-top:0;border:none}
+.sln{display:flex;justify-content:space-between;padding:6px 0;font-size:13px}
+.sln .l{color:var(--td);flex:1}.sln .v{color:var(--tx);white-space:nowrap}
+.stot{display:flex;justify-content:space-between;padding:14px 0 0;border-top:1px solid var(--gold);margin-top:8px}
+.stot .l{font-family:'Libre Baskerville',serif;font-size:15px;font-weight:700}.stot .v{font-family:'Libre Baskerville',serif;font-size:22px;font-weight:700;color:var(--gold)}
+.sn{font-size:11px;color:var(--tm);text-align:center;margin-top:10px;line-height:1.6}
+.empty-state{text-align:center;padding:32px 20px;color:var(--td);font-size:13px;border:1px dashed var(--br);border-radius:10px;margin-bottom:16px}
+
+/* Form */
+.inp{width:100%;background:var(--bg);border:1px solid var(--br);border-radius:6px;padding:10px 14px;color:var(--tx);font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;transition:border .3s;margin-bottom:10px}
+.inp:focus{border-color:var(--gold)}
+.inp.error{border-color:var(--red)}
+.inp-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:0}
+.inp-lbl{font-size:10px;color:var(--td);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;display:block}
+.inp-grp{margin-bottom:10px}
+
+/* SMS opt-in */
+.sms-opt{background:var(--sh);border:1px solid var(--br);border-radius:8px;padding:14px 16px;margin:14px 0}
+.sms-check{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.sms-check input[type=checkbox]{width:16px;height:16px;min-width:16px;accent-color:var(--gold);margin-top:2px;cursor:pointer}
+.sms-lbl{font-size:11px;color:var(--td);line-height:1.6}
+.sms-lbl strong{color:var(--tx);font-weight:400}
+.sms-legal{font-size:10px;color:var(--tm);margin-top:8px;line-height:1.6;padding-top:8px;border-top:1px solid var(--br)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:12px 28px;border-radius:7px;border:none;cursor:pointer;transition:all .3s}
+.bg{background:var(--gold);color:var(--bg);font-weight:400}.bg:hover{background:var(--gd);transform:translateY(-1px)}
+.bg:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.bgh{background:transparent;color:var(--td);border:1px solid var(--br)}.bgh:hover{border-color:var(--td);color:var(--tx)}
+.br-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;justify-content:center}
+
+/* Tier badge */
+.tier-badge{border-radius:10px;padding:18px 20px;margin:20px 0}
+.tier-badge.qual{background:var(--gb);border:1px solid rgba(92,184,92,.25)}
+.tier-badge.promo{background:var(--gg);border:1px solid rgba(201,169,110,.25)}
+.tier-badge.found{background:var(--s1);border:1px solid var(--br)}
+.tb-ico{font-size:28px;margin-bottom:8px;display:block;text-align:center}
+.tb-title{font-family:'Libre Baskerville',serif;font-size:15px;font-weight:700;text-align:center;margin-bottom:6px}
+.tier-badge.qual .tb-title{color:var(--grn)}
+.tier-badge.promo .tb-title{color:var(--gold)}
+.tier-badge.found .tb-title{color:var(--td)}
+.tb-body{font-size:12px;color:var(--td);text-align:center;line-height:1.7}
+.tb-body strong{font-weight:400}
+.tb-disc{display:inline-block;background:var(--gg);color:var(--gold);font-size:13px;font-weight:700;padding:4px 16px;border-radius:20px;margin:8px 0 4px;font-family:'Libre Baskerville',serif}
+
+/* Success state */
+.success-box{background:rgba(92,184,92,.06);border:1px solid rgba(92,184,92,.25);border-radius:12px;padding:36px 28px;text-align:center;animation:fadeUp .6s both}
+.success-ico{font-size:48px;margin-bottom:16px;display:block}
+.success-title{font-family:'Libre Baskerville',serif;font-size:24px;font-weight:700;color:var(--grn);margin-bottom:8px}
+.success-sub{font-size:13px;color:var(--td);line-height:1.8;max-width:480px;margin:0 auto 20px}
+.drive-link{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--gold);border:1px solid rgba(201,169,110,.3);padding:8px 18px;border-radius:6px;text-decoration:none;margin-top:10px}
+.drive-link:hover{background:var(--gg)}
+
+/* Error */
+.form-err{display:none;color:var(--red);font-size:12px;margin-bottom:10px;text-align:center;padding:8px 12px;background:rgba(217,83,79,.08);border-radius:6px;border:1px solid rgba(217,83,79,.2)}
+
+/* Spinner */
+.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(11,11,11,.3);border-top-color:var(--bg);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:640px){.sec{padding:70px 14px 80px}.br-row{flex-direction:column}.btn{width:100%;justify-content:center}.inp-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="prog">
+  <span class="prog-l">Review · Page 10 of 11</span>
+  <div class="prog-t"><div class="prog-f" style="width:90%"></div></div>
+</div>
+
+<div class="sec">
+  <div class="sl">Final — Review & Request Your Fit Call</div>
+  <h2>Here's what you built.</h2>
+  <p class="sub">Your custom package. Review it, then request your Launch Your Marketing / Fit Your Market call.</p>
+
+  <!-- Dynamic Summary Block -->
+  <div id="sumBlk"></div>
+
+  <div class="sn">25% down on installs. Monthly billed monthly.<br>Min $500 + travel for long-distance. Central Virginia based — serving nationwide.</div>
+
+  <!-- Tier Badge (dynamic) -->
+  <div id="tierBadge"></div>
+
+  <!-- Contact Form (hidden after success) -->
+  <div id="formSection">
+    <div class="sb" style="margin-top:20px">
+      <h3 style="text-align:center;margin-bottom:4px">Request Your Fit Call</h3>
+      <p style="font-size:12px;color:var(--td);text-align:center;margin-bottom:20px">Tell us how to reach you. We'll be in touch within 24 hours.</p>
+
+      <div class="inp-row" style="margin-bottom:10px">
+        <div class="inp-grp">
+          <label class="inp-lbl" for="cfFirst">First Name *</label>
+          <input class="inp" type="text" id="cfFirst" placeholder="First" autocomplete="given-name">
+        </div>
+        <div class="inp-grp">
+          <label class="inp-lbl" for="cfLast">Last Name *</label>
+          <input class="inp" type="text" id="cfLast" placeholder="Last" autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="inp-grp">
+        <label class="inp-lbl" for="cfBiz">Business Name</label>
+        <input class="inp" type="text" id="cfBiz" placeholder="Your Business Name" autocomplete="organization">
+      </div>
+
+      <div class="inp-grp">
+        <label class="inp-lbl" for="cfEmail">Email Address *</label>
+        <input class="inp" type="email" id="cfEmail" placeholder="you@yourbusiness.com" autocomplete="email">
+      </div>
+
+      <div class="inp-row" style="margin-bottom:10px">
+        <div class="inp-grp">
+          <label class="inp-lbl" for="cfPhone">Phone / Office *</label>
+          <input class="inp" type="tel" id="cfPhone" placeholder="(555) 000-0000" autocomplete="tel">
+        </div>
+        <div class="inp-grp">
+          <label class="inp-lbl" for="cfMobile">Mobile / Cell</label>
+          <input class="inp" type="tel" id="cfMobile" placeholder="(555) 000-0000" autocomplete="tel">
+        </div>
+      </div>
+
+      <!-- SMS Opt-In -->
+      <div class="sms-opt">
+        <label class="sms-check">
+          <input type="checkbox" id="smsOptIn">
+          <span class="sms-lbl">
+            <strong>Yes, I'd like to receive text updates from Real Space Digital.</strong>
+            I consent to receive SMS/text messages from Real Space Digital regarding my inquiry, proposal status, appointment reminders, and service updates. Message frequency varies. Message and data rates may apply.
+          </span>
+        </label>
+        <div class="sms-legal">
+          By checking this box you agree to receive recurring automated text messages from Real Space Digital at the mobile number provided. Consent is not a condition of purchase. Reply STOP at any time to opt out. Reply HELP for assistance. View our Privacy Policy at rsddirect.com/privacy.
+        </div>
+      </div>
+
+      <div class="form-err" id="cfError"></div>
+    </div>
+
+    <div class="br-row">
+      <button class="bgh btn" onclick="goBack()">← Edit</button>
+      <button class="bg btn" id="submitBtn" onclick="submitForm()">Lock In My Package →</button>
+    </div>
+  </div>
+
+  <!-- Success State (shown after submit) -->
+  <div id="successSection" style="display:none">
+    <div class="success-box">
+      <span class="success-ico">✦</span>
+      <div class="success-title">You're In.</div>
+      <div class="success-sub" id="successMsg">Your fit call request has been received. Our team will reach out within 24 hours to confirm next steps.</div>
+      <div id="driveSection" style="display:none">
+        <a class="drive-link" id="driveLink" href="#" target="_blank" rel="noopener">
+          📄 View Your Estimate Report
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /sec -->
+
+<script>
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║  RSD FUNNEL — Page 10 of 11: Summary + Contact Form                    ║
+// ║  qualify.rsddirect.com — Node.js Edition                               ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║  CONFIGURE ↓↓↓                                                         ║
+const URL_PREV   = '/rsd-funnel-page-09-lock-rate.html';
+const URL_NEXT   = '/rsd-funnel-page-11-confirm.html';
+const SUBMIT_URL = '/api/submit';   // Node.js endpoint — do not change
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+// ── Pricing dictionaries ─────────────────────────────────────────────────
+const D_NAME={scan_base:'Scan Your Space (≤3k sqft)',scan_guided:'Virtual Guided Tour',vid_single:'1 Conversion Video',vid_pack:'Video Starter Pack',drone_half:'Drone — Half Day',drone_full:'Drone — Full Day',lp_base:'Base Landing Page',lp_conv:'Conversion Capture Page',lp_about:'About Us Page',lp_vt:'Virtual Tour Integration',lp_vid:'Brand Video Embed',lp_cal:'Calendar Booking',lp_social:'Social Feed Integration',ao_page:'AlwaysOn Conversion Page',gbp_setup:'GBP Full Setup',gbp_scale:'GBP Scaling & Optimization',gbp_support:'GBP Ownership Support',meta_setup:'Meta Full Setup/Migration',meta_scale:'Meta Scaling & Audit',meta_own:'Meta Ownership Support',rev_roadmap:'Speed to 10+ Reviews Roadmap',rev_referral:'Referral Reputation System',rev_mailer:'QR-to-Google Review Mailer',rep_mkt:'Reputation Marketing',soc3:'Social — 3/Week',soc5:'Social — 5/Week',soc7:'Social — 7/Week',ad_mgmt:'Monthly Ad Management',rr_recep:'AI Receptionist Booking',rr_text:'Missed-Call Text Back',rr_sms:'SMS Q&A + Auto-Booking',rr_full:'Full Rapid Response Suite'};
+const D_PRICE={scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,lp_base:550,lp_conv:800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,gbp_setup:350,gbp_scale:275,gbp_support:175,meta_setup:450,meta_scale:325,meta_own:225,rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,ad_mgmt:497,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497};
+const D_TYPE={scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo'};
+const D_CAT={scan_base:'capture',scan_guided:'capture',vid_single:'capture',vid_pack:'capture',drone_half:'capture',drone_full:'capture',lp_base:'web',lp_conv:'web',lp_about:'web',lp_vt:'web',lp_vid:'web',lp_cal:'web',lp_social:'web',ao_page:'web',gbp_setup:'rep',gbp_scale:'rep',gbp_support:'rep',meta_setup:'ads',meta_scale:'ads',meta_own:'ads',rev_roadmap:'rep',rev_referral:'rep',rev_mailer:'rep',rep_mkt:'rep',soc3:'social',soc5:'social',soc7:'social',ad_mgmt:'ads',rr_recep:'rapid',rr_text:'rapid',rr_sms:'rapid',rr_full:'rapid'};
+const PKG_NAME={pkg_t2b:'Tour2Booking™',pkg_ao:'AlwaysOn Tour2Booking™',pkg_os:'AlwaysOn Digital Twin Conversion OS™'};
+const PKG_PRICE={pkg_t2b:5549,pkg_ao:6549,pkg_os:9549};
+const GF_NAME={gf1:'Starter Lock',gf2:'Growth Lock',gf3:'Dominate Lock'};
+const CAT_LABEL={capture:'Space Capture & Media',web:'Online Presence',rep:'Reputation & Reviews',social:'Social Content',ads:'Advertising & Meta',rapid:'Rapid Response'};
+
+// ── State ────────────────────────────────────────────────────────────────
+function getState(){
+  const p=new URLSearchParams(window.location.search);
+  return{
+    items:p.get('items')?p.get('items').split(',').filter(Boolean):[],
+    pkg:p.get('pkg')||null,
+    gf:p.get('gf')||null,
+    qual:p.get('qual')?p.get('qual').split(',').map(Number):[0,0,0,0,0,0]
+  };
+}
+const S=getState();
+
+// ── Build Summary ────────────────────────────────────────────────────────
+function buildSummary(){
+  const blk=document.getElementById('sumBlk');
+  if(!S.items.length&&!S.pkg){
+    blk.innerHTML='<div class="empty-state">No items selected yet. <a href="'+URL_PREV+'" style="color:var(--gold)">Go back to add services.</a></div>';
+    return;
+  }
+  let h='<div class="sb">';let oT=0,mT=0;
+  const grouped={};
+  for(const id of S.items){const cat=D_CAT[id]||'other';if(!grouped[cat])grouped[cat]=[];grouped[cat].push(id);}
+  for(const[cat,label]of Object.entries(CAT_LABEL)){
+    if(!grouped[cat])continue;
+    h+='<div class="sc">'+label+'</div>';
+    for(const id of grouped[cat]){
+      const nm=D_NAME[id]||id,pr=D_PRICE[id]||0,tp=D_TYPE[id],sf=tp==='mo'?'/mo':'';
+      h+='<div class="sln"><span class="l">'+nm+'</span><span class="v">$'+pr.toLocaleString()+sf+'</span></div>';
+      if(tp==='one')oT+=pr;else mT+=pr;
+    }
+  }
+  if(S.pkg&&PKG_NAME[S.pkg]){
+    h+='<div class="sc">Full System Package</div>';
+    h+='<div class="sln"><span class="l">'+PKG_NAME[S.pkg]+'</span><span class="v">$'+PKG_PRICE[S.pkg].toLocaleString()+'</span></div>';
+    oT+=PKG_PRICE[S.pkg];
+  }
+  if(S.gf&&GF_NAME[S.gf]){
+    h+='<div class="sln" style="background:var(--gg);margin:6px -24px;padding:8px 24px"><span class="l" style="color:var(--gold)">Founder: '+GF_NAME[S.gf]+'</span><span class="v" style="color:var(--gold)">Locked for life</span></div>';
+  }
+  const dp=Math.round(oT*.25);
+  h+='<div class="stot"><span class="l">One-Time Total</span><span class="v">$'+oT.toLocaleString()+'</span></div>';
+  h+='<div class="sln" style="border:none;padding-top:2px"><span class="l">25% Down to Start</span><span class="v" style="color:var(--grn)">$'+dp.toLocaleString()+'</span></div>';
+  if(mT)h+='<div class="stot" style="margin-top:4px"><span class="l">Monthly Total</span><span class="v">$'+mT.toLocaleString()+'/mo</span></div>';
+  h+='</div>';
+  blk.innerHTML=h;
+}
+buildSummary();
+
+// ── Tier Badge ───────────────────────────────────────────────────────────
+function renderTierBadge(){
+  const el=document.getElementById('tierBadge');if(!el)return;
+  const hasPkg=!!S.pkg;
+  const SOC_PACK=['soc3','soc5','soc7'],WEB_ITEMS=['lp_base','lp_conv','lp_about','ao_page','gbp_setup','gbp_scale'];
+  const hasSoc=SOC_PACK.some(id=>S.items.includes(id)),hasWeb=WEB_ITEMS.some(id=>S.items.includes(id));
+  let oT=0,mT=0;
+  for(const id of S.items){if(D_PRICE[id]&&D_TYPE[id]==='one')oT+=D_PRICE[id];if(D_PRICE[id]&&D_TYPE[id]==='mo')mT+=D_PRICE[id];}
+  const combined=oT+mT;
+  const isQualified=hasPkg||(hasSoc&&hasWeb);
+  const isPromo=!isQualified&&combined>=6000;
+  if(isQualified){
+    el.innerHTML=`<div class="tier-badge qual"><span class="tb-ico">🛡️</span><div class="tb-title">You're Guarantee Eligible</div><div class="tb-body">Your selection meets the performance guarantee criteria. Once your system is live, we guarantee <strong>3 qualified inbound conversations within 30 days</strong> — or we return your full investment. Know that we audit your foundation before activating the guarantee on your launch date.</div></div>`;
+  } else if(isPromo){
+    const disc=Math.round(combined*.15),discTotal=combined-disc;
+    el.innerHTML=`<div class="tier-badge promo"><span class="tb-ico">⚡</span><div class="tb-title">Speed to Prosperity — 15% Early Conviction Rate</div><div class="tb-disc">Save ${disc.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0})} · Total ${discTotal.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0})}</div><div class="tb-body">Your combined investment of <strong>$${combined.toLocaleString()}</strong> qualifies for the 15% Early Conviction Rate. This rate is valid for <strong>7 business days</strong> from the date of your official RSD offer. Extended once, to businesses ready to move with intention. Know that this is not a promotion — it's a recognition of forward conviction.</div></div>`;
+  } else {
+    el.innerHTML=`<div class="tier-badge found"><span class="tb-ico">🔧</span><div class="tb-title">Building Foundation</div><div class="tb-body">Your current selection is a strong starting point. Our team will review your build with you during the Fit Call and identify the fastest path to guarantee eligibility. Standard rates apply.</div></div>`;
+  }
+}
+renderTierBadge();
+
+// ── Navigation ───────────────────────────────────────────────────────────
+function buildQ(){
+  const p=new URLSearchParams();
+  if(S.items.length)p.set('items',S.items.join(','));
+  if(S.pkg)p.set('pkg',S.pkg);
+  if(S.gf)p.set('gf',S.gf);
+  if(S.qual.some(Boolean))p.set('qual',S.qual.join(','));
+  return p.toString();
+}
+function goBack(){window.location.href=URL_PREV+'?'+buildQ();}
+
+// ── Form Validation ──────────────────────────────────────────────────────
+function showError(msg){
+  const el=document.getElementById('cfError');
+  el.textContent=msg;el.style.display='block';
+}
+function clearError(){
+  const el=document.getElementById('cfError');
+  el.style.display='none';
+}
+function markError(id,on){
+  const el=document.getElementById(id);
+  if(el)el.classList.toggle('error',on);
+}
+
+// ── Submit ───────────────────────────────────────────────────────────────
+async function submitForm(){
+  clearError();
+  const first  = document.getElementById('cfFirst').value.trim();
+  const last   = document.getElementById('cfLast').value.trim();
+  const email  = document.getElementById('cfEmail').value.trim();
+  const phone  = document.getElementById('cfPhone').value.trim();
+  const mobile = document.getElementById('cfMobile').value.trim();
+  const biz    = document.getElementById('cfBiz').value.trim();
+  const smsOpt = document.getElementById('smsOptIn').checked;
+
+  // Validation
+  let valid=true;
+  markError('cfFirst',!first);
+  markError('cfLast',!last);
+  markError('cfEmail',!email||!email.includes('@'));
+  markError('cfPhone',!phone&&!mobile);
+
+  if(!first||!last){showError('Please enter your first and last name.');valid=false;}
+  else if(!email||!email.includes('@')){showError('Please enter a valid email address.');valid=false;}
+  else if(!phone&&!mobile){showError('Please enter at least one phone number.');valid=false;}
+  if(!valid)return;
+
+  // Disable button + show spinner
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spin"></span>&nbsp;Submitting...';
+
+  const payload={
+    contact:{firstName:first,lastName:last,email,phone,mobile,businessName:biz,smsOptIn:smsOpt},
+    items:S.items,pkg:S.pkg,gf:S.gf,qual:S.qual,
+  };
+
+  try{
+    const res=await fetch(SUBMIT_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload),
+    });
+    const data=await res.json();
+
+    if(!res.ok||!data.success){
+      showError(data.error||'Submission failed. Please try again.');
+      btn.disabled=false;
+      btn.innerHTML='Lock In My Package →';
+      return;
+    }
+
+    // Success — show success state
+    document.getElementById('formSection').style.display='none';
+    document.getElementById('successSection').style.display='block';
+
+    const tierMsgs={
+      'Guarantee Qualified':'Your package qualifies for the RSD 21-Day Performance Guarantee. A brief pre-launch audit will confirm your foundation before activation. Expect a reply within 24 hours.',
+      'Speed to Prosperity':'Your 15% Early Conviction Rate is locked in. Your official RSD offer will arrive within 24 hours — you have 7 business days to confirm your plan forward.',
+      'Building Foundation':'Our team will review your selections and reach out within 24 hours to schedule your Foundation Fit Call.',
+    };
+    document.getElementById('successMsg').textContent=tierMsgs[data.tier]||'Your request was received. We\'ll be in touch within 24 hours.';
+
+    if(data.driveLink){
+      document.getElementById('driveSection').style.display='block';
+      document.getElementById('driveLink').href=data.driveLink;
+    }
+
+    // Advance to confirmation page after 3s
+    setTimeout(()=>{ window.location.href=URL_NEXT+'?'+buildQ(); }, 3000);
+
+  } catch(err){
+    showError('Connection error. Please check your internet and try again.');
+    btn.disabled=false;
+    btn.innerHTML='Lock In My Package →';
+  }
+}
+</script>
+</body>
+</html>
