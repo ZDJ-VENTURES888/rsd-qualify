@@ -30,9 +30,9 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 /* ── Tier cards ── */
 .grid{display:grid;gap:14px;margin-bottom:24px}
 .g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.tier{background:var(--s1);border:1px solid var(--br);border-radius:12px;padding:28px 22px;cursor:pointer;transition:border-color .3s,background .3s,transform .3s;position:relative;overflow:hidden}
+.tier{background:var(--s1);border:1px solid var(--br);border-radius:12px;padding:28px 22px;cursor:pointer;transition:border-color .3s,background .3s,transform .3s;position:relative}
 .tier:hover{border-color:var(--ba);transform:translateY(-2px)}
-.tier.feat{border-color:rgba(201,169,110,.4);box-shadow:0 0 40px var(--gg2)}
+.tier.feat{border-color:rgba(201,169,110,.4);box-shadow:0 0 40px var(--gg2);padding-top:38px}
 .tier.sel{border-color:var(--grn);background:rgba(92,184,92,.04)}
 .tier.sel.feat{box-shadow:0 0 40px rgba(92,184,92,.12)}
 .tb{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 14px;border-radius:16px;white-space:nowrap}
@@ -85,6 +85,22 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .legend-desc strong{color:var(--tx);font-weight:400}
 .legend-meta{font-size:10px;color:var(--tm);margin-top:4px;line-height:1.6}
 
+/* ── Package Lock Block ── */
+.pkg-lock{border:1px solid rgba(201,169,110,.35);border-radius:12px;background:rgba(201,169,110,.04);padding:26px 28px;margin-bottom:24px;position:relative}
+.pkg-lock-label{font-size:9px;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.pkg-lock-label::before{content:'';display:block;width:20px;height:1px;background:var(--gold)}
+.pkg-lock-name{font-family:var(--fd);font-size:clamp(18px,3.5vw,26px);font-weight:700;color:var(--tx);line-height:1.25;margin-bottom:4px}
+.pkg-lock-target{font-size:9px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.pkg-lock-desc{font-size:12px;color:var(--td);margin-bottom:16px;line-height:1.8;max-width:580px}
+.pkg-lock-sub{font-size:9px;color:var(--td);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;padding-top:14px;border-top:1px solid var(--br)}
+.pkg-lock-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:3px 24px}
+.pkg-lock-item{font-size:11px;color:var(--td);display:flex;gap:8px;align-items:flex-start;padding:4px 0}
+.pkg-lock-chk{color:var(--gold);flex-shrink:0;font-size:11px;margin-top:1px}
+.pkg-lock-footer{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid var(--br)}
+.pkg-lock-price{font-family:var(--fd);font-size:20px;font-weight:700;color:var(--gold)}
+.pkg-lock-price-lbl{font-size:10px;color:var(--tm)}
+.pkg-lock-down{font-size:10px;color:var(--grn);background:var(--gb);padding:3px 10px;border-radius:10px;margin-left:auto}
+
 /* ── Scarcity bar ── */
 .scarcity{background:var(--s1);border:1px solid var(--br);border-radius:8px;padding:12px 16px;margin-bottom:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .scarcity-dot{width:8px;height:8px;border-radius:50%;background:var(--grn);flex-shrink:0;animation:pulse 2s infinite}
@@ -123,6 +139,9 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
   <div class="sl">Step 7 — Founder Pricing (Limited)</div>
   <h2>Lock in today's rate.<br><span class="g">It goes up next quarter.</span></h2>
   <p class="sub">RSD prices increase as we add capacity, refine our systems, and grow our case library. Founder partners lock the rate they choose today — permanently — for as long as the account is active. First 25 seats per tier. Once filled, that tier closes.</p>
+
+  <!-- ── Package / build lock confirmation ── -->
+  <div id="pkgLock"></div>
 
   <!-- ── Scarcity indicator ── -->
   <div class="scarcity">
@@ -179,7 +198,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
       <div class="tt">Everything. First in line. Maximum leverage.</div>
       <div class="tpb">
         <div class="tp" id="gf3p">—</div>
-        <div class="tpe">all-in locked</div>
+        <div class="tpe" id="gf3pe">all-in locked</div>
         <div class="tpe-disc" id="gf3s"></div>
       </div>
       <ul class="tfl">
@@ -246,6 +265,25 @@ const URL_PREV = 'rsd-funnel-page-08-packages.html';
 const URL_NEXT = 'rsd-funnel-page-10-summary.html';
 // ╚══════════════════════════════════════════════════════════╝
 
+// ── Package metadata for lock-in confirmation block
+const PKG_DATA={
+  pkg_t2b:{
+    name:'Tour2Booking™',target:'Event Venues · Hospitality',price:5549,down:1387,
+    desc:'A complete done-for-you conversion system — first click to confirmed booking. Every component built, integrated, and launched.',
+    items:['Cinematic 360° venue tour','Embedded booking CTAs throughout','Drone aerial photo + video','StoryBrand Hero Film (1 shoot day)','90–120s hero film + 3 social clips','Conversion landing page']
+  },
+  pkg_ao:{
+    name:'AlwaysOn Tour2Booking™',target:'Builders · Design-Build · Luxury Service',price:6549,down:1637,
+    desc:'Everything in Tour2Booking™, plus an always-on visibility layer that keeps you in front of the right buyers — continuously.',
+    items:['Everything in Tour2Booking™','360° explorable project portfolio','Hero VSL landing page','Google Ads + LSA setup','StoryBrand Hero Film (3–9 min)','AlwaysOn visibility loop']
+  },
+  pkg_os:{
+    name:'AlwaysOn Digital Twin Conversion OS™',target:'AI + Custom Integration · Scale-Ready',price:9549,down:2387,
+    desc:'The full intelligent booking engine — AI-powered, media-led, and built to run your inbound pipeline on autopilot.',
+    items:['Everything in AlwaysOn Tour2Booking™','AI receptionist + text AI','Real-time answers engine','VSL funnels + landing pages','Google + Meta ads setup','Nurture sequences + fit assessments','Custom avatar or Digital Twin']
+  }
+};
+
 const D_PRICE={scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,vid_authority:1800,vid_testimonial:1800,photo_half:400,photo_full:800,lp_base:1800,lp_conv:2800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,ao_ai_base:49,ao_ai_heavy:99,gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,ad_mgmt:497,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497};
 const D_TYPE={scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',vid_authority:'one',vid_testimonial:'one',photo_half:'one',photo_full:'one',lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',ao_ai_base:'mo',ao_ai_heavy:'mo',gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo'};
 const PKG_PRICE={pkg_t2b:5549,pkg_ao:6549,pkg_os:9549};
@@ -260,6 +298,7 @@ function updCart(s){const ct=s.items.length+(s.pkg?1:0);const{o,m}=calcTotals(s)
 
 const S=getState();
 updCart(S);
+renderPkgLock();
 
 // ── Compute and display tier prices
 (function populatePrices(){
@@ -289,8 +328,16 @@ updCart(S);
   const gf3O = Math.round(bonusO * 0.85);
   const gf3M = Math.round(bonusM * 0.85);
   const gf3Save = bonusO - gf3O;
-  document.getElementById('gf3p').textContent = fmtPrice(gf3O, gf3M > 0 ? gf3M : m);
-  if(gf3Save > 0) document.getElementById('gf3s').textContent = 'saves $'+gf3Save.toLocaleString()+' all-in';
+  if(gf3M > 0){
+    // Show combined first-month total so Dominate always reads as the highest-investment tier
+    const gf3Combined = gf3O + gf3M;
+    document.getElementById('gf3p').textContent = '$'+gf3Combined.toLocaleString();
+    document.getElementById('gf3pe').textContent = 'all-in first month';
+    document.getElementById('gf3s').textContent = '$'+gf3O.toLocaleString()+' one-time + $'+gf3M.toLocaleString()+'/mo · saves $'+gf3Save.toLocaleString();
+  } else {
+    document.getElementById('gf3p').textContent = '$'+gf3O.toLocaleString();
+    if(gf3Save > 0) document.getElementById('gf3s').textContent = 'saves $'+gf3Save.toLocaleString()+' all-in';
+  }
 })();
 
 // ── Restore previously selected tier
@@ -302,6 +349,42 @@ if(S.gf){
 
 function applyCheckColors(el){
   el.querySelectorAll('.fc').forEach(fc=>{fc.style.color='var(--grn)';});
+}
+
+function renderPkgLock(){
+  const el=document.getElementById('pkgLock');
+  if(!el) return;
+  if(S.pkg && PKG_DATA[S.pkg]){
+    const d=PKG_DATA[S.pkg];
+    el.className='pkg-lock';
+    el.innerHTML=`
+      <div class="pkg-lock-label">You're locking in</div>
+      <div class="pkg-lock-name">${d.name}</div>
+      <div class="pkg-lock-target">${d.target}</div>
+      <div class="pkg-lock-desc">${d.desc} Founder pricing is locked at today's rate for the life of your account — regardless of what we charge future clients.</div>
+      <div class="pkg-lock-sub">What's included in this system</div>
+      <div class="pkg-lock-items">${d.items.map(i=>`<div class="pkg-lock-item"><span class="pkg-lock-chk">✓</span><span>${i}</span></div>`).join('')}</div>
+      <div class="pkg-lock-footer">
+        <div>
+          <div class="pkg-lock-price">$${d.price.toLocaleString()}</div>
+          <div class="pkg-lock-price-lbl">core system investment</div>
+        </div>
+        <div class="pkg-lock-down">25% down — $${d.down.toLocaleString()} to start</div>
+      </div>`;
+  } else if(S.items && S.items.length>0){
+    const{o,m}=calcTotals(S);
+    el.className='pkg-lock';
+    el.innerHTML=`
+      <div class="pkg-lock-label">You're locking in</div>
+      <div class="pkg-lock-name">Custom À La Carte Build</div>
+      <div class="pkg-lock-desc">${S.items.length} selected service${S.items.length!==1?'s':''} — fully customized to your business. Every rate below is locked at today's pricing for the life of your account.</div>
+      <div class="pkg-lock-footer">
+        <div>
+          <div class="pkg-lock-price">${fmtPrice(o,m)}</div>
+          <div class="pkg-lock-price-lbl">your selected build</div>
+        </div>
+      </div>`;
+  }
 }
 
 function selGF(el,id){
