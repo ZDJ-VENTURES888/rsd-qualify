@@ -67,6 +67,14 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .tg-txt{font-size:12px;color:var(--td);line-height:1.7}.tg-txt strong{color:var(--tx);font-weight:400}
 
 /* ── Phased Delivery ── */
+/* ── Mid-page Founder CTA ── */
+.mid-cta{background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.22);border-radius:12px;padding:24px 28px;margin:28px 0 8px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.mid-cta-copy{flex:1;min-width:220px}
+.mid-cta-eyebrow{font-size:9px;color:var(--gold);letter-spacing:.18em;text-transform:uppercase;margin-bottom:7px}
+.mid-cta-heading{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--tx);line-height:1.35;margin-bottom:5px}
+.mid-cta-sub{font-size:11px;color:var(--td);line-height:1.7}
+@media(max-width:640px){.mid-cta{flex-direction:column;text-align:center}}
+
 .phase-wrap{margin-top:36px;border-top:1px solid var(--br);padding-top:28px}
 .phase-hdr{font-size:10px;color:var(--td);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
 .phase-intro{font-size:12px;color:var(--td);line-height:1.8;max-width:680px;margin-bottom:24px}
@@ -193,6 +201,16 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
   </div>
 
   <p style="font-size:11px;color:var(--tm);text-align:center;margin-top:8px">Immersive Systems + Custom Integration Suite: Custom scoped. Book a Fit Call to discuss.</p>
+
+  <!-- ── Mid-page Founder CTA ── -->
+  <div class="mid-cta">
+    <div class="mid-cta-copy">
+      <div class="mid-cta-eyebrow">Founder Partners</div>
+      <div class="mid-cta-heading">Secure your spot — lock in today's rate permanently.</div>
+      <div class="mid-cta-sub">Founder pricing is active and open now. First 25 seats per tier. Once filled, this rate closes — and the next tier starts higher. Locking in today means your investment never goes up, regardless of what we charge future clients.</div>
+    </div>
+    <button class="bg btn" onclick="goNext()" style="white-space:nowrap;flex-shrink:0">Secure Your Founder Spot →</button>
+  </div>
 
   <!-- ── Phased Delivery Section ── -->
   <div class="phase-wrap">
