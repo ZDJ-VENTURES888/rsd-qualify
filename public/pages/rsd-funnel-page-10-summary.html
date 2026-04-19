@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RSD — Review & Request Your Fit Call</title>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 :root{
   --bg:#0b0b0b;--s1:#141414;--sh:#1f1f1f;--br:#262626;
@@ -153,7 +154,7 @@ h3{font-family:'Libre Baskerville',Georgia,serif;font-size:16px;font-weight:700;
 
 <div class="prog">
   <span class="prog-l">Review · Page 10 of 11</span>
-  <div class="prog-t"><div class="prog-f" style="width:90%"></div></div>
+  <div class="prog-t"><div class="prog-f" style="width:91%"></div></div>
 </div>
 
 <div class="sec">
@@ -284,7 +285,20 @@ h3{font-family:'Libre Baskerville',Georgia,serif;font-size:16px;font-weight:700;
 const URL_PREV   = 'rsd-funnel-page-09-lock-rate.html';
 const URL_NEXT   = 'rsd-funnel-page-11-confirm.html';
 const SUBMIT_URL = '/api/submit';   // Node.js endpoint — do not change
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║  EMAILJS CONFIG                                                         ║
+const EJS_SERVICE  = 'service_bgsc5fk';
+const EJS_TEMPLATE = 'template_71ep4pu';
+const EJS_PK       = '6OzKpW_yrm-g1htg4';
+// ║                                                                         ║
+// ║  EMAILJS TEMPLATE VARIABLES — use these in your template:              ║
+// ║  {{prospect_name}}  {{business}}  {{email}}                            ║
+// ║  {{phone_office}}   {{phone_mobile}}  {{sms_opt_in}}                   ║
+// ║  {{package_selected}} {{lock_tier}}  {{qual_score}}                    ║
+// ║  {{one_time_total}} {{monthly_total}} {{down_payment}}                 ║
+// ║  {{items_summary}}  {{notes_content}} {{submission_date}}              ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
+emailjs.init({publicKey:EJS_PK});
 
 // ── Pricing dictionaries ─────────────────────────────────────────────────
 const D_NAME={scan_base:'Scan Your Space (≤3k sqft)',scan_guided:'Virtual Guided Tour',vid_single:'1 Conversion Video',vid_pack:'Video Starter Pack',drone_half:'Drone — Half Day',drone_full:'Drone — Full Day',vid_authority:'Owner / Stakeholder Authority Video',vid_testimonial:'Testimonial Video',photo_half:'Product Photography — Half Day',photo_full:'Product Photography — Full Day',lp_base:'Base Landing Page',lp_conv:'Conversion Capture Page',lp_about:'About Us Page',lp_vt:'Virtual Tour Integration',lp_vid:'Brand Video Embed',lp_cal:'Calendar Booking',lp_social:'Social Feed Integration',ao_page:'AlwaysOn Conversion Page',ao_ai_base:'AI Access — Foundational ($49/mo)',ao_ai_heavy:'AI Access — Heavy User ($99/mo)',gbp_setup:'GBP Full Setup',gbp_scale:'GBP Scaling & Optimization',gbp_support:'GBP Ownership Support',meta_setup:'Meta Full Setup/Migration',meta_scale:'Meta Scaling & Audit',meta_own:'Meta Ownership Support',rev_roadmap:'Speed to 10+ Reviews Roadmap',rev_referral:'Referral Reputation System',rev_mailer:'QR-to-Google Review Mailer',rep_mkt:'Reputation Marketing',soc3:'Social — 3/Week',soc5:'Social — 5/Week',soc7:'Social — 7/Week',ad_mgmt:'Monthly Ad Management',rr_recep:'AI Receptionist Booking',rr_text:'Missed-Call Text Back',rr_sms:'SMS Q&A + Auto-Booking',rr_full:'Full Rapid Response Suite'};
@@ -476,13 +490,29 @@ function buildSuggestedNotes(){
   n+=`  ${pkgLabel}\n`;
   n+=`  Founder Lock: ${gfLabel}\n\n`;
 
-  if(S.items.length){
-    n+=`SELECTED SERVICES\n`;
-    for(const id of S.items){
-      const sf=D_TYPE[id]==='mo'?'/mo':'';
-      n+=`  · ${D_NAME[id]||id} — $${(D_PRICE[id]||0).toLocaleString()}${sf}\n`;
+  const oneItems=S.items.filter(id=>D_TYPE[id]==='one');
+  const moItems=S.items.filter(id=>D_TYPE[id]==='mo');
+
+  if(oneItems.length||S.pkg){
+    n+=`ONE-TIME SERVICES\n`;
+    for(const id of oneItems){
+      n+=`  · ${D_NAME[id]||id} — $${(D_PRICE[id]||0).toLocaleString()}\n`;
     }
-    n+=`\n`;
+    if(S.pkg&&PKG_PRICE[S.pkg]){
+      n+=`  · ${PKG_NAME[S.pkg]} (package) — $${PKG_PRICE[S.pkg].toLocaleString()}\n`;
+    }
+    n+=`  ${'─'.repeat(32)}\n`;
+    n+=`  One-Time Total: $${oT.toLocaleString()}\n`;
+    n+=`  25% Down:       $${dp.toLocaleString()}\n\n`;
+  }
+
+  if(moItems.length){
+    n+=`MONTHLY SERVICES\n`;
+    for(const id of moItems){
+      n+=`  · ${D_NAME[id]||id} — $${(D_PRICE[id]||0).toLocaleString()}/mo\n`;
+    }
+    n+=`  ${'─'.repeat(32)}\n`;
+    n+=`  Monthly Total: $${mT.toLocaleString()}/mo\n\n`;
   }
 
   n+=`INVESTMENT SUMMARY\n`;
@@ -557,6 +587,58 @@ function copyNotes(ev){
 
 setupNotes();
 
+// ── EmailJS Params Builder ───────────────────────────────────────────────
+function buildEmailParams({first,last,email,phone,mobile,biz,smsOpt,notes}){
+  let oT=0,mT=0;
+  for(const id of S.items){
+    if(D_TYPE[id]==='one')oT+=D_PRICE[id]||0;
+    else mT+=D_PRICE[id]||0;
+  }
+  if(S.pkg&&PKG_PRICE[S.pkg])oT+=PKG_PRICE[S.pkg];
+  const dp=Math.round(oT*.25);
+
+  const oneItems=S.items.filter(id=>D_TYPE[id]==='one');
+  const moItems=S.items.filter(id=>D_TYPE[id]==='mo');
+  let itemsSummary='';
+  if(oneItems.length||S.pkg){
+    itemsSummary+='ONE-TIME SERVICES\n';
+    for(const id of oneItems)itemsSummary+=`  · ${D_NAME[id]||id} — $${(D_PRICE[id]||0).toLocaleString()}\n`;
+    if(S.pkg&&PKG_PRICE[S.pkg])itemsSummary+=`  · ${PKG_NAME[S.pkg]} (package) — $${PKG_PRICE[S.pkg].toLocaleString()}\n`;
+    itemsSummary+=`  ─────────────────────────────────\n`;
+    itemsSummary+=`  One-Time Total: $${oT.toLocaleString()}\n`;
+    itemsSummary+=`  25% Down:       $${dp.toLocaleString()}\n`;
+  }
+  if(moItems.length){
+    if(itemsSummary)itemsSummary+='\n';
+    itemsSummary+='MONTHLY SERVICES\n';
+    for(const id of moItems)itemsSummary+=`  · ${D_NAME[id]||id} — $${(D_PRICE[id]||0).toLocaleString()}/mo\n`;
+    itemsSummary+=`  ─────────────────────────────────\n`;
+    itemsSummary+=`  Monthly Total: $${mT.toLocaleString()}/mo\n`;
+  }
+  if(!itemsSummary)itemsSummary='No services selected.';
+
+  const qualScore=S.qual.filter(Boolean).length;
+  const today=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+
+  return{
+    prospect_name:`${first} ${last}`,
+    business:biz||'(not provided)',
+    email,
+    phone_office:phone||'—',
+    phone_mobile:mobile||'—',
+    sms_opt_in:smsOpt?'Yes – opted in':'No',
+    package_selected:S.pkg?PKG_NAME[S.pkg]:'À La Carte Build',
+    lock_tier:S.gf?GF_NAME[S.gf]:'None selected',
+    qual_score:`${qualScore}/6`,
+    one_time_total:`$${oT.toLocaleString()}`,
+    monthly_total:mT?`$${mT.toLocaleString()}/mo`:'None',
+    down_payment:`$${dp.toLocaleString()}`,
+    items_summary:itemsSummary,
+    notes_content:notes||'(no notes entered)',
+    submission_date:today,
+  };
+}
+
 // ── Form Validation ──────────────────────────────────────────────────────
 function showError(msg){
   const el=document.getElementById('cfError');
@@ -581,6 +663,7 @@ async function submitForm(){
   const mobile = document.getElementById('cfMobile').value.trim();
   const biz    = document.getElementById('cfBiz').value.trim();
   const smsOpt = document.getElementById('smsOptIn').checked;
+  const notes  = document.getElementById('notesTA')?.value||'';
 
   // Validation
   let valid=true;
@@ -594,55 +677,55 @@ async function submitForm(){
   else if(!phone&&!mobile){showError('Please enter at least one phone number.');valid=false;}
   if(!valid)return;
 
-  // Disable button + show spinner
   const btn=document.getElementById('submitBtn');
   btn.disabled=true;
   btn.innerHTML='<span class="spin"></span>&nbsp;Submitting...';
 
-  const payload={
-    contact:{firstName:first,lastName:last,email,phone,mobile,businessName:biz,smsOptIn:smsOpt},
-    items:S.items,pkg:S.pkg,gf:S.gf,qual:S.qual,
-  };
+  // Build EmailJS params (includes all selections + notes)
+  const emailParams=buildEmailParams({first,last,email,phone,mobile,biz,smsOpt,notes});
 
-  try{
-    const res=await fetch(SUBMIT_URL,{
+  // Fire EmailJS + /api/submit in parallel
+  const [ejsResult,apiResult]=await Promise.allSettled([
+    emailjs.send(EJS_SERVICE,EJS_TEMPLATE,emailParams),
+    fetch(SUBMIT_URL,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(payload),
-    });
-    const data=await res.json();
+      body:JSON.stringify({
+        contact:{firstName:first,lastName:last,email,phone,mobile,businessName:biz,smsOptIn:smsOpt},
+        items:S.items,pkg:S.pkg,gf:S.gf,qual:S.qual,notes,
+      }),
+    }).then(r=>r.json()).catch(()=>({success:false})),
+  ]);
 
-    if(!res.ok||!data.success){
-      showError(data.error||'Submission failed. Please try again.');
-      btn.disabled=false;
-      btn.innerHTML='Lock In My Package →';
-      return;
-    }
+  const ejsOk = ejsResult.status==='fulfilled';
+  const apiOk = apiResult.status==='fulfilled'&&apiResult.value?.success;
 
-    // Success — show success state
-    document.getElementById('formSection').style.display='none';
-    document.getElementById('successSection').style.display='block';
-
-    const tierMsgs={
-      'Guarantee Qualified':'Your package qualifies for the RSD 21-Day Performance Guarantee. A brief pre-launch audit will confirm your foundation before activation. Expect a reply within 24 hours.',
-      'Speed to Prosperity':'Your 15% Early Conviction Rate is locked in. Your official RSD offer will arrive within 24 hours — you have 7 business days to confirm your plan forward.',
-      'Building Foundation':'Our team will review your selections and reach out within 24 hours to schedule your Foundation Fit Call.',
-    };
-    document.getElementById('successMsg').textContent=tierMsgs[data.tier]||'Your request was received. We\'ll be in touch within 24 hours.';
-
-    if(data.driveLink){
-      document.getElementById('driveSection').style.display='block';
-      document.getElementById('driveLink').href=data.driveLink;
-    }
-
-    // Advance to confirmation page after 3s
-    setTimeout(()=>{ window.location.href=URL_NEXT+'?'+buildQ(); }, 3000);
-
-  } catch(err){
-    showError('Connection error. Please check your internet and try again.');
+  // Fail only if both channels failed
+  if(!ejsOk&&!apiOk){
+    showError('Submission failed. Please try again or email us at info@realspacedigital.net');
     btn.disabled=false;
     btn.innerHTML='Lock In My Package →';
+    return;
   }
+
+  // ── Success ──────────────────────────────────────────────────────────────
+  document.getElementById('formSection').style.display='none';
+  document.getElementById('successSection').style.display='block';
+
+  const data=apiOk?apiResult.value:{};
+  const tierMsgs={
+    'Guarantee Qualified':'Your package qualifies for the RSD 21-Day Performance Guarantee. A brief pre-launch audit will confirm your foundation before activation. Expect a reply within 24 hours.',
+    'Speed to Prosperity':'Your 15% Early Conviction Rate is locked in. Your official RSD offer will arrive within 24 hours — you have 7 business days to confirm your plan forward.',
+    'Building Foundation':'Our team will review your selections and reach out within 24 hours to schedule your Foundation Fit Call.',
+  };
+  document.getElementById('successMsg').textContent=tierMsgs[data.tier]||'Your request was received. We\'ll be in touch within 24 hours.';
+
+  if(data.driveLink){
+    document.getElementById('driveSection').style.display='block';
+    document.getElementById('driveLink').href=data.driveLink;
+  }
+
+  setTimeout(()=>{ window.location.href=URL_NEXT+'?'+buildQ(); },3000);
 }
 </script>
 </body>
