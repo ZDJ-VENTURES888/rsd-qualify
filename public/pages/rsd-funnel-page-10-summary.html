@@ -516,9 +516,12 @@ function buildSuggestedNotes(){
   }
 
   n+=`INVESTMENT SUMMARY\n`;
+  n+=`  ${'─'.repeat(32)}\n`;
   n+=`  One-Time Total:    $${oT.toLocaleString()}\n`;
-  if(mT)n+=`  Monthly Total:     $${mT.toLocaleString()}/mo\n`;
-  n+=`  25% Down to Start: $${dp.toLocaleString()}\n\n`;
+  n+=`  Monthly Total:     ${mT?'$'+mT.toLocaleString()+'/mo':'None'}\n`;
+  n+=`  25% Down to Start: $${dp.toLocaleString()}\n`;
+  n+=`  ${'─'.repeat(32)}\n`;
+  n+=`  Combined (Mo 1):   $${(oT+mT).toLocaleString()} all-in\n\n`;
 
   n+=`MEETING FOCUS AREAS\n`;
   if(score>=5)n+=`  → Strong fit — move to proposal framing and close logistics.\n`;
