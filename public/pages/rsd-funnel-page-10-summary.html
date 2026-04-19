@@ -405,6 +405,20 @@ const M_WHY={
   rr_sms:'SMS Q&A answers questions in real time, pre-qualifies intent, and routes directly to your calendar.',
   rr_full:'Your full Rapid Response system: no lead falls through the cracks, no matter when they reach out.'
 };
+const M_SOLVES={
+  ao_ai_base:'Solves: inquiries going unanswered after hours. Your AI qualifies, responds, and routes leads 24/7 — no staff needed.',
+  ao_ai_heavy:'Solves: high-volume lead overflow. Full AI engagement handles booking, follow-up, and screening at scale.',
+  rep_mkt:'Solves: reputation sitting unused. RSD actively markets your reviews so they drive conversions, not just sit on Google.',
+  soc3:'Solves: inconsistent brand presence. 3 posts/week keep your authority visible and your audience warm between projects.',
+  soc5:'Solves: weak organic pipeline. 5x/week content compounds visibility — prospects arrive pre-sold before they call.',
+  soc7:'Solves: cold or absent audience. Daily content builds a warm, pre-qualified audience that closes faster.',
+  ad_mgmt:'Solves: wasted or stagnant ad spend. Active monthly optimization improves your cost-per-lead every 30 days.',
+  rr_recep:'Solves: missed calls becoming missed revenue. AI receptionist captures and routes every caller automatically.',
+  rr_text:'Solves: slow response killing deals. Missed-call text back fires in seconds — recovers leads before they move on.',
+  rr_sms:'Solves: unqualified or lost leads. SMS answers questions, pre-qualifies intent, and books directly to your calendar.',
+  rr_full:'Solves: full lead leakage across channels. No contact goes unanswered — every touchpoint is covered.'
+};
+
 const PKG_MS_INTRO={
   pkg_t2b:'Your Tour2Booking™ system launches with media and presence — the monthly services below keep it converting after day one. Without this layer, even the best assets go quiet within weeks.',
   pkg_ao:'AlwaysOn means exactly that. Your visibility loop, AI tools, and ad presence run continuously — compounding authority and inbound while your team stays focused on delivering work.',
@@ -506,22 +520,38 @@ function buildSuggestedNotes(){
     n+=`  25% Down:       $${dp.toLocaleString()}\n\n`;
   }
 
-  if(moItems.length){
-    n+=`MONTHLY SERVICES\n`;
-    for(const id of moItems){
-      n+=`  · ${D_NAME[id]||id} — $${(D_PRICE[id]||0).toLocaleString()}/mo\n`;
-    }
-    n+=`  ${'─'.repeat(32)}\n`;
-    n+=`  Monthly Total: $${mT.toLocaleString()}/mo\n\n`;
-  }
-
+  // ── Investment Summary ──────────────────────────────────────────────────
   n+=`INVESTMENT SUMMARY\n`;
-  n+=`  ${'─'.repeat(32)}\n`;
-  n+=`  One-Time Total:    $${oT.toLocaleString()}\n`;
-  n+=`  Monthly Total:     ${mT?'$'+mT.toLocaleString()+'/mo':'None'}\n`;
-  n+=`  25% Down to Start: $${dp.toLocaleString()}\n`;
-  n+=`  ${'─'.repeat(32)}\n`;
-  n+=`  Combined (Mo 1):   $${(oT+mT).toLocaleString()} all-in\n\n`;
+  n+=`  ${'═'.repeat(38)}\n`;
+  n+=`  MONTH 1 — Setup, Build & Launch\n`;
+  n+=`  ${'─'.repeat(38)}\n`;
+  n+=`  One-Time Build & Setup:  $${oT.toLocaleString()}\n`;
+  if(mT){
+  n+=`  First Month Services:    $${mT.toLocaleString()}/mo (included)\n`;
+  }
+  n+=`  ${'─'.repeat(38)}\n`;
+  n+=`  Total Month 1:           $${(oT+mT).toLocaleString()} all-in\n`;
+  n+=`  25% Down to Start:       $${dp.toLocaleString()}\n`;
+
+  if(mT){
+  n+=`\n`;
+  n+=`  MONTH 2+ — Ongoing Monthly\n`;
+  n+=`  ${'─'.repeat(38)}\n`;
+  n+=`  Monthly Investment:      $${mT.toLocaleString()}/mo\n`;
+  n+=`  ${'═'.repeat(38)}\n\n`;
+
+  n+=`WHAT YOUR MONTHLY COVERS\n`;
+  n+=`(What RSD begins solving for you every month)\n`;
+  n+=`  ${'─'.repeat(38)}\n`;
+  for(const id of moItems){
+    const pr=D_PRICE[id]||0;
+    const solves=M_SOLVES[id]||'Ongoing service keeping your system active and producing results.';
+    n+=`  · ${D_NAME[id]||id} — $${pr.toLocaleString()}/mo\n`;
+    n+=`    ${solves}\n\n`;
+  }
+  } else {
+  n+=`  ${'═'.repeat(38)}\n\n`;
+  }
 
   n+=`MEETING FOCUS AREAS\n`;
   if(score>=5)n+=`  → Strong fit — move to proposal framing and close logistics.\n`;
