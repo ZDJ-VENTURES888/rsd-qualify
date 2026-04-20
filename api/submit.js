@@ -12,9 +12,10 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-const fetch               = require('node-fetch');
-const { generateReport }  = require('../lib/reportGenerator');
-const { saveReportToDrive } = require('../lib/googleDrive');
+const fetch              = require('node-fetch');
+const { generateReport } = require('../lib/reportGenerator');
+// googleDrive is lazy-loaded inside the handler to prevent googleapis
+// from crashing the Lambda cold-start if credentials aren't configured.
 
 // ── Allowed origins ──────────────────────────────────────────
 const ALLOWED_ORIGINS = [
@@ -248,9 +249,10 @@ module.exports = async function handler(req, res) {
     console.error('[Report] Generation failed:', err.message);
   }
 
-  // ── Save to Google Drive ───────────────────────────────────
+  // ── Save to Google Drive (lazy-loaded to isolate any googleapis errors) ──
   if (reportHtml) {
     try {
+      const { saveReportToDrive } = require('../lib/googleDrive');
       driveLink = await saveReportToDrive(reportHtml, contact);
     } catch (err) {
       console.error('[Drive] Save failed:', err.message);
