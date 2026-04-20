@@ -1,49 +1,80 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <defs>
-    <!-- Space background gradient -->
+    <!-- Space background -->
     <radialGradient id="bg" cx="55%" cy="40%" r="75%">
       <stop offset="0%" stop-color="#2d1a5e"/>
       <stop offset="45%" stop-color="#1a0e40"/>
       <stop offset="100%" stop-color="#07050f"/>
     </radialGradient>
-    <!-- Nebula glow -->
-    <radialGradient id="nebula" cx="60%" cy="35%" r="45%">
-      <stop offset="0%" stop-color="#7b4fc4" stop-opacity="0.35"/>
-      <stop offset="100%" stop-color="#1a0e40" stop-opacity="0"/>
+    <radialGradient id="nebula" cx="72%" cy="48%" r="50%">
+      <stop offset="0%" stop-color="#4a1a90" stop-opacity="0.45"/>
+      <stop offset="60%" stop-color="#2d1a5e" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
     </radialGradient>
-    <!-- Gold gradient for accents -->
+    <!-- Gold gradient -->
     <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#c9a96e"/>
       <stop offset="50%" stop-color="#e8cc8a"/>
       <stop offset="100%" stop-color="#a68a52"/>
     </linearGradient>
-    <!-- Rocket body gradient -->
-    <linearGradient id="rkt1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#e8e4dc"/>
-      <stop offset="100%" stop-color="#b8b0c8"/>
+    <!-- Text panel fade -->
+    <linearGradient id="panelFade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="black" stop-opacity="0.5"/>
+      <stop offset="65%" stop-color="black" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="black" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient id="rkt2" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#d0c8e8"/>
-      <stop offset="100%" stop-color="#7b5fc4"/>
+    <!-- Astronaut suit body -->
+    <radialGradient id="suitGrad" cx="38%" cy="25%" r="70%">
+      <stop offset="0%" stop-color="#252535"/>
+      <stop offset="55%" stop-color="#181828"/>
+      <stop offset="100%" stop-color="#090910"/>
+    </radialGradient>
+    <!-- Astronaut helmet -->
+    <radialGradient id="helmetGrad" cx="42%" cy="36%" r="62%">
+      <stop offset="0%" stop-color="#282840"/>
+      <stop offset="55%" stop-color="#141422"/>
+      <stop offset="100%" stop-color="#080810"/>
+    </radialGradient>
+    <!-- Visor gold glow -->
+    <linearGradient id="visorGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6a4018" stop-opacity="0.5"/>
+      <stop offset="30%" stop-color="#c9a96e" stop-opacity="0.95"/>
+      <stop offset="65%" stop-color="#e0c878" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#9a7030" stop-opacity="0.4"/>
     </linearGradient>
-    <!-- Flame gradient -->
+    <!-- Astronaut atmospheric glow -->
+    <radialGradient id="astroAura" cx="50%" cy="42%" r="52%">
+      <stop offset="0%" stop-color="#5b2db0" stop-opacity="0.38"/>
+      <stop offset="65%" stop-color="#2d1a5e" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Rocket body -->
+    <linearGradient id="rktBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c8c0e0"/>
+      <stop offset="100%" stop-color="#5845a0"/>
+    </linearGradient>
+    <!-- Rocket flame -->
     <linearGradient id="flame" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#c9a96e" stop-opacity="1"/>
-      <stop offset="60%" stop-color="#e8832a" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#ff6a00" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#c9a96e"/>
+      <stop offset="55%" stop-color="#e07020" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#ff6000" stop-opacity="0"/>
     </linearGradient>
-    <!-- Trail gradient -->
+    <!-- Rocket trail -->
     <linearGradient id="trail" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#c9a96e" stop-opacity="0"/>
-      <stop offset="40%" stop-color="#c9a96e" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#7b4fc4" stop-opacity="0.08"/>
+      <stop offset="45%" stop-color="#c9a96e" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#7b4fc4" stop-opacity="0.05"/>
     </linearGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
+    <!-- Filters -->
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <filter id="softglow">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
+    <filter id="deepblur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="32"/>
+    </filter>
+    <filter id="softglow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
@@ -62,123 +93,203 @@
     <circle cx="95" cy="390" r="1.2" opacity=".5"/><circle cx="230" cy="350" r=".8" opacity=".4"/>
     <circle cx="50" cy="480" r="1.0" opacity=".6"/><circle cx="170" cy="520" r=".7" opacity=".5"/>
     <circle cx="110" cy="580" r="1.3" opacity=".4"/><circle cx="280" cy="560" r=".9" opacity=".5"/>
-    <circle cx="350" cy="470" r="1.1" opacity=".4"/><circle cx="400" cy="580" r=".8" opacity=".6"/>
     <circle cx="380" cy="130" r=".9" opacity=".5"/><circle cx="440" cy="60" r="1.2" opacity=".7"/>
-    <circle cx="480" cy="200" r=".7" opacity=".4"/><circle cx="520" cy="520" r="1.0" opacity=".5"/>
-    <circle cx="560" cy="580" r=".8" opacity=".4"/><circle cx="600" cy="30" r="1.1" opacity=".6"/>
-    <circle cx="650" cy="590" r=".9" opacity=".5"/><circle cx="70" cy="145" r="2.0" opacity=".9"/>
-    <circle cx="340" cy="300" r="1.8" opacity=".8"/><circle cx="190" cy="450" r="1.5" opacity=".7"/>
-    <circle cx="130" cy="35" r="2.2" opacity=".95"/>
+    <circle cx="600" cy="30" r="1.1" opacity=".6"/><circle cx="1050" cy="60" r=".9" opacity=".5"/>
+    <circle cx="1150" cy="200" r="1.5" opacity=".6"/><circle cx="1180" cy="450" r="1.0" opacity=".4"/>
+    <circle cx="680" cy="130" r="1.2" opacity=".5"/><circle cx="750" cy="55" r=".9" opacity=".6"/>
+    <circle cx="700" cy="580" r=".8" opacity=".4"/><circle cx="850" cy="20" r="1.0" opacity=".5"/>
+    <circle cx="950" cy="570" r=".7" opacity=".4"/><circle cx="70" cy="145" r="2.0" opacity=".9"/>
+    <circle cx="130" cy="35" r="2.2" opacity=".95"/><circle cx="340" cy="300" r="1.8" opacity=".8"/>
+    <circle cx="1100" cy="580" r="1.3" opacity=".5"/>
   </g>
 
-  <!-- ── Rocket trails ── -->
-  <!-- Big center rocket trail -->
-  <ellipse cx="820" cy="520" rx="18" ry="140" fill="url(#trail)" opacity="0.6" transform="rotate(-30 820 520)"/>
-  <!-- Left rocket trail -->
-  <ellipse cx="710" cy="540" rx="12" ry="110" fill="url(#trail)" opacity="0.4" transform="rotate(-38 710 540)"/>
-  <!-- Right rocket trail -->
-  <ellipse cx="930" cy="490" rx="14" ry="120" fill="url(#trail)" opacity="0.5" transform="rotate(-22 930 490)"/>
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- ── ASTRONAUT (right panel hero) ── -->
+  <!-- ═══════════════════════════════════════════════ -->
 
-  <!-- ── LEFT ROCKET (small, angled) ── -->
-  <g transform="translate(690,310) rotate(-38)" filter="url(#glow)">
-    <!-- Body -->
-    <ellipse cx="0" cy="0" rx="22" ry="55" fill="url(#rkt2)"/>
-    <!-- Nose -->
-    <polygon points="0,-72 -18,-18 18,-18" fill="#c9a96e"/>
-    <!-- Fins -->
-    <polygon points="-22,35 -38,65 -22,55" fill="#7b5fc4"/>
-    <polygon points="22,35 38,65 22,55" fill="#7b5fc4"/>
-    <!-- Window -->
-    <circle cx="0" cy="-8" r="12" fill="#1a0e40" stroke="#c9a96e" stroke-width="3"/>
-    <circle cx="0" cy="-8" r="6" fill="#2d1a5e"/>
-    <!-- Flame -->
-    <ellipse cx="0" cy="68" rx="10" ry="22" fill="url(#flame)" opacity="0.9"/>
+  <!-- Deep atmospheric aura behind figure -->
+  <ellipse cx="912" cy="295" rx="280" ry="310" fill="url(#astroAura)" filter="url(#deepblur)"/>
+
+  <!-- Ground shadow -->
+  <ellipse cx="912" cy="622" rx="155" ry="16" fill="black" opacity="0.55"/>
+
+  <!-- ── LEFT ARM ── -->
+  <path d="M780,400 Q748,438 738,498 Q733,540 754,562 Q773,572 788,548 Q800,522 804,486 Q808,450 812,415 Z"
+    fill="#141422" stroke="#0e0e1a" stroke-width="1.5"/>
+  <!-- Left glove -->
+  <ellipse cx="746" cy="568" rx="26" ry="18" fill="#111120" stroke="#0c0c18" stroke-width="2" transform="rotate(-22 746 568)"/>
+
+  <!-- ── RIGHT ARM ── -->
+  <path d="M1044,400 Q1076,438 1086,498 Q1091,540 1070,562 Q1051,572 1036,548 Q1024,522 1020,486 Q1016,450 1012,415 Z"
+    fill="#141422" stroke="#0e0e1a" stroke-width="1.5"/>
+  <!-- Right glove -->
+  <ellipse cx="1078" cy="568" rx="26" ry="18" fill="#111120" stroke="#0c0c18" stroke-width="2" transform="rotate(22 1078 568)"/>
+
+  <!-- ── SUIT BODY ── -->
+  <path d="M782,398 Q755,448 750,522 Q747,572 756,612 L1068,612 Q1077,572 1074,522 Q1069,448 1042,398 Q1008,378 912,378 Q816,378 782,398 Z"
+    fill="url(#suitGrad)" stroke="#121220" stroke-width="2"/>
+
+  <!-- Suit body center highlight (subtle) -->
+  <path d="M870,398 Q866,440 864,520" fill="none" stroke="#2e2e50" stroke-width="3" opacity="0.3" stroke-linecap="round"/>
+  <path d="M954,398 Q958,440 960,520" fill="none" stroke="#2e2e50" stroke-width="2" opacity="0.2" stroke-linecap="round"/>
+
+  <!-- ── LEFT SHOULDER PAD ── -->
+  <path d="M780,398 Q752,382 758,358 Q770,342 798,352 Q820,360 812,380 Q803,394 782,400 Z"
+    fill="#1e1e32" stroke="#161630" stroke-width="2"/>
+  <!-- Left shoulder rim light (purple) -->
+  <path d="M758,362 Q752,380 754,405" fill="none" stroke="#5040a0" stroke-width="3" opacity="0.35" stroke-linecap="round"/>
+
+  <!-- ── RIGHT SHOULDER PAD ── -->
+  <path d="M1044,398 Q1072,382 1066,358 Q1054,342 1026,352 Q1004,360 1012,380 Q1021,394 1042,400 Z"
+    fill="#1e1e32" stroke="#161630" stroke-width="2"/>
+  <!-- Right shoulder rim light -->
+  <path d="M1066,362 Q1072,380 1070,405" fill="none" stroke="#5040a0" stroke-width="3" opacity="0.3" stroke-linecap="round"/>
+
+  <!-- ── NECK COLLAR ── -->
+  <path d="M844,375 Q846,395 912,398 Q978,395 980,375" fill="#0c0c1c" stroke="#1c1c30" stroke-width="2"/>
+  <ellipse cx="912" cy="367" rx="82" ry="24" fill="#0c0c1c" stroke="#242440" stroke-width="3"/>
+  <ellipse cx="912" cy="363" rx="72" ry="18" fill="#121228" stroke="#1a1a38" stroke-width="2"/>
+
+  <!-- ── HELMET OUTER SHELL ── -->
+  <ellipse cx="912" cy="205" rx="150" ry="158" fill="url(#helmetGrad)" stroke="#1e1e38" stroke-width="3"/>
+
+  <!-- Helmet right rim light (atmospheric purple glow) -->
+  <path d="M1038,130 Q1074,182 1070,262 Q1066,318 1043,354"
+    fill="none" stroke="#6650c0" stroke-width="6" opacity="0.45" stroke-linecap="round"/>
+
+  <!-- Helmet left edge (subtle) -->
+  <path d="M784,135 Q762,188 764,265 Q766,318 782,352"
+    fill="none" stroke="#3838888" stroke-width="3" opacity="0" stroke-linecap="round"/>
+
+  <!-- Helmet inner dark depth -->
+  <ellipse cx="908" cy="200" rx="136" ry="144" fill="#07070d"/>
+
+  <!-- ── VISOR ── -->
+  <!-- Visor opening shape -->
+  <path d="M772,202 Q778,122 912,116 Q1046,122 1052,202 Q1052,280 912,288 Q772,280 772,202 Z"
+    fill="#020205"/>
+  <!-- Visor gold atmospheric glow -->
+  <path d="M772,202 Q778,122 912,116 Q1046,122 1052,202 Q1052,280 912,288 Q772,280 772,202 Z"
+    fill="url(#visorGold)" opacity="0.62"/>
+  <!-- Visor deep black center -->
+  <path d="M793,202 Q798,137 912,132 Q1026,137 1031,202 Q1031,268 912,274 Q793,268 793,202 Z"
+    fill="#010105" opacity="0.97"/>
+  <!-- Visor gold outer rim -->
+  <path d="M772,202 Q778,122 912,116 Q1046,122 1052,202 Q1052,280 912,288 Q772,280 772,202 Z"
+    fill="none" stroke="#c9a96e" stroke-width="4"/>
+  <!-- Visor inner rim (subtle dark gold) -->
+  <path d="M793,202 Q798,137 912,132 Q1026,137 1031,202 Q1031,268 912,274 Q793,268 793,202 Z"
+    fill="none" stroke="#9a7838" stroke-width="2" opacity="0.55"/>
+  <!-- Visor lens glare (subtle top-right bright) -->
+  <ellipse cx="1004" cy="151" rx="36" ry="14" fill="#e0c878" opacity="0.16" transform="rotate(-28 1004 151)"/>
+  <ellipse cx="1014" cy="147" rx="14" ry="6" fill="white" opacity="0.07" transform="rotate(-28 1014 147)"/>
+
+  <!-- Helmet top ridge detail -->
+  <path d="M825,52 Q912,40 999,52" fill="none" stroke="#242445" stroke-width="4" stroke-linecap="round"/>
+  <path d="M845,48 Q912,38 979,48" fill="none" stroke="#2e2e55" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- ── CHEST PANEL ── -->
+  <rect x="864" y="408" width="96" height="68" rx="8" fill="#09091a" stroke="#171730" stroke-width="2"/>
+  <rect x="864" y="408" width="96" height="68" rx="8" fill="none" stroke="#c9a96e" stroke-width="1" opacity="0.28"/>
+  <!-- Panel details -->
+  <rect x="873" y="420" width="42" height="5" rx="2.5" fill="#c9a96e" opacity="0.48"/>
+  <rect x="873" y="432" width="30" height="4" rx="2" fill="#7070c0" opacity="0.38"/>
+  <circle cx="940" cy="422" r="8" fill="#0a0a1a" stroke="#c9a96e" stroke-width="1.5"/>
+  <circle cx="940" cy="422" r="4" fill="#c9a96e" opacity="0.38"/>
+  <circle cx="952" cy="436" r="6" fill="#0a0a1a" stroke="#5555a0" stroke-width="1.5"/>
+
+  <!-- Suit seam lines (left body) -->
+  <path d="M800,465 Q797,500 796,545" fill="none" stroke="#1a1a2e" stroke-width="2.5" opacity="0.45" stroke-linecap="round"/>
+  <!-- Suit seam lines (right body) -->
+  <path d="M1024,465 Q1027,500 1028,545" fill="none" stroke="#1a1a2e" stroke-width="2.5" opacity="0.45" stroke-linecap="round"/>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- ── ROCKETS (background accents) ── -->
+  <!-- ═══════════════════════════════════════════════ -->
+
+  <!-- Rocket trail 1 -->
+  <ellipse cx="652" cy="520" rx="9" ry="95" fill="url(#trail)" opacity="0.45" transform="rotate(-38 652 520)"/>
+  <!-- Rocket 1 (left, smaller, angled) -->
+  <g transform="translate(635,105) rotate(-40)" filter="url(#glow)" opacity="0.6">
+    <ellipse cx="0" cy="0" rx="12" ry="32" fill="url(#rktBody)"/>
+    <polygon points="0,-42 -10,-14 10,-14" fill="#c9a96e"/>
+    <polygon points="-12,21 -20,40 -12,31" fill="#4a3090"/>
+    <polygon points="12,21 20,40 12,31" fill="#4a3090"/>
+    <circle cx="0" cy="-5" r="8" fill="#1a0e40" stroke="#c9a96e" stroke-width="1.8"/>
+    <circle cx="0" cy="-5" r="4" fill="#2d1a5e"/>
+    <ellipse cx="0" cy="42" rx="5.5" ry="14" fill="url(#flame)" opacity="0.88"/>
   </g>
 
-  <!-- ── CENTER ROCKET (large, angled) ── -->
-  <g transform="translate(810,230) rotate(-28)" filter="url(#softglow)">
-    <!-- Body -->
-    <ellipse cx="0" cy="0" rx="32" ry="80" fill="url(#rkt1)"/>
-    <!-- Nose -->
-    <polygon points="0,-105 -26,-25 26,-25" fill="#7b5fc4"/>
-    <!-- Fins -->
-    <polygon points="-32,52 -56,95 -32,78" fill="#5a3fa0"/>
-    <polygon points="32,52 56,95 32,78" fill="#5a3fa0"/>
-    <!-- Window -->
-    <circle cx="0" cy="-12" r="18" fill="#1a0e40" stroke="#c9a96e" stroke-width="4"/>
-    <circle cx="0" cy="-12" r="9" fill="#2d1a5e"/>
-    <circle cx="-3" cy="-15" r="3" fill="white" opacity="0.5"/>
-    <!-- Flame -->
-    <ellipse cx="0" cy="100" rx="14" ry="32" fill="url(#flame)" opacity="0.95"/>
+  <!-- Rocket trail 2 -->
+  <ellipse cx="648" cy="460" rx="7" ry="72" fill="url(#trail)" opacity="0.3" transform="rotate(-22 648 460)"/>
+  <!-- Rocket 2 (smaller, lower left) -->
+  <g transform="translate(636,390) rotate(-24)" filter="url(#glow)" opacity="0.4">
+    <ellipse cx="0" cy="0" rx="9" ry="24" fill="url(#rktBody)"/>
+    <polygon points="0,-32 -8,-10 8,-10" fill="#c9a96e"/>
+    <polygon points="-9,16 -15,29 -9,23" fill="#3a2080"/>
+    <polygon points="9,16 15,29 9,23" fill="#3a2080"/>
+    <circle cx="0" cy="-4" r="6" fill="#1a0e40" stroke="#c9a96e" stroke-width="1.5"/>
+    <circle cx="0" cy="-4" r="3" fill="#2d1a5e"/>
+    <ellipse cx="0" cy="31" rx="4" ry="10" fill="url(#flame)" opacity="0.8"/>
   </g>
 
-  <!-- ── RIGHT ROCKET (medium, less angled) ── -->
-  <g transform="translate(920,270) rotate(-18)" filter="url(#glow)">
-    <!-- Body -->
-    <ellipse cx="0" cy="0" rx="26" ry="65" fill="url(#rkt2)"/>
-    <!-- Nose -->
-    <polygon points="0,-85 -20,-20 20,-20" fill="#c9a96e"/>
-    <!-- Fins -->
-    <polygon points="-26,42 -44,76 -26,62" fill="#4a2e90"/>
-    <polygon points="26,42 44,76 26,62" fill="#4a2e90"/>
-    <!-- Window -->
-    <circle cx="0" cy="-10" r="14" fill="#1a0e40" stroke="#c9a96e" stroke-width="3.5"/>
-    <circle cx="0" cy="-10" r="7" fill="#2d1a5e"/>
-    <!-- Flame -->
-    <ellipse cx="0" cy="80" rx="11" ry="26" fill="url(#flame)" opacity="0.9"/>
-  </g>
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- ── LEFT PANEL OVERLAY (text readability) ── -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <rect x="0" y="0" width="620" height="630" fill="url(#panelFade)"/>
 
-  <!-- ── Left panel divider line ── -->
-  <rect x="0" y="0" width="560" height="630" fill="black" opacity="0.18"/>
+  <!-- ── Gold accent bar ── -->
+  <rect x="60" y="82" width="80" height="3" fill="url(#gold)" rx="2"/>
 
-  <!-- ── Gold accent bar top ── -->
-  <rect x="60" y="58" width="80" height="3" fill="url(#gold)" rx="2"/>
-
-  <!-- ── Logo mark — RSD isometric hexagon ── -->
-  <g transform="translate(60,35)">
-    <!-- Dark navy hexagon body -->
-    <polygon points="16,0 32,9 32,27 16,36 0,27 0,9" fill="#2d2665"/>
-    <!-- Gold top face (upper isometric diamond — "ceiling" of 3D cube) -->
-    <polygon points="16,0 32,9 16,18 0,9" fill="#c9a96e"/>
-    <!-- Right face — slightly lighter navy for 3D depth -->
-    <polygon points="32,9 32,27 16,36 16,18" fill="#38306e"/>
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- ── RSD LOGO MARK (top-left) ── -->
+  <!-- Isometric 3D hexagon: gold right face, navy body, white C-brackets -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <g transform="translate(56,20) scale(1.28)">
+    <!-- Navy hexagon base -->
+    <polygon points="16,0 32,9 32,27 16,36 0,27 0,9" fill="#2a2060"/>
+    <!-- Gold RIGHT face (lower-right rhombus — the signature gold panel) -->
+    <polygon points="32,9 32,27 16,36 16,18" fill="#c9a96e"/>
+    <!-- Top face slightly lighter navy for 3D lid effect -->
+    <polygon points="16,0 32,9 16,18 0,9" fill="#322878"/>
     <!-- Face dividing lines -->
-    <line x1="0" y1="9" x2="16" y2="18" stroke="#16103a" stroke-width="0.9"/>
-    <line x1="32" y1="9" x2="16" y2="18" stroke="#16103a" stroke-width="0.9"/>
-    <line x1="16" y1="18" x2="16" y2="36" stroke="#16103a" stroke-width="0.9"/>
-    <!-- White C-bracket on left navy face -->
-    <polyline points="3,12 8,15 8,27 3,24" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
-    <!-- White C-bracket on right navy face (mirrored) -->
-    <polyline points="29,12 24,15 24,27 29,24" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
-    <!-- Outer border -->
-    <polygon points="16,0 32,9 32,27 16,36 0,27 0,9" fill="none" stroke="#16103a" stroke-width="1.5"/>
+    <line x1="16" y1="0" x2="16" y2="18" stroke="#14103a" stroke-width="1.1"/>
+    <line x1="0" y1="9" x2="16" y2="18" stroke="#14103a" stroke-width="1.1"/>
+    <line x1="32" y1="9" x2="16" y2="18" stroke="#14103a" stroke-width="1.1"/>
+    <line x1="16" y1="18" x2="16" y2="36" stroke="#14103a" stroke-width="1.1"/>
+    <!-- White C-bracket on left face (open toward right/center) -->
+    <polyline points="3,12 8,15 8,28 3,25" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- White C-bracket on top face (subtle, open toward bottom) -->
+    <polyline points="5,10 12,6 24,11 18,14" fill="none" stroke="white" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" opacity="0.65"/>
+    <!-- Dark gold groove within gold face (adds depth) -->
+    <polyline points="29,12 23,16 23,28 29,25" fill="none" stroke="#7a5820" stroke-width="1.5" stroke-linecap="round" opacity="0.65"/>
+    <!-- Outer hex border -->
+    <polygon points="16,0 32,9 32,27 16,36 0,27 0,9" fill="none" stroke="#140e38" stroke-width="1.8"/>
   </g>
 
   <!-- ── Brand name ── -->
-  <text x="105" y="56" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="white" letter-spacing="2">REAL SPACE DIGITAL</text>
-  <text x="105" y="76" font-family="'Courier New', monospace" font-size="10" fill="#c9a96e" letter-spacing="3">DIGITIZING REALITY. ELEVATING SALES.</text>
+  <text x="112" y="55" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="white" letter-spacing="2">REAL SPACE DIGITAL</text>
+  <text x="112" y="75" font-family="'Courier New', monospace" font-size="10" fill="#c9a96e" letter-spacing="3">DIGITIZING REALITY. ELEVATING SALES.</text>
 
   <!-- ── Main headline ── -->
-  <text x="60" y="200" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="700" fill="white" letter-spacing="-0.5">We Build the Engines</text>
-  <text x="60" y="260" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="700" fill="url(#gold)" letter-spacing="-0.5">That Turn Views</text>
-  <text x="60" y="320" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="700" fill="url(#gold)" letter-spacing="-0.5">Into Bookings.</text>
+  <text x="60" y="198" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700" fill="white" letter-spacing="-0.5">We Build the Engines</text>
+  <text x="60" y="256" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700" fill="url(#gold)" letter-spacing="-0.5">That Turn Views</text>
+  <text x="60" y="314" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700" fill="url(#gold)" letter-spacing="-0.5">Into Bookings.</text>
 
   <!-- ── Sub headline ── -->
-  <text x="60" y="370" font-family="'Courier New', monospace" font-size="18" fill="#9a9590" letter-spacing="0.5">We simplify how people find, trust, and book you.</text>
+  <text x="60" y="362" font-family="'Courier New', monospace" font-size="17" fill="#9a9590" letter-spacing="0.5">We simplify how people find, trust, and book you.</text>
 
   <!-- ── Divider ── -->
-  <rect x="60" y="400" width="440" height="1" fill="#262626"/>
+  <rect x="60" y="392" width="430" height="1" fill="#262626"/>
 
   <!-- ── Value props ── -->
-  <g font-family="'Courier New', monospace" font-size="13" fill="#c9a96e" letter-spacing="1">
-    <text x="60" y="430">✦  Less chaos.  ✦  More clarity.  ✦  Real growth.</text>
-  </g>
+  <text x="60" y="422" font-family="'Courier New', monospace" font-size="13" fill="#c9a96e" letter-spacing="1">✦  Less chaos.  ✦  More clarity.  ✦  Real growth.</text>
 
   <!-- ── CTA block ── -->
-  <rect x="60" y="458" width="420" height="56" rx="8" fill="#c9a96e" opacity="0.12"/>
-  <rect x="60" y="458" width="420" height="56" rx="8" fill="none" stroke="#c9a96e" stroke-width="1.5" opacity="0.4"/>
-  <text x="80" y="481" font-family="'Courier New', monospace" font-size="11" fill="#c9a96e" letter-spacing="2">READY TO LAUNCH?</text>
-  <text x="80" y="502" font-family="Georgia, serif" font-size="15" fill="white" font-weight="700">qualify.rsddirect.com</text>
+  <rect x="60" y="450" width="415" height="56" rx="8" fill="#c9a96e" opacity="0.12"/>
+  <rect x="60" y="450" width="415" height="56" rx="8" fill="none" stroke="#c9a96e" stroke-width="1.5" opacity="0.4"/>
+  <text x="80" y="473" font-family="'Courier New', monospace" font-size="11" fill="#c9a96e" letter-spacing="2">READY TO LAUNCH?</text>
+  <text x="80" y="494" font-family="Georgia, serif" font-size="15" fill="white" font-weight="700">qualify.rsddirect.com</text>
 
   <!-- ── Bottom bar ── -->
   <rect x="0" y="610" width="1200" height="20" fill="#c9a96e" opacity="0.15"/>
