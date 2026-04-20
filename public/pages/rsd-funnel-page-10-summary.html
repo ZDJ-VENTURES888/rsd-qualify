@@ -419,6 +419,26 @@ const M_SOLVES={
   rr_full:'Solves: full lead leakage across channels. No contact goes unanswered — every touchpoint is covered.'
 };
 
+// ── Package-bundled monthly item IDs ────────────────────────────────────
+// These are the ongoing monthly services INCLUDED inside each package.
+// They won't appear in S.items (those are à la carte selections) so we
+// inject them here so the notes and monthly support block always render them.
+const PKG_MONTHLY={
+  pkg_t2b:[],                                            // Tour2Booking — one-time only
+  pkg_ao:['rr_full','ad_mgmt'],                          // AlwaysOn T2B — $497 + $497 = $994/mo
+  pkg_os:['rr_full','ad_mgmt','soc3','ao_ai_base']       // Digital Twin OS — $497+$497+$497+$49 = $1,540/mo
+};
+
+// Helper: returns merged, deduped array of monthly item IDs
+// (package-bundled + any additional à la carte monthly items from S.items)
+function resolveMonthlyItems(){
+  const bundled=(S.pkg&&PKG_MONTHLY[S.pkg])||[];
+  const alaCarteMonthly=S.items.filter(id=>D_TYPE[id]==='mo');
+  const merged=[...bundled];
+  for(const id of alaCarteMonthly){ if(!merged.includes(id)) merged.push(id); }
+  return merged;
+}
+
 const PKG_MS_INTRO={
   pkg_t2b:'Your Tour2Booking™ system launches with media and presence — the monthly services below keep it converting after day one. Without this layer, even the best assets go quiet within weeks.',
   pkg_ao:'AlwaysOn means exactly that. Your visibility loop, AI tools, and ad presence run continuously — compounding authority and inbound while your team stays focused on delivering work.',
@@ -427,7 +447,7 @@ const PKG_MS_INTRO={
 
 function renderMonthlySupport(){
   const el=document.getElementById('monthlySupport');if(!el)return;
-  const monthlyItems=S.items.filter(id=>D_TYPE[id]==='mo');
+  const monthlyItems=resolveMonthlyItems();
   if(!monthlyItems.length){el.style.display='none';return;}
 
   let mT=0;
@@ -505,7 +525,10 @@ function buildSuggestedNotes(){
   n+=`  Founder Lock: ${gfLabel}\n\n`;
 
   const oneItems=S.items.filter(id=>D_TYPE[id]==='one');
-  const moItems=S.items.filter(id=>D_TYPE[id]==='mo');
+  // Use resolveMonthlyItems() — merges package-bundled + à la carte monthly
+  const moItems=resolveMonthlyItems();
+  // Recalculate mT from the full resolved set (overrides the loop above for monthly)
+  mT=0; for(const id of moItems) mT+=D_PRICE[id]||0;
 
   if(oneItems.length||S.pkg){
     n+=`ONE-TIME SERVICES\n`;
@@ -631,7 +654,8 @@ function buildEmailParams({first,last,email,phone,mobile,biz,smsOpt,notes}){
   const dp=Math.round(oT*.25);
 
   const oneItems=S.items.filter(id=>D_TYPE[id]==='one');
-  const moItems=S.items.filter(id=>D_TYPE[id]==='mo');
+  const moItems=resolveMonthlyItems(); // includes package-bundled monthly items
+  mT=0; for(const id of moItems) mT+=D_PRICE[id]||0; // recalculate with full set
   let itemsSummary='';
   if(oneItems.length||S.pkg){
     itemsSummary+='ONE-TIME SERVICES\n';
