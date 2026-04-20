@@ -52,6 +52,10 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .bgh{background:transparent;color:var(--td);border:1px solid var(--br)}.bgh:hover{border-color:var(--td);color:var(--tx)}
 .br{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
 .mw{display:inline-flex;align-items:center;gap:6px;background:var(--gb);color:var(--grn);font-size:11px;padding:5px 12px;border-radius:16px;margin-top:14px}
+.feat-row{border-color:rgba(201,169,110,.28);background:rgba(201,169,110,.04)}
+.feat-row .anm{color:var(--gold)}
+.feat-row .feat-inc{font-size:10px;color:var(--tm);margin-top:4px;letter-spacing:.04em}
+.feat-row.act{border-color:var(--gold);background:var(--gg)}
 .cart{position:fixed;bottom:0;left:0;right:0;background:var(--s1);border-top:1px solid var(--br);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;z-index:199;transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
 .cart.vis{transform:none}
 .cart-i{font-size:12px;color:var(--td)}.cart-i strong{color:var(--gold);font-weight:400}
@@ -98,6 +102,16 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
     </div>
   </div>
 
+  <div class="sh">Active Marketing Bundle — All-In-One</div>
+  <div class="ar feat-row" data-id="mkt_active" onclick="togMktActive(this)">
+    <div class="ai">
+      <div class="anm">Active Marketing + Ad Management</div>
+      <div class="adt">30-day scheduled content calendar · 4 posts/week · Meta + Google ad campaigns · setup, optimization & reporting. Ad spend separate.</div>
+      <div class="feat-inc">Includes: 4×/wk content · full ad management · 30-day scheduled calendar</div>
+    </div>
+    <div class="apr">$1,800/mo</div><div class="atm">Ongoing</div><div class="tg"></div>
+  </div>
+
   <div class="sh">Advertising Management (Add-On to Social)</div>
   <div class="ar" data-id="ad_mgmt" onclick="togRow(this,'ad_mgmt')">
     <div class="ai"><div class="anm">Monthly Ad Management</div><div class="adt">Meta + Google ad campaigns. Setup, optimization, reporting. Ad spend is separate.</div></div>
@@ -120,30 +134,72 @@ const URL_PREV = 'rsd-funnel-page-05-reputation.html';
 const URL_NEXT = 'rsd-funnel-page-07-rapid-response.html';
 // ╚══════════════════════════════════════════════════════════╝
 
-const D_PRICE={scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,vid_authority:1800,vid_testimonial:1800,photo_half:400,photo_full:800,lp_base:1800,lp_conv:2800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,ao_ai_base:49,ao_ai_heavy:99,gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,ad_mgmt:497,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497};
-const D_TYPE={scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',vid_authority:'one',vid_testimonial:'one',photo_half:'one',photo_full:'one',lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',ao_ai_base:'mo',ao_ai_heavy:'mo',gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo'};
+const D_PRICE={scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,vid_authority:1800,vid_testimonial:1800,photo_half:400,photo_full:800,lp_base:1800,lp_conv:2800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,ao_ai_base:49,ao_ai_heavy:99,gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,ad_mgmt:497,mkt_active:1800,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497};
+const D_TYPE={scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',vid_authority:'one',vid_testimonial:'one',photo_half:'one',photo_full:'one',lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',ao_ai_base:'mo',ao_ai_heavy:'mo',gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',mkt_active:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo'};
 const PKG_PRICE={pkg_t2b:5549,pkg_ao:6549,pkg_os:9549};
 const SOC_IDS=['soc3','soc5','soc7'];
+const MKT_CONFLICTS=['soc3','soc5','soc7','ad_mgmt'];
 
 function getState(){const p=new URLSearchParams(window.location.search);return{items:p.get('items')?p.get('items').split(',').filter(Boolean):[],pkg:p.get('pkg')||null,gf:p.get('gf')||null,qual:p.get('qual')?p.get('qual').split(',').map(Number):[0,0,0,0,0,0]};}
 function buildQ(s){const p=new URLSearchParams();if(s.items&&s.items.length)p.set('items',s.items.join(','));if(s.pkg)p.set('pkg',s.pkg);if(s.gf)p.set('gf',s.gf);if(s.qual&&s.qual.some(Boolean))p.set('qual',s.qual.join(','));return p.toString();}
 function updCart(s){const ct=s.items.length+(s.pkg?1:0);let o=0,m=0;for(const id of s.items){const pr=D_PRICE[id];if(!pr)continue;if(D_TYPE[id]==='one')o+=pr;else m+=pr;}if(s.pkg&&PKG_PRICE[s.pkg])o+=PKG_PRICE[s.pkg];document.getElementById('cI').innerHTML='<strong>'+ct+'</strong> item'+(ct!==1?'s':'');let txt='';if(o)txt='$'+o.toLocaleString();if(o&&m)txt+=' + ';if(m)txt+='$'+m.toLocaleString()+'/mo';document.getElementById('cT').textContent=txt||'$0';document.getElementById('cart').classList.toggle('vis',ct>0);}
 
 const S=getState();
+// Init — restore card/row selections from URL state
 document.querySelectorAll('.card[data-id]').forEach(c=>{if(S.items.includes(c.dataset.id))c.classList.add('sel');});
 document.querySelectorAll('.ar[data-id]').forEach(a=>{if(S.items.includes(a.dataset.id))a.classList.add('act');});
+// Restore mkt_active featured row
+if(S.items.includes('mkt_active'))document.querySelector('.ar[data-id="mkt_active"]').classList.add('act');
 updCart(S);
-if(S.items.some(id=>['soc3','soc5','soc7','ad_mgmt'].includes(id)))document.getElementById('socWin').style.display='block';
+checkWin();
 
 function selGroup(el,group,id){
+  // Deselect mkt_active if a social card is chosen (they conflict)
+  if(S.items.includes('mkt_active')){
+    S.items=S.items.filter(i=>i!=='mkt_active');
+    document.querySelector('.ar[data-id="mkt_active"]').classList.remove('act');
+  }
   document.querySelectorAll('.card[data-group="'+group+'"]').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.items=S.items.filter(i=>!SOC_IDS.includes(i));
   S.items.push(id);
   updCart(S);checkWin();
 }
-function togRow(el,id){el.classList.toggle('act');const i=S.items.indexOf(id);if(i>-1)S.items.splice(i,1);else S.items.push(id);updCart(S);checkWin();}
-function checkWin(){document.getElementById('socWin').style.display=S.items.some(id=>['soc3','soc5','soc7','ad_mgmt'].includes(id))?'block':'none';}
+function togRow(el,id){
+  // If enabling ad_mgmt and mkt_active is active, deselect mkt_active
+  if(id==='ad_mgmt'&&!el.classList.contains('act')&&S.items.includes('mkt_active')){
+    S.items=S.items.filter(i=>i!=='mkt_active');
+    document.querySelector('.ar[data-id="mkt_active"]').classList.remove('act');
+  }
+  el.classList.toggle('act');
+  const i=S.items.indexOf(id);
+  if(i>-1)S.items.splice(i,1);else S.items.push(id);
+  updCart(S);checkWin();
+}
+function togMktActive(el){
+  const activating=!el.classList.contains('act');
+  if(activating){
+    // Deselect conflicting items: soc cards + ad_mgmt
+    MKT_CONFLICTS.forEach(cid=>{
+      S.items=S.items.filter(i=>i!==cid);
+      // Deselect social cards
+      document.querySelectorAll('.card[data-id="'+cid+'"]').forEach(c=>c.classList.remove('sel'));
+      // Deselect ad_mgmt row
+      const row=document.querySelector('.ar[data-id="'+cid+'"]');
+      if(row)row.classList.remove('act');
+    });
+    el.classList.add('act');
+    S.items.push('mkt_active');
+  } else {
+    el.classList.remove('act');
+    S.items=S.items.filter(i=>i!=='mkt_active');
+  }
+  updCart(S);checkWin();
+}
+function checkWin(){
+  const win=S.items.some(id=>['soc3','soc5','soc7','ad_mgmt','mkt_active'].includes(id));
+  document.getElementById('socWin').style.display=win?'block':'none';
+}
 function goBack(){const q=buildQ(S);window.location.href=URL_PREV+(q?'?'+q:'');}
 function goNext(){const q=buildQ(S);window.location.href=URL_NEXT+(q?'?'+q:'');}
 </script>
