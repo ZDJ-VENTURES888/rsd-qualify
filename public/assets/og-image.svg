@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <!-- Space background gradient -->
+    <radialGradient id="bg" cx="55%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#2d1a5e"/>
+      <stop offset="45%" stop-color="#1a0e40"/>
+      <stop offset="100%" stop-color="#07050f"/>
+    </radialGradient>
+    <!-- Nebula glow -->
+    <radialGradient id="nebula" cx="60%" cy="35%" r="45%">
+      <stop offset="0%" stop-color="#7b4fc4" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#1a0e40" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Gold gradient for accents -->
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c9a96e"/>
+      <stop offset="50%" stop-color="#e8cc8a"/>
+      <stop offset="100%" stop-color="#a68a52"/>
+    </linearGradient>
+    <!-- Rocket body gradient -->
+    <linearGradient id="rkt1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8e4dc"/>
+      <stop offset="100%" stop-color="#b8b0c8"/>
+    </linearGradient>
+    <linearGradient id="rkt2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d0c8e8"/>
+      <stop offset="100%" stop-color="#7b5fc4"/>
+    </linearGradient>
+    <!-- Flame gradient -->
+    <linearGradient id="flame" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c9a96e" stop-opacity="1"/>
+      <stop offset="60%" stop-color="#e8832a" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ff6a00" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Trail gradient -->
+    <linearGradient id="trail" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c9a96e" stop-opacity="0"/>
+      <stop offset="40%" stop-color="#c9a96e" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#7b4fc4" stop-opacity="0.08"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ── Background ── -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#nebula)"/>
+
+  <!-- ── Stars ── -->
+  <g fill="white">
+    <circle cx="45" cy="28" r="1.2" opacity=".7"/><circle cx="120" cy="65" r=".8" opacity=".5"/>
+    <circle cx="88" cy="110" r="1.5" opacity=".8"/><circle cx="210" cy="42" r=".9" opacity=".6"/>
+    <circle cx="178" cy="155" r="1.1" opacity=".7"/><circle cx="320" cy="18" r=".7" opacity=".5"/>
+    <circle cx="290" cy="88" r="1.3" opacity=".6"/><circle cx="55" cy="200" r=".9" opacity=".4"/>
+    <circle cx="155" cy="280" r="1.0" opacity=".5"/><circle cx="30" cy="320" r=".7" opacity=".6"/>
+    <circle cx="95" cy="390" r="1.2" opacity=".5"/><circle cx="230" cy="350" r=".8" opacity=".4"/>
+    <circle cx="50" cy="480" r="1.0" opacity=".6"/><circle cx="170" cy="520" r=".7" opacity=".5"/>
+    <circle cx="110" cy="580" r="1.3" opacity=".4"/><circle cx="280" cy="560" r=".9" opacity=".5"/>
+    <circle cx="350" cy="470" r="1.1" opacity=".4"/><circle cx="400" cy="580" r=".8" opacity=".6"/>
+    <circle cx="380" cy="130" r=".9" opacity=".5"/><circle cx="440" cy="60" r="1.2" opacity=".7"/>
+    <circle cx="480" cy="200" r=".7" opacity=".4"/><circle cx="520" cy="520" r="1.0" opacity=".5"/>
+    <circle cx="560" cy="580" r=".8" opacity=".4"/><circle cx="600" cy="30" r="1.1" opacity=".6"/>
+    <circle cx="650" cy="590" r=".9" opacity=".5"/><circle cx="70" cy="145" r="2.0" opacity=".9"/>
+    <circle cx="340" cy="300" r="1.8" opacity=".8"/><circle cx="190" cy="450" r="1.5" opacity=".7"/>
+    <circle cx="130" cy="35" r="2.2" opacity=".95"/>
+  </g>
+
+  <!-- ── Rocket trails ── -->
+  <!-- Big center rocket trail -->
+  <ellipse cx="820" cy="520" rx="18" ry="140" fill="url(#trail)" opacity="0.6" transform="rotate(-30 820 520)"/>
+  <!-- Left rocket trail -->
+  <ellipse cx="710" cy="540" rx="12" ry="110" fill="url(#trail)" opacity="0.4" transform="rotate(-38 710 540)"/>
+  <!-- Right rocket trail -->
+  <ellipse cx="930" cy="490" rx="14" ry="120" fill="url(#trail)" opacity="0.5" transform="rotate(-22 930 490)"/>
+
+  <!-- ── LEFT ROCKET (small, angled) ── -->
+  <g transform="translate(690,310) rotate(-38)" filter="url(#glow)">
+    <!-- Body -->
+    <ellipse cx="0" cy="0" rx="22" ry="55" fill="url(#rkt2)"/>
+    <!-- Nose -->
+    <polygon points="0,-72 -18,-18 18,-18" fill="#c9a96e"/>
+    <!-- Fins -->
+    <polygon points="-22,35 -38,65 -22,55" fill="#7b5fc4"/>
+    <polygon points="22,35 38,65 22,55" fill="#7b5fc4"/>
+    <!-- Window -->
+    <circle cx="0" cy="-8" r="12" fill="#1a0e40" stroke="#c9a96e" stroke-width="3"/>
+    <circle cx="0" cy="-8" r="6" fill="#2d1a5e"/>
+    <!-- Flame -->
+    <ellipse cx="0" cy="68" rx="10" ry="22" fill="url(#flame)" opacity="0.9"/>
+  </g>
+
+  <!-- ── CENTER ROCKET (large, angled) ── -->
+  <g transform="translate(810,230) rotate(-28)" filter="url(#softglow)">
+    <!-- Body -->
+    <ellipse cx="0" cy="0" rx="32" ry="80" fill="url(#rkt1)"/>
+    <!-- Nose -->
+    <polygon points="0,-105 -26,-25 26,-25" fill="#7b5fc4"/>
+    <!-- Fins -->
+    <polygon points="-32,52 -56,95 -32,78" fill="#5a3fa0"/>
+    <polygon points="32,52 56,95 32,78" fill="#5a3fa0"/>
+    <!-- Window -->
+    <circle cx="0" cy="-12" r="18" fill="#1a0e40" stroke="#c9a96e" stroke-width="4"/>
+    <circle cx="0" cy="-12" r="9" fill="#2d1a5e"/>
+    <circle cx="-3" cy="-15" r="3" fill="white" opacity="0.5"/>
+    <!-- Flame -->
+    <ellipse cx="0" cy="100" rx="14" ry="32" fill="url(#flame)" opacity="0.95"/>
+  </g>
+
+  <!-- ── RIGHT ROCKET (medium, less angled) ── -->
+  <g transform="translate(920,270) rotate(-18)" filter="url(#glow)">
+    <!-- Body -->
+    <ellipse cx="0" cy="0" rx="26" ry="65" fill="url(#rkt2)"/>
+    <!-- Nose -->
+    <polygon points="0,-85 -20,-20 20,-20" fill="#c9a96e"/>
+    <!-- Fins -->
+    <polygon points="-26,42 -44,76 -26,62" fill="#4a2e90"/>
+    <polygon points="26,42 44,76 26,62" fill="#4a2e90"/>
+    <!-- Window -->
+    <circle cx="0" cy="-10" r="14" fill="#1a0e40" stroke="#c9a96e" stroke-width="3.5"/>
+    <circle cx="0" cy="-10" r="7" fill="#2d1a5e"/>
+    <!-- Flame -->
+    <ellipse cx="0" cy="80" rx="11" ry="26" fill="url(#flame)" opacity="0.9"/>
+  </g>
+
+  <!-- ── Left panel divider line ── -->
+  <rect x="0" y="0" width="560" height="630" fill="black" opacity="0.18"/>
+
+  <!-- ── Gold accent bar top ── -->
+  <rect x="60" y="58" width="80" height="3" fill="url(#gold)" rx="2"/>
+
+  <!-- ── Logo mark (hexagon-ish) ── -->
+  <g transform="translate(60,35)">
+    <polygon points="16,0 32,9 32,27 16,36 0,27 0,9" fill="none" stroke="#c9a96e" stroke-width="2.5"/>
+    <polygon points="16,7 26,13 26,24 16,30 6,24 6,13" fill="#c9a96e" opacity="0.3"/>
+    <line x1="16" y1="0" x2="16" y2="36" stroke="#c9a96e" stroke-width="1" opacity="0.5"/>
+    <line x1="0" y1="18" x2="32" y2="18" stroke="#c9a96e" stroke-width="1" opacity="0.5"/>
+  </g>
+
+  <!-- ── Brand name ── -->
+  <text x="105" y="56" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="white" letter-spacing="2">REAL SPACE DIGITAL</text>
+  <text x="105" y="76" font-family="'Courier New', monospace" font-size="10" fill="#c9a96e" letter-spacing="3">DIGITIZING REALITY. ELEVATING SALES.</text>
+
+  <!-- ── Main headline ── -->
+  <text x="60" y="200" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="700" fill="white" letter-spacing="-0.5">We Build the Engines</text>
+  <text x="60" y="260" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="700" fill="url(#gold)" letter-spacing="-0.5">That Turn Views</text>
+  <text x="60" y="320" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="700" fill="url(#gold)" letter-spacing="-0.5">Into Bookings.</text>
+
+  <!-- ── Sub headline ── -->
+  <text x="60" y="370" font-family="'Courier New', monospace" font-size="18" fill="#9a9590" letter-spacing="0.5">We simplify how people find, trust, and book you.</text>
+
+  <!-- ── Divider ── -->
+  <rect x="60" y="400" width="440" height="1" fill="#262626"/>
+
+  <!-- ── Value props ── -->
+  <g font-family="'Courier New', monospace" font-size="13" fill="#c9a96e" letter-spacing="1">
+    <text x="60" y="430">✦  Less chaos.  ✦  More clarity.  ✦  Real growth.</text>
+  </g>
+
+  <!-- ── CTA block ── -->
+  <rect x="60" y="458" width="420" height="56" rx="8" fill="#c9a96e" opacity="0.12"/>
+  <rect x="60" y="458" width="420" height="56" rx="8" fill="none" stroke="#c9a96e" stroke-width="1.5" opacity="0.4"/>
+  <text x="80" y="481" font-family="'Courier New', monospace" font-size="11" fill="#c9a96e" letter-spacing="2">READY TO LAUNCH?</text>
+  <text x="80" y="502" font-family="Georgia, serif" font-size="15" fill="white" font-weight="700">qualify.rsddirect.com</text>
+
+  <!-- ── Bottom bar ── -->
+  <rect x="0" y="610" width="1200" height="20" fill="#c9a96e" opacity="0.15"/>
+  <text x="60" y="624" font-family="'Courier New', monospace" font-size="10" fill="#5e5955" letter-spacing="1">REAL SPACE DIGITAL  ·  FOUNDER PRICING NOW OPEN  ·  qualify.rsddirect.com</text>
+</svg>
