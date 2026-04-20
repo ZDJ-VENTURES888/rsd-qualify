@@ -23,7 +23,20 @@ const ALLOWED_ORIGINS = [
   'http://localhost:3000',
 ];
 
+// ── Raw body reader (fallback for unparsed stream requests) ──
+function readRawBody(req) {
+  return new Promise((resolve, reject) => {
+    let data = '';
+    req.on('data', chunk => { data += chunk.toString(); });
+    req.on('end',  ()    => resolve(data));
+    req.on('error', err  => reject(err));
+  });
+}
+
 module.exports = async function handler(req, res) {
+
+  // ── Top-level safety net — never let an unhandled error return a raw 500 ──
+  try {
 
   // CORS
   const origin = req.headers.origin || '';
@@ -36,15 +49,39 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST')    return res.status(405).json({ error: 'Method not allowed' });
 
-  // ── Parse body ─────────────────────────────────────────────
-  let body;
+  // ── Parse body: handle auto-parsed object, JSON string, or raw stream ──
+  let body = {};
   try {
-    body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
-  } catch {
-    return res.status(400).json({ error: 'Invalid JSON' });
+    if (req.body !== undefined && req.body !== null) {
+      if (typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
+        // Already parsed by Vercel runtime
+        body = req.body;
+      } else {
+        // String or Buffer
+        const str = Buffer.isBuffer(req.body) ? req.body.toString('utf8') : req.body;
+        body = str ? JSON.parse(str) : {};
+      }
+    } else {
+      // Stream not yet read — read it manually
+      const raw = await readRawBody(req);
+      body = raw ? JSON.parse(raw) : {};
+    }
+  } catch (parseErr) {
+    console.error('[Submit] Body parse failed:', parseErr.message);
+    return res.status(400).json({ error: 'Invalid JSON body' });
   }
 
-  const { contact = {}, items = [], pkg = null, gf = null, qual = [], preCallQuestion = '' } = body;
+  // ── Safe destructure — never throws even if body is weird ──
+  const {
+    contact      = {},
+    items        = [],
+    pkg          = null,
+    gf           = null,
+    qual         = [],
+    preCallQuestion = '',
+  } = (body && typeof body === 'object') ? body : {};
+
+  console.log('[Submit] Received — contact:', contact.firstName, contact.lastName, '| items:', items.length, '| pkg:', pkg);
 
   // ── Validation ─────────────────────────────────────────────
   const errors = [];
@@ -59,7 +96,7 @@ module.exports = async function handler(req, res) {
 
   // ── Build GHL payload ──────────────────────────────────────
   const fullName   = `${contact.firstName} ${contact.lastName}`.trim();
-  const qualScore  = qual.reduce((a, b) => a + b, 0);
+  const qualScore  = Array.isArray(qual) ? qual.reduce((a, b) => a + b, 0) : 0;
 
   // Compute totals for GHL custom fields
   const D_PRICE_MAP = {
@@ -112,8 +149,9 @@ module.exports = async function handler(req, res) {
     'Working phone number and email for lead routing',
     'Clear service or product offering with pricing'
   ];
-  const qualMet     = QUAL_LABELS.filter((_, i) => qual[i] === 1);
-  const qualMissing = QUAL_LABELS.filter((_, i) => qual[i] === 0);
+  const qualArr     = Array.isArray(qual) ? qual : [];
+  const qualMet     = QUAL_LABELS.filter((_, i) => qualArr[i] === 1);
+  const qualMissing = QUAL_LABELS.filter((_, i) => qualArr[i] !== 1);
   const qualSummary = `${qualMet.length} of 6 prerequisites met — ${tierRoute}`;
 
   // Item labels
@@ -147,24 +185,19 @@ module.exports = async function handler(req, res) {
   const selectedItemsReadable = items.map(id => ITEM_LABELS[id] || id).join(', ');
   const selectedPkgReadable   = pkg ? `${PKG_LABELS[pkg] || pkg} ($${PKG_PRICE_MAP[pkg]?.toLocaleString() || ''})` : '';
 
-  // ── GHL payload — contact fields MUST be at root level for
-  //    "Create or Update Contact from Webhook" to map them correctly.
-  //    GHL reads: firstName, lastName, email, phone, companyName natively.
-  //    Custom fields go under customFields (or as flat keys — GHL maps by key name).
+  // ── GHL payload — contact fields at ROOT level for native mapping ──
   const ghlPayload = {
-    // ── Native GHL contact fields (root level) ──────────────
     firstName:    contact.firstName,
     lastName:     contact.lastName,
     email:        contact.email,
     phone:        contact.phone || contact.mobile || '',
     companyName:  contact.businessName || '',
     name:         fullName,
-    // ── Custom fields ────────────────────────────────────────
     mobile_number:             contact.mobile || '',
     sms_opt_in:                contact.smsOptIn ? 'Yes' : 'No',
     pre_call_question:         preCallQuestion || '',
     qual_score:                qualScore,
-    qual_criteria:             qual.join(','),
+    qual_criteria:             qualArr.join(','),
     selected_package:          pkg || '',
     selected_items:            items.join(','),
     founder_lock:              gf || '',
@@ -173,7 +206,7 @@ module.exports = async function handler(req, res) {
     combined_total:            combined,
     discount_applied:          discount,
     down_payment:              downPayment,
-    pipeline_route:            tierRoute,   // ← used by Branch by Pipeline Route
+    pipeline_route:            tierRoute,
     source_url:                'qualify.rsddirect.com',
     submission_date:           new Date().toISOString(),
     qual_criteria_met:         qualMet.join(', '),
@@ -187,6 +220,8 @@ module.exports = async function handler(req, res) {
   let ghlStatus = 'skipped';
   const ghlUrl = process.env.GHL_WEBHOOK_URL;
 
+  console.log('[GHL] Webhook URL set:', !!ghlUrl);
+
   if (ghlUrl && ghlUrl !== 'REPLACE_WITH_YOUR_GHL_WEBHOOK_URL') {
     try {
       const ghlRes = await fetch(ghlUrl, {
@@ -196,19 +231,21 @@ module.exports = async function handler(req, res) {
         timeout: 8000,
       });
       ghlStatus = ghlRes.ok ? 'sent' : `error_${ghlRes.status}`;
+      console.log('[GHL] Webhook status:', ghlStatus);
     } catch (err) {
       console.error('[GHL] Webhook failed:', err.message);
       ghlStatus = 'error';
     }
+  } else {
+    console.warn('[GHL] GHL_WEBHOOK_URL not configured — skipping. Set this env var in Vercel project settings.');
   }
 
   // ── Generate HTML Report ───────────────────────────────────
-  let reportHtml, driveLink = null;
+  let reportHtml = null, driveLink = null;
   try {
-    reportHtml = generateReport({ contact, items, pkg, gf, qual });
+    reportHtml = generateReport({ contact, items, pkg, gf, qual: qualArr });
   } catch (err) {
     console.error('[Report] Generation failed:', err.message);
-    reportHtml = null;
   }
 
   // ── Save to Google Drive ───────────────────────────────────
@@ -227,12 +264,12 @@ module.exports = async function handler(req, res) {
     ghlStatus,
     driveLink,
     tier:      tierRoute,
-    totals: {
-      oneTime,
-      monthly,
-      combined,
-      discount,
-      downPayment,
-    },
+    totals: { oneTime, monthly, combined, discount, downPayment },
   });
+
+  } catch (fatalErr) {
+    // Safety net — log and return structured error instead of raw 500
+    console.error('[Submit] Fatal unhandled error:', fatalErr.message, fatalErr.stack);
+    return res.status(500).json({ error: 'Internal server error', detail: fatalErr.message });
+  }
 };
