@@ -134,12 +134,24 @@
   <!-- ── Gold accent bar top ── -->
   <rect x="60" y="58" width="80" height="3" fill="url(#gold)" rx="2"/>
 
-  <!-- ── Logo mark (hexagon-ish) ── -->
+  <!-- ── Logo mark — RSD isometric hexagon ── -->
   <g transform="translate(60,35)">
-    <polygon points="16,0 32,9 32,27 16,36 0,27 0,9" fill="none" stroke="#c9a96e" stroke-width="2.5"/>
-    <polygon points="16,7 26,13 26,24 16,30 6,24 6,13" fill="#c9a96e" opacity="0.3"/>
-    <line x1="16" y1="0" x2="16" y2="36" stroke="#c9a96e" stroke-width="1" opacity="0.5"/>
-    <line x1="0" y1="18" x2="32" y2="18" stroke="#c9a96e" stroke-width="1" opacity="0.5"/>
+    <!-- Dark navy hexagon body -->
+    <polygon points="16,0 32,9 32,27 16,36 0,27 0,9" fill="#2d2665"/>
+    <!-- Gold top face (upper isometric diamond — "ceiling" of 3D cube) -->
+    <polygon points="16,0 32,9 16,18 0,9" fill="#c9a96e"/>
+    <!-- Right face — slightly lighter navy for 3D depth -->
+    <polygon points="32,9 32,27 16,36 16,18" fill="#38306e"/>
+    <!-- Face dividing lines -->
+    <line x1="0" y1="9" x2="16" y2="18" stroke="#16103a" stroke-width="0.9"/>
+    <line x1="32" y1="9" x2="16" y2="18" stroke="#16103a" stroke-width="0.9"/>
+    <line x1="16" y1="18" x2="16" y2="36" stroke="#16103a" stroke-width="0.9"/>
+    <!-- White C-bracket on left navy face -->
+    <polyline points="3,12 8,15 8,27 3,24" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- White C-bracket on right navy face (mirrored) -->
+    <polyline points="29,12 24,15 24,27 29,24" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- Outer border -->
+    <polygon points="16,0 32,9 32,27 16,36 0,27 0,9" fill="none" stroke="#16103a" stroke-width="1.5"/>
   </g>
 
   <!-- ── Brand name ── -->
