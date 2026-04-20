@@ -237,6 +237,13 @@ h3{font-family:'Libre Baskerville',Georgia,serif;font-size:16px;font-weight:700;
         </div>
       </div>
 
+      <!-- Pre-Call Question -->
+      <div class="form-group" style="margin-bottom:16px">
+        <label class="form-label" for="preCallQ" style="display:block;font-size:10px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Question or Note for RSD Before Our Call</label>
+        <textarea id="preCallQ" rows="3" placeholder="What's your biggest challenge right now, or anything you'd like us to know before we connect?" style="width:100%;background:var(--sh);border:1px solid var(--br);border-radius:8px;padding:12px 14px;color:var(--tx);font-family:var(--fm);font-size:13px;font-weight:300;line-height:1.6;resize:vertical;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--ba)'" onblur="this.style.borderColor='var(--br)'"></textarea>
+        <div style="font-size:10px;color:var(--tm);margin-top:5px;letter-spacing:.03em">We read this before every call. The more specific, the better we can prepare for you.</div>
+      </div>
+
       <!-- SMS Opt-In -->
       <div class="sms-opt">
         <label class="sms-check">
@@ -646,7 +653,7 @@ function copyNotes(ev){
 setupNotes();
 
 // ── EmailJS Params Builder ───────────────────────────────────────────────
-function buildEmailParams({first,last,email,phone,mobile,biz,smsOpt,notes}){
+function buildEmailParams({first,last,email,phone,mobile,biz,smsOpt,notes,preCallQ}){
   let oT=0,mT=0;
   for(const id of S.items){
     if(D_TYPE[id]==='one')oT+=D_PRICE[id]||0;
@@ -694,6 +701,7 @@ function buildEmailParams({first,last,email,phone,mobile,biz,smsOpt,notes}){
     down_payment:`$${dp.toLocaleString()}`,
     items_summary:itemsSummary,
     notes_content:notes||'(no notes entered)',
+    pre_call_question:preCallQ||'(none provided)',
     submission_date:today,
   };
 }
@@ -721,8 +729,9 @@ async function submitForm(){
   const phone  = document.getElementById('cfPhone').value.trim();
   const mobile = document.getElementById('cfMobile').value.trim();
   const biz    = document.getElementById('cfBiz').value.trim();
-  const smsOpt = document.getElementById('smsOptIn').checked;
-  const notes  = document.getElementById('notesTA')?.value||'';
+  const smsOpt  = document.getElementById('smsOptIn').checked;
+  const notes   = document.getElementById('notesTA')?.value||'';
+  const preCallQ = document.getElementById('preCallQ')?.value.trim()||'';
 
   // Validation
   let valid=true;
@@ -740,8 +749,8 @@ async function submitForm(){
   btn.disabled=true;
   btn.innerHTML='<span class="spin"></span>&nbsp;Submitting...';
 
-  // Build EmailJS params (includes all selections + notes)
-  const emailParams=buildEmailParams({first,last,email,phone,mobile,biz,smsOpt,notes});
+  // Build EmailJS params (includes all selections + notes + pre-call question)
+  const emailParams=buildEmailParams({first,last,email,phone,mobile,biz,smsOpt,notes,preCallQ});
 
   // Fire EmailJS + /api/submit in parallel
   const [ejsResult,apiResult]=await Promise.allSettled([
@@ -752,6 +761,7 @@ async function submitForm(){
       body:JSON.stringify({
         contact:{firstName:first,lastName:last,email,phone,mobile,businessName:biz,smsOptIn:smsOpt},
         items:S.items,pkg:S.pkg,gf:S.gf,qual:S.qual,notes,
+        preCallQuestion:preCallQ,
       }),
     }).then(r=>r.json()).catch(()=>({success:false})),
   ]);

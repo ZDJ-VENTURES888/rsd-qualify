@@ -44,7 +44,7 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid JSON' });
   }
 
-  const { contact = {}, items = [], pkg = null, gf = null, qual = [] } = body;
+  const { contact = {}, items = [], pkg = null, gf = null, qual = [], preCallQuestion = '' } = body;
 
   // ── Validation ─────────────────────────────────────────────
   const errors = [];
@@ -68,7 +68,7 @@ module.exports = async function handler(req, res) {
     lp_base:1800,lp_conv:2800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,ao_ai_base:49,ao_ai_heavy:99,
     gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,
     rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,
-    ad_mgmt:497,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497,
+    ad_mgmt:497,mkt_active:1800,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497,
   };
   const D_TYPE_MAP = {
     scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',
@@ -76,7 +76,7 @@ module.exports = async function handler(req, res) {
     lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',ao_ai_base:'mo',ao_ai_heavy:'mo',
     gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',
     rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',soc3:'mo',soc5:'mo',soc7:'mo',
-    ad_mgmt:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo',
+    ad_mgmt:'mo',mkt_active:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo',
   };
   const PKG_PRICE_MAP = { pkg_t2b:5549, pkg_ao:6549, pkg_os:9549 };
   const GF_DISC_MAP   = { gf1:0.05, gf2:0.10, gf3:0.15 };
@@ -135,6 +135,7 @@ module.exports = async function handler(req, res) {
     rev_mailer:'Review Mailer Campaign', rep_mkt:'Reputation Marketing (mo)',
     soc3:'Social Content — 3 posts/wk', soc5:'Social Content — 5 posts/wk',
     soc7:'Social Content — 7 posts/wk', ad_mgmt:'Ad Management (mo)',
+    mkt_active:'Active Marketing + Ad Management (4 posts/wk + Meta & Google campaigns)',
     rr_recep:'Rapid Response — Reception', rr_text:'Rapid Response — Text',
     rr_sms:'Rapid Response — SMS Drip', rr_full:'Rapid Response — Full Suite'
   };
@@ -146,36 +147,40 @@ module.exports = async function handler(req, res) {
   const selectedItemsReadable = items.map(id => ITEM_LABELS[id] || id).join(', ');
   const selectedPkgReadable   = pkg ? `${PKG_LABELS[pkg] || pkg} ($${PKG_PRICE_MAP[pkg]?.toLocaleString() || ''})` : '';
 
+  // ── GHL payload — contact fields MUST be at root level for
+  //    "Create or Update Contact from Webhook" to map them correctly.
+  //    GHL reads: firstName, lastName, email, phone, companyName natively.
+  //    Custom fields go under customFields (or as flat keys — GHL maps by key name).
   const ghlPayload = {
-    contact: {
-      firstName:    contact.firstName,
-      lastName:     contact.lastName,
-      email:        contact.email,
-      phone:        contact.phone || contact.mobile || '',
-      businessName: contact.businessName || '',
-    },
-    customFields: {
-      mobile_number:       contact.mobile || '',
-      sms_opt_in:          contact.smsOptIn ? 'Yes' : 'No',
-      qual_score:          qualScore,
-      qual_criteria:       qual.join(','),
-      selected_package:    pkg || '',
-      selected_items:      items.join(','),
-      founder_lock:        gf || '',
-      one_time_total:      oneTime,
-      monthly_total:       monthly,
-      combined_total:      combined,
-      discount_applied:    discount,
-      down_payment:        downPayment,
-      pipeline_route:      tierRoute,
-      source_url:          'qualify.rsddirect.com',
-      submission_date:     new Date().toISOString(),
-      qual_criteria_met:      qualMet.join(', '),
-      qual_criteria_missing:  qualMissing.join(', '),
-      qual_summary:           qualSummary,
-      selected_items_readable: selectedItemsReadable,
-      selected_package_readable: selectedPkgReadable,
-    },
+    // ── Native GHL contact fields (root level) ──────────────
+    firstName:    contact.firstName,
+    lastName:     contact.lastName,
+    email:        contact.email,
+    phone:        contact.phone || contact.mobile || '',
+    companyName:  contact.businessName || '',
+    name:         fullName,
+    // ── Custom fields ────────────────────────────────────────
+    mobile_number:             contact.mobile || '',
+    sms_opt_in:                contact.smsOptIn ? 'Yes' : 'No',
+    pre_call_question:         preCallQuestion || '',
+    qual_score:                qualScore,
+    qual_criteria:             qual.join(','),
+    selected_package:          pkg || '',
+    selected_items:            items.join(','),
+    founder_lock:              gf || '',
+    one_time_total:            oneTime,
+    monthly_total:             monthly,
+    combined_total:            combined,
+    discount_applied:          discount,
+    down_payment:              downPayment,
+    pipeline_route:            tierRoute,   // ← used by Branch by Pipeline Route
+    source_url:                'qualify.rsddirect.com',
+    submission_date:           new Date().toISOString(),
+    qual_criteria_met:         qualMet.join(', '),
+    qual_criteria_missing:     qualMissing.join(', '),
+    qual_summary:              qualSummary,
+    selected_items_readable:   selectedItemsReadable,
+    selected_package_readable: selectedPkgReadable,
   };
 
   // ── Fire GHL Webhook ───────────────────────────────────────
