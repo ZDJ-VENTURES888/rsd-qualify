@@ -135,12 +135,28 @@ function chargeNext(){
     <div class="card" data-id="lp_conv" onclick="togCard(this,'lp_conv')">
       <div class="ck">✓</div><span class="ci">⚡</span>
       <div class="ct">Conversion Capture Page</div>
-      <div class="cd">Everything in the Base Page, purpose-built to turn visitors into booked appointments and qualified leads.</div>
+      <div class="cd">Responsive, mobile-first conversion page. Includes booking integration, Calendly embed, SEO-ready on launch — purpose-built to turn visitors into booked conversations.</div>
       <div class="cp">$2,800</div>
       <div class="cn">2 years hosting included</div>
       <div class="inc">
         <strong>Includes à la carte:</strong><br>
         All Base Page features · 3D virtual tour embed · Calendar / booking integration · Brand video embed · Conversion-optimized lead capture form · Lead routing to CRM · Thank-you / confirmation flow
+      </div>
+    </div>
+  </div>
+
+
+  <div class="sh">Premium Conversion Build</div>
+  <div class="grid g2">
+    <div class="card" data-id="lp_prem" onclick="togCard(this,'lp_prem')" style="border-color:rgba(201,169,110,.3)">
+      <div class="ck">✓</div><span class="ci">🚀</span>
+      <div class="ct">Premium Conversion Build</div>
+      <div class="cd">Full-scope responsive build translated into your brand's existing look and feel. Deep booking integration, Calendly embed, SEO-ready on launch, and authority positioning baked into every section.</div>
+      <div class="cp">$2,800 – $4,200</div>
+      <div class="cn">Scoped at onboarding · includes all Conversion Page features</div>
+      <div class="inc">
+        <strong>Includes à la carte:</strong><br>
+        All Conversion Capture features · Brand-matched custom design · Deep booking + Calendly integration · Full SEO meta + sitemap · Authority content layout · 2 revision rounds
       </div>
     </div>
   </div>
@@ -165,6 +181,10 @@ function chargeNext(){
   <div class="ar" data-id="lp_social" onclick="togRow(this,'lp_social')">
     <div class="ai"><div class="anm">Extra Social Feed Integration</div><div class="adt">Live social feed on your landing page</div></div>
     <div class="apr">$250</div><div class="tg"></div>
+  </div>
+  <div class="ar" data-id="lp_extra_page" onclick="togRow(this,'lp_extra_page')">
+    <div class="ai"><div class="anm">Additional Page Build</div><div class="adt">About, Events, Shop, or Custom — each page fully designed, mobile-ready, and consistent with your main build</div></div>
+    <div class="apr">from $450 ea.</div><div class="tg"></div>
   </div>
 
   <div class="sh">AlwaysOn Upgrade</div>
@@ -239,6 +259,7 @@ const URL_NEXT = 'rsd-funnel-page-05-reputation.html';
 const D_PRICE={
   scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,
   vid_authority:1800,vid_testimonial:1800,photo_half:400,photo_full:800,
+  lp_prem:3500,lp_extra_page:450,photo_1_3:350,photo_6_9:850,photo_9_12:1300,photo_vol20:2200,photo_21_30:1995,seas_spring:1850,seas_summer:1850,seas_harvest:2150,seas_winter:1650,seas_annual:6800,seas_extra:1450,
   lp_base:1800,lp_conv:2800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,
   ao_ai_base:49,ao_ai_heavy:99,
   gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,
@@ -287,7 +308,7 @@ function updCart(s){
 }
 
 const S=getState();
-const WEB_IDS=['lp_base','lp_conv','lp_about','lp_vt','lp_vid','lp_cal','lp_social','ao_page','ao_ai_base','ao_ai_heavy'];
+const WEB_IDS=['lp_base','lp_conv','lp_prem','lp_extra_page','lp_about','lp_vt','lp_vid','lp_cal','lp_social','ao_page','ao_ai_base','ao_ai_heavy'];
 
 // ── Restore selections on load
 document.querySelectorAll('.card[data-id]').forEach(c=>{
