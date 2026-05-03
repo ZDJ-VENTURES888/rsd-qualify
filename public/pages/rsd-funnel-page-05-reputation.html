@@ -35,6 +35,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .ck{position:absolute;top:14px;right:14px;width:22px;height:22px;border-radius:50%;border:2px solid var(--br);display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .3s}
 .card.sel .ck{background:var(--gold);border-color:var(--gold);color:var(--bg)}
 .ci{font-size:24px;margin-bottom:10px;display:block}
+.ci-img{width:60px;height:60px;object-fit:cover;border-radius:8px;display:block;margin-bottom:10px}
 .ct{font-family:var(--fd);font-size:15px;font-weight:700;margin-bottom:4px}
 .cd{font-size:12px;color:var(--td);line-height:1.6;margin-bottom:10px}
 .cp{font-size:12px;color:var(--gold);letter-spacing:.04em}
@@ -96,7 +97,7 @@ function chargeNext(){
   <div class="sh">Google Business Profile — Levels of Support</div>
   <div class="grid g3" id="gbpGrid">
     <div class="card" data-id="gbp_setup" data-group="gbp" onclick="selGroup(this,'gbp','gbp_setup')">
-      <div class="ck">✓</div><span class="ci">📍</span>
+      <div class="ck">✓</div><span class="ci" data-emoji="📍"><img src="/assets/images/AUTHORITY%20ENVIRONMENT%20(BRAND%20ELEVATION).png" class="ci-img" alt="Authority Environment" onerror="this.parentElement.textContent=this.parentElement.dataset.emoji;this.parentElement.style.fontSize='24px'"></span>
       <div class="ct">Full GBP Setup</div>
       <div class="cd">We build or migrate your Google Business Profile from scratch. Categories, photos, services, posts — fully optimized.</div>
       <div class="cp">$700</div><div class="cn">Done for you · 1–2 weeks</div>

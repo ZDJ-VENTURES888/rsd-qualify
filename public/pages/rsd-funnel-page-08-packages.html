@@ -32,6 +32,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .tier:hover{border-color:var(--ba);transform:translateY(-2px)}
 .tier.feat{border-color:var(--gold);box-shadow:0 0 40px var(--gg2)}
 .tier.sel{border-color:var(--gold);background:var(--gg)}
+.tier-img{width:100%;height:130px;object-fit:cover;border-radius:8px;margin-bottom:14px;display:block}
 .tb{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 14px;border-radius:16px;white-space:nowrap}
 .tn{font-family:var(--fd);font-size:18px;font-weight:700;text-align:center;margin-bottom:2px}
 .tv{font-size:10px;color:var(--gold);text-align:center;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
@@ -136,6 +137,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 
   <div class="grid g3">
     <div class="tier" data-id="pkg_t2b" onclick="selPkg(this,'pkg_t2b')">
+      <img src="/assets/images/CONVERSION%20FLOW%20(FUNNEL%20VISUAL%20%E2%80%94%20HIGH%20VALUE).png" class="tier-img" alt="Conversion Flow" onerror="this.style.display='none'">
       <div class="tv">Event Venues</div>
       <div class="tn">Tour2Booking™</div>
       <div class="tt">First click to confirmed booking.</div>
@@ -157,6 +159,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 
     <div class="tier feat" data-id="pkg_ao" onclick="selPkg(this,'pkg_ao')">
       <div class="tb">Most Popular</div>
+      <img src="/assets/images/SERVICE%20STACK%20%E2%80%94%20LUXURY%20VERSION%20(UPSELL%20DRIVER).png" class="tier-img" alt="Service Stack Luxury" onerror="this.style.display='none'">
       <div class="tv">Builders / Design-Build</div>
       <div class="tn">AlwaysOn Tour2Booking™</div>
       <div class="tt">Elevate listings. Close faster.</div>
@@ -177,6 +180,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
     </div>
 
     <div class="tier" data-id="pkg_os" onclick="selPkg(this,'pkg_os')">
+      <img src="/assets/images/AI%20-%20AUTOMATION%20CORE%20(SYSTEM%20INTELLIGENCE%20VISUAL).png" class="tier-img" alt="AI Automation Core" onerror="this.style.display='none'">
       <div class="tv">AI + Custom Integration</div>
       <div class="tn">AlwaysOn Digital Twin Conversion OS™</div>
       <div class="tt">Intelligent booking engine.</div>
