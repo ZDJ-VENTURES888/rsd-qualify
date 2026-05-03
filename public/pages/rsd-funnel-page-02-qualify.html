@@ -72,6 +72,14 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .btn-pulse{animation:btnGlow .7s ease 3}
 
 @media(max-width:640px){.sec{padding:70px 14px 80px}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
+
+/* ── GRAVITY Framework Quote ─────────────────────────────────────────────── */
+.grav-q{border-left:2px solid var(--gold);padding:14px 20px;margin:28px 0;background:var(--gg2);border-radius:0 6px 6px 0}
+.grav-q p{font-family:var(--fd);font-size:13px;font-weight:400;font-style:italic;color:var(--tx);line-height:1.85}
+.grav-q cite{font-size:9px;color:var(--tm);letter-spacing:.12em;text-transform:uppercase;margin-top:6px;display:block}
+/* ── Next Button Charge ──────────────────────────────────────────────────── */
+@keyframes btnCharge{0%{transform:translateY(0);box-shadow:none}35%{transform:translateY(-3px);box-shadow:0 0 0 6px rgba(201,169,110,.3),0 0 22px rgba(201,169,110,.18)}75%{transform:translateY(-1px);box-shadow:0 0 0 3px rgba(201,169,110,.14)}100%{transform:translateY(0);box-shadow:0 0 16px rgba(201,169,110,.18)}}
+.btn-charged{box-shadow:0 0 16px rgba(201,169,110,.18);animation:btnCharge .8s ease 1}
 </style>
 </head>
 <body>
@@ -91,7 +99,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
   <div class="qualify">
     <div class="qualify-title">The 21-Day Program requires:</div>
     <div class="check-all" id="checkAllRow" onclick="checkAll()">
-      <span class="qc" id="qAll">○</span>All of the above apply to me
+      <span class="qc" id="qAll">○</span>All of the following apply to me and/or the business
     </div>
     <ul class="qualify-list" id="qualList">
       <li onclick="togQual(this,0)"><span class="qc" id="q0">○</span> Active Google Business Profile (claimed + verified)</li>
@@ -103,6 +111,10 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
     </ul>
   </div>
 
+  <div class="grav-q" id="gravQ2" style="display:none">
+    <p>"The businesses we build for already know their work is exceptional. The question is — does your digital presence reflect that same standard?"</p>
+    <cite>GRAVITY Principle — I: Identity &amp; Tribe</cite>
+  </div>
   <div id="qualResult" style="display:none"></div>
 
   <div class="br">
@@ -140,6 +152,10 @@ function pulseBtn(){
 }
 
 // ── Sync Check All row state ─────────────────────────────────────────────
+function showGravQ2(){
+  var q=document.getElementById('gravQ2');
+  if(q&&qual.some(v=>v===1))q.style.display='block';
+}
 function syncCheckAll(){
   const allOn = qual.every(v=>v===1);
   const qAll  = document.getElementById('qAll');
@@ -172,6 +188,7 @@ function togQual(li, i){
     li.classList.remove('checked');
   }
   syncCheckAll();
+  showGravQ2();
 }
 
 // ── Check All / Uncheck All ──────────────────────────────────────────────

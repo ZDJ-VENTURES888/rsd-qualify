@@ -50,6 +50,22 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .cart-i{font-size:12px;color:var(--td)}.cart-i strong{color:var(--gold);font-weight:400}
 .cart-t{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--gold)}
 @media(max-width:640px){.sec{padding:70px 14px 90px}.g2{grid-template-columns:1fr}.cart{flex-direction:column;gap:6px;text-align:center}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
+
+/* ── GRAVITY Framework Quote ─────────────────────────────────────────────── */
+.grav-q{border-left:2px solid var(--gold);padding:14px 20px;margin:28px 0;background:var(--gg2);border-radius:0 6px 6px 0}
+.grav-q p{font-family:var(--fd);font-size:13px;font-weight:400;font-style:italic;color:var(--tx);line-height:1.85}
+.grav-q cite{font-size:9px;color:var(--tm);letter-spacing:.12em;text-transform:uppercase;margin-top:6px;display:block}
+/* ── Next Button Charge ──────────────────────────────────────────────────── */
+@keyframes btnCharge{0%{transform:translateY(0);box-shadow:none}35%{transform:translateY(-3px);box-shadow:0 0 0 6px rgba(201,169,110,.3),0 0 22px rgba(201,169,110,.18)}75%{transform:translateY(-1px);box-shadow:0 0 0 3px rgba(201,169,110,.14)}100%{transform:translateY(0);box-shadow:0 0 16px rgba(201,169,110,.18)}}
+.btn-charged{box-shadow:0 0 16px rgba(201,169,110,.18);animation:btnCharge .8s ease 1}
+
+/* charge */
+function chargeNext(){
+  var btn=document.getElementById('nextBtn');
+  if(!btn||btn.dataset.charged)return;
+  btn.dataset.charged='1';
+  btn.classList.add('btn-charged');
+}
 </style>
 </head>
 <body>
@@ -152,11 +168,15 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
     </div>
   </div>
 
+  <div class="grav-q">
+    <p>"Your space tells a story. The question is — who's hearing it, and does it match the quality of what you actually build?"</p>
+    <cite>GRAVITY Principle — A: Authenticity at Scale</cite>
+  </div>
   <div id="captureWin" style="display:none"><div class="mw">✓ Capture plan set</div></div>
 
   <div class="br">
     <button class="bgh btn" onclick="goBack()">← Back</button>
-    <button class="bg btn" onclick="goNext()">Next: Online Presence →</button>
+    <button class="bg btn" id="nextBtn" onclick="goNext()">Next: Online Presence →</button>
   </div>
 </div>
 
@@ -232,6 +252,7 @@ function togCard(el, id){
   const i=S.items.indexOf(id);
   if(i>-1)S.items.splice(i,1);else S.items.push(id);
   updCart(S);
+  chargeNext();
   document.getElementById('captureWin').style.display = S.items.some(x=>CAPTURE_IDS.includes(x)) ? 'block' : 'none';
 }
 

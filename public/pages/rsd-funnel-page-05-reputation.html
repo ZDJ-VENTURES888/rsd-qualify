@@ -58,6 +58,22 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .cart-i{font-size:12px;color:var(--td)}.cart-i strong{color:var(--gold);font-weight:400}
 .cart-t{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--gold)}
 @media(max-width:640px){.sec{padding:70px 14px 90px}.g3{grid-template-columns:1fr}.cart{flex-direction:column;gap:6px;text-align:center}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
+
+/* ── GRAVITY Framework Quote ─────────────────────────────────────────────── */
+.grav-q{border-left:2px solid var(--gold);padding:14px 20px;margin:28px 0;background:var(--gg2);border-radius:0 6px 6px 0}
+.grav-q p{font-family:var(--fd);font-size:13px;font-weight:400;font-style:italic;color:var(--tx);line-height:1.85}
+.grav-q cite{font-size:9px;color:var(--tm);letter-spacing:.12em;text-transform:uppercase;margin-top:6px;display:block}
+/* ── Next Button Charge ──────────────────────────────────────────────────── */
+@keyframes btnCharge{0%{transform:translateY(0);box-shadow:none}35%{transform:translateY(-3px);box-shadow:0 0 0 6px rgba(201,169,110,.3),0 0 22px rgba(201,169,110,.18)}75%{transform:translateY(-1px);box-shadow:0 0 0 3px rgba(201,169,110,.14)}100%{transform:translateY(0);box-shadow:0 0 16px rgba(201,169,110,.18)}}
+.btn-charged{box-shadow:0 0 16px rgba(201,169,110,.18);animation:btnCharge .8s ease 1}
+
+/* charge */
+function chargeNext(){
+  var btn=document.getElementById('nextBtn');
+  if(!btn||btn.dataset.charged)return;
+  btn.dataset.charged='1';
+  btn.classList.add('btn-charged');
+}
 </style>
 </head>
 <body>
@@ -141,11 +157,15 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
     <div class="apr">$297/mo</div><div class="atm">Ongoing monthly</div><div class="tg"></div>
   </div>
 
+  <div class="grav-q">
+    <p>"Trust isn't built at the table. It's built in the 48 hours before you ever speak — in the reviews, the results, the digital proof that says: these people deliver."</p>
+    <cite>GRAVITY Principle — T: Trust as the Closing Currency</cite>
+  </div>
   <div id="repWin" style="display:none"><div class="mw">✓ Reputation engine activated</div></div>
 
   <div class="br">
     <button class="bgh btn" onclick="goBack()">← Back</button>
-    <button class="bg btn" onclick="goNext()">Next: Social & Advertising →</button>
+    <button class="bg btn" id="nextBtn" onclick="goNext()">Next: Social & Advertising →</button>
   </div>
 </div>
 

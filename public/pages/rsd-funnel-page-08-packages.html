@@ -93,6 +93,28 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .phase-note{font-size:10px;color:var(--tm);line-height:1.7;max-width:720px;margin:0 auto}
 
 @media(max-width:640px){.sec{padding:70px 14px 90px}.g3{grid-template-columns:1fr}.phase-grid{grid-template-columns:1fr}.cart{flex-direction:column;gap:6px;text-align:center}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
+
+/* ── GRAVITY Framework Quote ─────────────────────────────────────────────── */
+.grav-q{border-left:2px solid var(--gold);padding:14px 20px;margin:28px 0;background:var(--gg2);border-radius:0 6px 6px 0}
+.grav-q p{font-family:var(--fd);font-size:13px;font-weight:400;font-style:italic;color:var(--tx);line-height:1.85}
+.grav-q cite{font-size:9px;color:var(--tm);letter-spacing:.12em;text-transform:uppercase;margin-top:6px;display:block}
+/* ── Next Button Charge ──────────────────────────────────────────────────── */
+@keyframes btnCharge{0%{transform:translateY(0);box-shadow:none}35%{transform:translateY(-3px);box-shadow:0 0 0 6px rgba(201,169,110,.3),0 0 22px rgba(201,169,110,.18)}75%{transform:translateY(-1px);box-shadow:0 0 0 3px rgba(201,169,110,.14)}100%{transform:translateY(0);box-shadow:0 0 16px rgba(201,169,110,.18)}}
+.btn-charged{box-shadow:0 0 16px rgba(201,169,110,.18);animation:btnCharge .8s ease 1}
+
+/* ── Launch Your Growth Here button ─────────────────────────────────────── */
+.launch-wrap{margin:28px 0 20px;text-align:center}
+.launch-arrows{display:flex;align-items:center;justify-content:center;gap:4px;margin-bottom:6px;height:20px}
+.arr{font-size:18px;color:var(--tm);transition:color .2s,transform .2s}
+@keyframes arrPulse{0%,100%{color:var(--grn);transform:translateX(0)}50%{color:#7fd97f;transform:translateX(4px)}}
+.launch-wrap.active .arr:nth-child(1){animation:arrPulse .9s ease-in-out infinite}
+.launch-wrap.active .arr:nth-child(2){animation:arrPulse .9s ease-in-out .25s infinite}
+.launch-wrap.active .arr:nth-child(3){animation:arrPulse .9s ease-in-out .5s infinite}
+.launch-btn{display:inline-flex;flex-direction:column;align-items:center;gap:2px;background:var(--s1);border:1px solid var(--br);color:var(--td);font-family:var(--fm);font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:14px 40px;border-radius:9px;cursor:pointer;transition:all .4s;opacity:.45;pointer-events:none}
+.launch-wrap.active .launch-btn{background:var(--gb);border-color:var(--grn);color:var(--grn);opacity:1;pointer-events:all;box-shadow:0 0 24px rgba(92,184,92,.15)}
+.launch-wrap.active .launch-btn:hover{background:rgba(92,184,92,.14);transform:translateY(-2px);box-shadow:0 0 36px rgba(92,184,92,.25)}
+.launch-sub{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tm);margin-top:3px;transition:color .3s}
+.launch-wrap.active .launch-sub{color:rgba(92,184,92,.7)}
 </style>
 </head>
 <body>
@@ -176,6 +198,23 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
     </div>
   </div>
 
+  <!-- ── GRAVITY Quote ── -->
+  <div class="grav-q" style="margin-top:32px">
+    <p>"The businesses that stop trading time for revenue don't find a better strategy. They build a better system — and let it run."</p>
+    <cite>GRAVITY Principle — Y: Yield from Systems, Not Hours</cite>
+  </div>
+
+  <!-- ── Launch Your Growth Here ── -->
+  <div class="launch-wrap" id="launchWrap">
+    <div class="launch-arrows">
+      <span class="arr">›</span><span class="arr">›</span><span class="arr">›</span>
+    </div>
+    <button class="launch-btn" id="launchBtn" onclick="goNext()">
+      Launch Your Growth Here
+      <span class="launch-sub" id="launchSub">— select a system above —</span>
+    </button>
+  </div>
+
   <div class="guarantee">
     <span class="guarantee-icon">🛡️</span>
     <div class="guarantee-text">21-Day Build Guarantee on all systems.</div>
@@ -188,7 +227,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
       <div class="tg-ico">🛡️</div>
       <div class="tg-body">
         <div class="tg-lbl">You're Guarantee Qualified</div>
-        <div class="tg-txt">Any Core Package (Tour2Booking™+) includes the full 21-Day Launch Guarantee. We build, launch, and activate your system — and guarantee 3 qualified inbound conversation engagements within 30 days, or we refund your investment in full. Know that we run a brief assessment to confirm your business foundation is ready to convert before activating the guarantee.</div>
+        <div class="tg-txt">Any Core Package (Tour2Booking™+) includes the full 21-Day Build Guarantee. We begin with deep onboarding — mapping your goals, roadmap, and scope. The 21-day clock starts at confirmed kickoff. When all agreed systems are launched and live, we guarantee 3 qualified inbound conversation engagements within 30 days of confirmed delivery — or we refund your investment in full. Know that we run a pre-launch assessment to confirm your foundation is positioned to convert before the guarantee activates.</div>
       </div>
     </div>
     <div class="tg-row tg-promo">
@@ -333,10 +372,16 @@ const S=getState();
 if(S.pkg){const el=document.querySelector('.tier[data-id="'+S.pkg+'"]');if(el)el.classList.add('sel');document.getElementById('pkgWin').style.display='block';}
 updCart(S);
 
+const PKG_NAMES={pkg_t2b:'Tour2Booking™',pkg_ao:'AlwaysOn Tour2Booking™',pkg_os:'AlwaysOn Digital Twin OS™'};
 function selPkg(el,id){
   document.querySelectorAll('.tier').forEach(t=>t.classList.remove('sel'));
   el.classList.add('sel');S.pkg=id;
   updCart(S);document.getElementById('pkgWin').style.display='block';
+  // Activate launch button
+  var wrap=document.getElementById('launchWrap');
+  var sub=document.getElementById('launchSub');
+  if(wrap){wrap.classList.add('active');}
+  if(sub){sub.textContent='— '+( PKG_NAMES[id]||id)+' selected —';}
 }
 function goBack(){const q=buildQ(S);window.location.href=URL_PREV+(q?'?'+q:'');}
 function goNext(){const q=buildQ(S);window.location.href=URL_NEXT+(q?'?'+q:'');}
