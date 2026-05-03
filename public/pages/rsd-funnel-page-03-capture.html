@@ -66,6 +66,9 @@ function chargeNext(){
   btn.dataset.charged='1';
   btn.classList.add('btn-charged');
 }
+
+/* ── Service Card Images ──────────────────────────────────────────────────── */
+.ci-img{width:60px;height:60px;object-fit:cover;border-radius:8px;display:block;margin-bottom:10px}
 </style>
 </head>
 <body>
@@ -91,13 +94,13 @@ function chargeNext(){
   <div class="sh">3D Matterport Scan</div>
   <div class="grid g2">
     <div class="card" data-id="scan_base" onclick="togCard(this,'scan_base')">
-      <div class="ck">✓</div><span class="ci">🏠</span>
+      <div class="ck">✓</div><span class="ci" data-emoji="🏠"><img src="/assets/images/scan-base.jpg" class="ci-img" alt="Space Scan" onerror="this.parentElement.textContent=this.parentElement.dataset.emoji;this.parentElement.style.fontSize='24px'"></span>
       <div class="ct">Scan Your Space</div>
       <div class="cd">Self-guided 3D virtual tour. Walk-through experience on any device.</div>
       <div class="cp">$1,299 — up to 3,000 sqft</div><div class="cn">+$0.50/sqft above 3,000 sqft</div>
     </div>
     <div class="card" data-id="scan_guided" onclick="togCard(this,'scan_guided')">
-      <div class="ck">✓</div><span class="ci">🎯</span>
+      <div class="ck">✓</div><span class="ci" data-emoji="🎯"><img src="/assets/images/scan-guided.jpg" class="ci-img" alt="Guided Tour" onerror="this.parentElement.textContent=this.parentElement.dataset.emoji;this.parentElement.style.fontSize='24px'"></span>
       <div class="ct">Virtual Guided Tour</div>
       <div class="cd">Tagged elements, informational callouts, interactive navigation through your space.</div>
       <div class="cp">$1,799 — Standard Tag Package included</div><div class="cn">10 media tags + 5 custom tags</div>
@@ -107,13 +110,13 @@ function chargeNext(){
   <div class="sh">Conversion Media</div>
   <div class="grid g2">
     <div class="card" data-id="vid_single" onclick="togCard(this,'vid_single')">
-      <div class="ck">✓</div><span class="ci">🎬</span>
+      <div class="ck">✓</div><span class="ci" data-emoji="🎬"><img src="/assets/images/reel-single.jpg" class="ci-img" alt="Reel Single" onerror="this.parentElement.textContent=this.parentElement.dataset.emoji;this.parentElement.style.fontSize='24px'"></span>
       <div class="ct">1 Conversion Video</div>
       <div class="cd">30–60 second highlight reel. Social-ready.</div>
       <div class="cp">$500</div>
     </div>
     <div class="card" data-id="vid_pack" onclick="togCard(this,'vid_pack')">
-      <div class="ck">✓</div><span class="ci">📦</span>
+      <div class="ck">✓</div><span class="ci" data-emoji="📦"><img src="/assets/images/vid-pack.jpg" class="ci-img" alt="Video Pack" onerror="this.parentElement.textContent=this.parentElement.dataset.emoji;this.parentElement.style.fontSize='24px'"></span>
       <div class="ct">Video Starter Pack</div>
       <div class="cd">1×90–120s YouTube reel, 1×60s social reel, 2×30s clips.</div>
       <div class="cp">$1,200</div><div class="cn">Save vs. individual editing rates</div>
@@ -139,7 +142,7 @@ function chargeNext(){
   <div class="sh">Authority & Interview Video</div>
   <div class="grid g2">
     <div class="card" data-id="vid_authority" onclick="togCard(this,'vid_authority')">
-      <div class="ck">✓</div><span class="ci">🎤</span>
+      <div class="ck">✓</div><span class="ci" data-emoji="🎤"><img src="/assets/images/vid-authority.jpg" class="ci-img" alt="Authority Film" onerror="this.parentElement.textContent=this.parentElement.dataset.emoji;this.parentElement.style.fontSize='24px'"></span>
       <div class="ct">Owner / Stakeholder Authority Video</div>
       <div class="cd">Professional on-site interview shoot. Positions you as the authority in your space — used for ads, website, and social proof.</div>
       <div class="cp">$1,800</div><div class="cn">On-site production · edited deliverable</div>
