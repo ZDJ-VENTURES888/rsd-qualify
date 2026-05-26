@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RSD — Lock Your Founder Rate</title>
+<title>RSD â€” Lock Your Founder Rate</title>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -27,7 +27,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .sub{font-size:14px;color:var(--td);max-width:600px;margin-bottom:32px;line-height:1.8}
 .g{color:var(--gold)}
 
-/* ── Tier cards ── */
+/* â”€â”€ Tier cards â”€â”€ */
 .grid{display:grid;gap:14px;margin-bottom:24px}
 .g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
 .tier{background:var(--s1);border:1px solid var(--br);border-radius:12px;padding:28px 22px;cursor:pointer;transition:border-color .3s,background .3s,transform .3s;position:relative}
@@ -51,7 +51,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .tier.sel .fc{color:var(--grn)}
 .fc-no{flex-shrink:0;margin-top:1px;font-size:13px;color:var(--tm)}
 
-/* ── Check flash animation (triggered via JS) ── */
+/* â”€â”€ Check flash animation (triggered via JS) â”€â”€ */
 @keyframes checkFlash{
   0%{transform:scale(1);color:var(--gold)}
   25%{transform:scale(1.6);color:var(--grn);filter:drop-shadow(0 0 4px var(--grn))}
@@ -66,7 +66,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 }
 .tier.animating{animation:tierPop .7s both}
 
-/* ── Entrance pulse — fires on load to demand attention ── */
+/* â”€â”€ Entrance pulse â€” fires on load to demand attention â”€â”€ */
 @keyframes tierEntrance{
   0%  {border-color:var(--br);box-shadow:0 0 0 0 rgba(201,169,110,0)}
   20% {border-color:var(--gold);box-shadow:0 0 0 6px rgba(201,169,110,.22),0 0 28px rgba(201,169,110,.14)}
@@ -77,7 +77,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .tier.entrance{animation:tierEntrance 1.1s ease both}
 .tier.feat.entrance{animation:tierEntrance 1.1s ease both;border-color:rgba(201,169,110,.4)}
 
-/* ── Validation flash — fires when Next clicked with no selection ── */
+/* â”€â”€ Validation flash â€” fires when Next clicked with no selection â”€â”€ */
 @keyframes tierDemand{
   0%  {border-color:var(--br);transform:translateY(0)}
   15% {border-color:var(--gold);transform:translateY(-4px);box-shadow:0 0 0 6px rgba(201,169,110,.28),0 0 32px rgba(201,169,110,.18)}
@@ -90,28 +90,28 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .tier.demanding{animation:tierDemand 1.4s ease both}
 .tier.feat.demanding{animation:tierDemand 1.4s ease both;border-color:rgba(201,169,110,.4)}
 
-/* ── Dimmed state (no cart items) ── */
+/* â”€â”€ Dimmed state (no cart items) â”€â”€ */
 .tier.dimmed{opacity:.35;pointer-events:none;filter:grayscale(.4)}
 
-/* ── Gate message — no items ── */
+/* â”€â”€ Gate message â€” no items â”€â”€ */
 .gate-block{background:var(--s1);border:1px solid rgba(201,169,110,.25);border-left:3px solid var(--gold);border-radius:10px;padding:24px 26px;margin-bottom:28px;text-align:center}
 .gate-icon{font-size:28px;margin-bottom:10px}
 .gate-title{font-family:var(--fd);font-size:17px;font-weight:700;color:var(--tx);margin-bottom:8px;line-height:1.4}
 .gate-sub{font-size:12px;color:var(--td);line-height:1.8;max-width:500px;margin:0 auto 18px}
 .gate-cta{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--bg);font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:11px 24px;border-radius:7px;border:none;cursor:pointer;transition:all .3s}.gate-cta:hover{background:var(--gd);transform:translateY(-1px)}
 
-/* ── Inline lock validation message ── */
+/* â”€â”€ Inline lock validation message â”€â”€ */
 .lock-gate{display:none;background:rgba(201,169,110,.06);border:1px solid rgba(201,169,110,.2);border-radius:8px;padding:14px 18px;margin-top:14px;text-align:center}
 .lock-gate-title{font-family:var(--fd);font-size:14px;font-weight:700;color:var(--gold);margin-bottom:4px}
 .lock-gate-sub{font-size:11px;color:var(--td);line-height:1.7}
 
-/* ── Priority badge on Growth Lock ── */
+/* â”€â”€ Priority badge on Growth Lock â”€â”€ */
 .priority-badge{display:inline-block;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.25);color:var(--gold);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-top:6px}
 
-/* ── Selected win banner ── */
+/* â”€â”€ Selected win banner â”€â”€ */
 .mw{display:inline-flex;align-items:center;gap:6px;background:var(--gb);color:var(--grn);font-size:11px;padding:5px 12px;border-radius:16px;margin:14px auto 0;display:flex;justify-content:center}
 
-/* ── Tier Legend ── */
+/* â”€â”€ Tier Legend â”€â”€ */
 .legend{margin-top:32px;border-top:1px solid var(--br);padding-top:24px}
 .legend-hdr{font-size:10px;color:var(--td);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
 .legend-row{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--br)}
@@ -124,7 +124,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .legend-desc strong{color:var(--tx);font-weight:400}
 .legend-meta{font-size:10px;color:var(--tm);margin-top:4px;line-height:1.6}
 
-/* ── Package Lock Block ── */
+/* â”€â”€ Package Lock Block â”€â”€ */
 .pkg-lock{border:1px solid rgba(201,169,110,.35);border-radius:12px;background:rgba(201,169,110,.04);padding:26px 28px;margin-bottom:24px;position:relative}
 .pkg-lock-label{font-size:9px;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
 .pkg-lock-label::before{content:'';display:block;width:20px;height:1px;background:var(--gold)}
@@ -140,20 +140,20 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .pkg-lock-price-lbl{font-size:10px;color:var(--tm)}
 .pkg-lock-down{font-size:10px;color:var(--grn);background:var(--gb);padding:3px 10px;border-radius:10px;margin-left:auto}
 
-/* ── Scarcity bar ── */
+/* â”€â”€ Scarcity bar â”€â”€ */
 .scarcity{background:var(--s1);border:1px solid var(--br);border-radius:8px;padding:12px 16px;margin-bottom:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .scarcity-dot{width:8px;height:8px;border-radius:50%;background:var(--grn);flex-shrink:0;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(92,184,92,.4)}50%{opacity:.8;box-shadow:0 0 0 4px rgba(92,184,92,0)}}
 .scarcity-txt{font-size:11px;color:var(--td);flex:1}
 .scarcity-txt strong{color:var(--gold);font-weight:400}
 
-/* ── Buttons ── */
+/* â”€â”€ Buttons â”€â”€ */
 .btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:12px 28px;border-radius:7px;border:none;cursor:pointer;transition:all .3s}
 .bg{background:var(--gold);color:var(--bg);font-weight:400}.bg:hover{background:var(--gd);transform:translateY(-1px)}
 .bgh{background:transparent;color:var(--td);border:1px solid var(--br)}.bgh:hover{border-color:var(--td);color:var(--tx)}
 .br{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;justify-content:center}
 
-/* ── Cart ── */
+/* â”€â”€ Cart â”€â”€ */
 .cart{position:fixed;bottom:0;left:0;right:0;background:var(--s1);border-top:1px solid var(--br);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;z-index:199;transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
 .cart.vis{transform:none}
 .cart-i{font-size:12px;color:var(--td)}.cart-i strong{color:var(--gold);font-weight:400}
@@ -165,7 +165,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 <body>
 
 <div class="prog">
-  <span class="prog-l">7 / 7 — Lock Rate · Page 9 of 11</span>
+  <span class="prog-l">7 / 7 â€” Lock Rate Â· Page 9 of 11</span>
   <div class="prog-t"><div class="prog-f" style="width:81%"></div></div>
 </div>
 
@@ -175,25 +175,25 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 </div>
 
 <div class="sec">
-  <div class="sl">Step 7 — Founder Pricing (Limited)</div>
+  <div class="sl">Step 7 â€” Founder Pricing (Limited)</div>
   <h2>Lock in today's rate.<br><span class="g">It goes up next quarter.</span></h2>
-  <p class="sub">RSD prices increase as we add capacity, refine our systems, and grow our case library. Founder partners lock the rate they choose today — permanently — for as long as the account is active. First 25 seats per tier. Once filled, that tier closes.</p>
+  <p class="sub">RSD prices increase as we add capacity, refine our systems, and grow our case library. Founder partners lock the rate they choose today â€” permanently â€” for as long as the account is active. First 25 seats per tier. Once filled, that tier closes.</p>
 
-  <!-- ── Package / build lock confirmation ── -->
+  <!-- â”€â”€ Package / build lock confirmation â”€â”€ -->
   <div id="pkgLock"></div>
 
-  <!-- ── Scarcity indicator ── -->
+  <!-- â”€â”€ Scarcity indicator â”€â”€ -->
   <div class="scarcity">
     <div class="scarcity-dot"></div>
     <div class="scarcity-txt">Founder pricing is <strong>active and open now</strong>. Rates increase next quarter. Locking today means your investment never goes up, regardless of what we charge future clients.</div>
   </div>
 
-  <!-- ── Gate: no items selected — go back and build first ── -->
+  <!-- â”€â”€ Gate: no items selected â€” go back and build first â”€â”€ -->
   <div class="gate-block" id="gateBlock" style="display:none">
-    <div class="gate-icon">🔐</div>
+    <div class="gate-icon">ðŸ”</div>
     <div class="gate-title">Your Rate Lock is Ready.<br>Your Build Selection Is Not.</div>
-    <div class="gate-sub">Founder pricing is reserved for clients who are serious about building something real. Before you can lock a rate, you need a build worth protecting. Head back and choose the services that match where you want to take your business — then come lock your rate permanently.</div>
-    <button class="gate-cta" onclick="goBack()">← Choose Your Business Path to Real Results</button>
+    <div class="gate-sub">Founder pricing is reserved for clients who are serious about building something real. Before you can lock a rate, you need a build worth protecting. Head back and choose the services that match where you want to take your business â€” then come lock your rate permanently.</div>
+    <button class="gate-cta" onclick="goBack()">â† Choose Your Business Path to Real Results</button>
   </div>
 
   <div class="grid g3">
@@ -204,16 +204,16 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
       <div class="tn">Starter Lock</div>
       <div class="tt">Your picks, rate-protected for life.</div>
       <div class="tpb">
-        <div class="tp" id="gf1p">—</div>
+        <div class="tp" id="gf1p">â€”</div>
         <div class="tpe">locked investment</div>
         <div class="tpe-disc" id="gf1s"></div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">✓</span>Your à la carte selections, locked</li>
-        <li><span class="fc">✓</span>Founder rate held for life of account</li>
-        <li><span class="fc">✓</span>Standard delivery queue</li>
-        <li><span class="fc-no">—</span><span style="color:var(--tm)">Priority build lane</span></li>
-        <li><span class="fc-no">—</span><span style="color:var(--tm)">Strategy review included</span></li>
+        <li><span class="fc">âœ“</span>Your Ã  la carte selections, locked</li>
+        <li><span class="fc">âœ“</span>Founder rate held for life of account</li>
+        <li><span class="fc">âœ“</span>Standard delivery queue</li>
+        <li><span class="fc-no">â€”</span><span style="color:var(--tm)">Priority build lane</span></li>
+        <li><span class="fc-no">â€”</span><span style="color:var(--tm)">Strategy review included</span></li>
       </ul>
     </div>
 
@@ -224,17 +224,17 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
       <div class="tn">Growth Lock</div>
       <div class="tt">Rate locked + move ahead in the build queue.</div>
       <div class="tpb">
-        <div class="tp" id="gf2p">—</div>
+        <div class="tp" id="gf2p">â€”</div>
         <div class="tpe">locked + priority access</div>
         <div class="tpe-disc" id="gf2s"></div>
         <div class="priority-badge">+ $497 Priority Lane</div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">✓</span>All selections, locked at 10% off</li>
-        <li><span class="fc">✓</span>Founder rate held for life of account</li>
-        <li><span class="fc">✓</span>Priority build lane — jump the queue</li>
-        <li><span class="fc">✓</span>2–3 weeks faster delivery vs. standard</li>
-        <li><span class="fc-no">—</span><span style="color:var(--tm)">Quarterly strategy review</span></li>
+        <li><span class="fc">âœ“</span>All selections, locked at 10% off</li>
+        <li><span class="fc">âœ“</span>Founder rate held for life of account</li>
+        <li><span class="fc">âœ“</span>Priority build lane â€” jump the queue</li>
+        <li><span class="fc">âœ“</span>2â€“3 weeks faster delivery vs. standard</li>
+        <li><span class="fc-no">â€”</span><span style="color:var(--tm)">Quarterly strategy review</span></li>
       </ul>
     </div>
 
@@ -244,102 +244,102 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
       <div class="tn">Dominate Lock</div>
       <div class="tt">Everything. First in line. Maximum leverage.</div>
       <div class="tpb">
-        <div class="tp" id="gf3p">—</div>
+        <div class="tp" id="gf3p">â€”</div>
         <div class="tpe" id="gf3pe">all-in locked</div>
         <div class="tpe-disc" id="gf3s"></div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">✓</span>All selections, locked at 15% off</li>
-        <li><span class="fc">✓</span>Founder rate held for life of account</li>
-        <li><span class="fc">✓</span>First-priority build slot — you're next</li>
-        <li><span class="fc">✓</span>Quarterly strategy review (1 hr/qtr)</li>
-        <li><span class="fc">✓</span>Priority support channel access</li>
+        <li><span class="fc">âœ“</span>All selections, locked at 15% off</li>
+        <li><span class="fc">âœ“</span>Founder rate held for life of account</li>
+        <li><span class="fc">âœ“</span>First-priority build slot â€” you're next</li>
+        <li><span class="fc">âœ“</span>Quarterly strategy review (1 hr/qtr)</li>
+        <li><span class="fc">âœ“</span>Priority support channel access</li>
       </ul>
     </div>
 
   </div>
 
   <div id="gfWin" style="display:none">
-    <div class="mw">✓ Rate locked — you're in</div>
+    <div class="mw">âœ“ Rate locked â€” you're in</div>
   </div>
 
-  <!-- ── Gate: items selected but no tier chosen yet ── -->
+  <!-- â”€â”€ Gate: items selected but no tier chosen yet â”€â”€ -->
   <div class="lock-gate" id="lockGate">
     <div class="lock-gate-title">Select Your Founder Lock to Continue</div>
-    <div class="lock-gate-sub">This is a one-time decision. The rate you choose today is the rate you keep — permanently. Every tier above holds your investment regardless of what RSD charges future clients. Choose the lock that matches your level of commitment to building something that compounds.</div>
+    <div class="lock-gate-sub">This is a one-time decision. The rate you choose today is the rate you keep â€” permanently. Every tier above holds your investment regardless of what RSD charges future clients. Choose the lock that matches your level of commitment to building something that compounds.</div>
   </div>
 
   <div class="br">
-    <button class="bgh btn" onclick="goBack()">← Back</button>
-    <button class="bg btn" onclick="goNext()">Review My Package →</button>
+    <button class="bgh btn" onclick="goBack()">â† Back</button>
+    <button class="bg btn" onclick="goNext()">Review My Package â†’</button>
   </div>
 
-  <!-- ── Tier Legend ── -->
+  <!-- â”€â”€ Tier Legend â”€â”€ -->
   <div class="legend">
     <div class="legend-hdr">What each tier actually means</div>
 
     <div class="legend-row">
-      <div class="legend-icon">🔒</div>
+      <div class="legend-icon">ðŸ”’</div>
       <div class="legend-body">
-        <div class="legend-name">Starter Lock <span>gf1 · 5% off</span></div>
-        <div class="legend-desc">Your selections are locked at today's rate — permanently. You enter the <strong>standard build queue</strong> alongside all active projects. Standard delivery timelines apply: most builds launch within 3–4 weeks of kickoff. Your investment never increases as long as your account stays active, regardless of what we charge future clients.</div>
+        <div class="legend-name">Starter Lock <span>gf1 Â· 5% off</span></div>
+        <div class="legend-desc">Your selections are locked at today's rate â€” permanently. You enter the <strong>standard build queue</strong> alongside all active projects. Standard delivery timelines apply: most builds launch within 3â€“4 weeks of kickoff. Your investment never increases as long as your account stays active, regardless of what we charge future clients.</div>
         <div class="legend-meta">Ideal for: Businesses ready to move but not in a rush. Strong choice for those building thoughtfully.</div>
       </div>
     </div>
 
     <div class="legend-row">
-      <div class="legend-icon">⚡</div>
+      <div class="legend-icon">âš¡</div>
       <div class="legend-body">
-        <div class="legend-name">Growth Lock <span>gf2 · 10% off + $497 priority fee</span></div>
-        <div class="legend-desc">Everything in Starter Lock, plus access to the <strong>priority build lane</strong>. Your project is queued ahead of standard accounts. The $497 priority access fee is a one-time investment in speed — not a recurring charge. In a competitive market, launching 2–3 weeks earlier than your competitors is often the difference between winning the lead and losing it. Growth Lock partners also receive a dedicated build coordinator contact during their build phase.</div>
+        <div class="legend-name">Growth Lock <span>gf2 Â· 10% off + $497 priority fee</span></div>
+        <div class="legend-desc">Everything in Starter Lock, plus access to the <strong>priority build lane</strong>. Your project is queued ahead of standard accounts. The $497 priority access fee is a one-time investment in speed â€” not a recurring charge. In a competitive market, launching 2â€“3 weeks earlier than your competitors is often the difference between winning the lead and losing it. Growth Lock partners also receive a dedicated build coordinator contact during their build phase.</div>
         <div class="legend-meta">Ideal for: Businesses in active growth mode, running ads, or entering a competitive season. The math often favors paying for the lane.</div>
       </div>
     </div>
 
     <div class="legend-row">
-      <div class="legend-icon">🏆</div>
+      <div class="legend-icon">ðŸ†</div>
       <div class="legend-body">
-        <div class="legend-name">Dominate Lock <span>gf3 · 15% off · all-in</span></div>
-        <div class="legend-desc">The highest tier of founder access. You receive the deepest discount, <strong>first available build slot</strong> (you are literally next in the queue), a dedicated priority support channel, and a quarterly strategy review session with RSD leadership — 1 hour per quarter focused on performance, expansion opportunities, and positioning. Dominate partners are treated as long-term strategic accounts, not transactions.</div>
+        <div class="legend-name">Dominate Lock <span>gf3 Â· 15% off Â· all-in</span></div>
+        <div class="legend-desc">The highest tier of founder access. You receive the deepest discount, <strong>first available build slot</strong> (you are literally next in the queue), a dedicated priority support channel, and a quarterly strategy review session with RSD leadership â€” 1 hour per quarter focused on performance, expansion opportunities, and positioning. Dominate partners are treated as long-term strategic accounts, not transactions.</div>
         <div class="legend-meta">Ideal for: Established operators who understand that speed, attention, and strategic alignment are worth more than the discount itself. This is a relationship tier.</div>
       </div>
     </div>
 
-    <p style="font-size:10px;color:var(--tm);margin-top:20px;line-height:1.7">Founder rates are locked at the time of down payment receipt. Lock tier cannot be downgraded after confirmation. Upgrades between tiers are permitted with difference paid. Priority lane scheduling is subject to current project load — RSD will confirm estimated kickoff date within 48 hours of confirmed payment. Quarterly strategy reviews begin 90 days post-launch.</p>
+    <p style="font-size:10px;color:var(--tm);margin-top:20px;line-height:1.7">Founder rates are locked at the time of down payment receipt. Lock tier cannot be downgraded after confirmation. Upgrades between tiers are permitted with difference paid. Priority lane scheduling is subject to current project load â€” RSD will confirm estimated kickoff date within 48 hours of confirmed payment. Quarterly strategy reviews begin 90 days post-launch.</p>
   </div>
 
 </div>
 
 <script>
-// ╔══════════════════════════════════════════════════════════╗
-// ║  RSD FUNNEL — Page 9 of 11: Founder Lock Rate           ║
-// ╠══════════════════════════════════════════════════════════╣
+// â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—
+// â•‘  RSD FUNNEL â€” Page 9 of 11: Founder Lock Rate           â•‘
+// â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£
 const URL_PREV = 'rsd-funnel-page-08-packages.html';
 const URL_NEXT = 'rsd-funnel-page-10-summary.html';
-// ╚══════════════════════════════════════════════════════════╝
+// â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
-// ── Package metadata for lock-in confirmation block
+// â”€â”€ Package metadata for lock-in confirmation block
 const PKG_DATA={
   pkg_t2b:{
-    name:'Tour2Booking™',target:'Event Venues · Hospitality',price:5549,down:1387,
-    desc:'A complete done-for-you conversion system — first click to confirmed booking. Every component built, integrated, and launched.',
-    items:['Cinematic 360° venue tour','Embedded booking CTAs throughout','Drone aerial photo + video','StoryBrand Hero Film (1 shoot day)','90–120s hero film + 3 social clips','Conversion landing page']
+    name:'Tour2Bookingâ„¢',target:'Event Venues Â· Hospitality',price:5549,down:1387,
+    desc:'A complete done-for-you conversion system â€” first click to confirmed booking. Every component built, integrated, and launched.',
+    items:['Cinematic 360Â° venue tour','Embedded booking CTAs throughout','Drone aerial photo + video','StoryBrand Hero Film (1 shoot day)','90â€“120s hero film + 3 social clips','Conversion landing page']
   },
   pkg_ao:{
-    name:'AlwaysOn Tour2Booking™',target:'Builders · Design-Build · Luxury Service',price:6549,down:1637,
-    desc:'Everything in Tour2Booking™, plus an always-on visibility layer that keeps you in front of the right buyers — continuously.',
-    items:['Everything in Tour2Booking™','360° explorable project portfolio','Hero VSL landing page','Google Ads + LSA setup','StoryBrand Hero Film (3–9 min)','AlwaysOn visibility loop']
+    name:'AlwaysOn Tour2Bookingâ„¢',target:'Builders Â· Design-Build Â· Luxury Service',price:6549,down:1637,
+    desc:'Everything in Tour2Bookingâ„¢, plus an always-on visibility layer that keeps you in front of the right buyers â€” continuously.',
+    items:['Everything in Tour2Bookingâ„¢','360Â° explorable project portfolio','Hero VSL landing page','Google Ads + LSA setup','StoryBrand Hero Film (3â€“9 min)','AlwaysOn visibility loop']
   },
   pkg_os:{
-    name:'AlwaysOn Digital Twin Conversion OS™',target:'AI + Custom Integration · Scale-Ready',price:9549,down:2387,
-    desc:'The full intelligent booking engine — AI-powered, media-led, and built to run your inbound pipeline on autopilot.',
-    items:['Everything in AlwaysOn Tour2Booking™','AI receptionist + text AI','Real-time answers engine','VSL funnels + landing pages','Google + Meta ads setup','Nurture sequences + fit assessments','Custom avatar or Digital Twin']
+    name:'AlwaysOn Digital Twin Conversion OSâ„¢',target:'AI + Custom Integration Â· Scale-Ready',price:9549,down:2387,
+    desc:'The full intelligent booking engine â€” AI-powered, media-led, and built to run your inbound pipeline on autopilot.',
+    items:['Everything in AlwaysOn Tour2Bookingâ„¢','AI receptionist + text AI','Real-time answers engine','VSL funnels + landing pages','Google + Meta ads setup','Nurture sequences + fit assessments','Custom avatar or Digital Twin']
   }
 };
 
 const D_PRICE={scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,vid_authority:1800,vid_testimonial:1800,photo_half:400,photo_full:800,
-  lp_prem:3500,lp_extra_page:450,photo_1_3:350,photo_6_9:850,photo_9_12:1300,photo_vol20:2200,photo_21_30:1995,seas_spring:1850,seas_summer:1850,seas_harvest:2150,seas_winter:1650,seas_annual:6800,seas_extra:1450,lp_base:1800,lp_conv:2800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,ao_ai_base:49,ao_ai_heavy:99,gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,ad_mgmt:497,mkt_active:1800,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497};
-const D_TYPE={scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',vid_authority:'one',vid_testimonial:'one',photo_half:'one',photo_full:'one',lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',ao_ai_base:'mo',ao_ai_heavy:'mo',gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',mkt_active:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo'};
+  lp_prem:3500,lp_extra_page:450,photo_1_3:350,photo_6_9:850,photo_9_12:1300,photo_vol20:2200,photo_21_30:1995,seas_spring:1850,seas_summer:1850,seas_harvest:2150,seas_winter:1650,seas_annual:6800,seas_extra:1450,lp_base:1800,lp_conv:2800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,ao_ai_base:49,ao_ai_heavy:99,gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,ad_mgmt:497,mkt_active:1800,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497,dt_avatar:9000};
+const D_TYPE={scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',vid_authority:'one',vid_testimonial:'one',photo_half:'one',photo_full:'one',lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',ao_ai_base:'mo',ao_ai_heavy:'mo',gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',mkt_active:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo',dt_avatar:'one'};
 const PKG_PRICE={pkg_t2b:5549,pkg_ao:6549,pkg_os:9549};
 const GF_DISC={gf1:0.05,gf2:0.10,gf3:0.15};
 const PRIORITY_FEE=497; // Growth Lock priority build lane fee
@@ -347,14 +347,14 @@ const PRIORITY_FEE=497; // Growth Lock priority build lane fee
 function getState(){const p=new URLSearchParams(window.location.search);return{items:p.get('items')?p.get('items').split(',').filter(Boolean):[],pkg:p.get('pkg')||null,gf:p.get('gf')||null,qual:p.get('qual')?p.get('qual').split(',').map(Number):[0,0,0,0,0,0]};}
 function buildQ(s){const p=new URLSearchParams();if(s.items&&s.items.length)p.set('items',s.items.join(','));if(s.pkg)p.set('pkg',s.pkg);if(s.gf)p.set('gf',s.gf);if(s.qual&&s.qual.some(Boolean))p.set('qual',s.qual.join(','));return p.toString();}
 function calcTotals(s){let o=0,m=0;for(const id of s.items){const pr=D_PRICE[id];if(!pr)continue;if(D_TYPE[id]==='one')o+=pr;else m+=pr;}if(s.pkg&&PKG_PRICE[s.pkg])o+=PKG_PRICE[s.pkg];return{o,m};}
-function fmtPrice(o,m){let t='';if(o)t='$'+o.toLocaleString();if(o&&m)t+=' + ';if(m)t+='$'+m.toLocaleString()+'/mo';return t||'—';}
+function fmtPrice(o,m){let t='';if(o)t='$'+o.toLocaleString();if(o&&m)t+=' + ';if(m)t+='$'+m.toLocaleString()+'/mo';return t||'â€”';}
 function updCart(s){const ct=s.items.length+(s.pkg?1:0);const{o,m}=calcTotals(s);document.getElementById('cI').innerHTML='<strong>'+ct+'</strong> item'+(ct!==1?'s':'');document.getElementById('cT').textContent=fmtPrice(o,m)||'$0';document.getElementById('cart').classList.toggle('vis',ct>0);}
 
 const S=getState();
 updCart(S);
 renderPkgLock();
 
-// ── On load: gate or entrance animation
+// â”€â”€ On load: gate or entrance animation
 (function initGateState(){
   const hasCart = S.items.length > 0 || !!S.pkg;
   if(!hasCart){
@@ -371,23 +371,23 @@ renderPkgLock();
   }
 })();
 
-// ── Compute and display tier prices
+// â”€â”€ Compute and display tier prices
 (function populatePrices(){
   const{o,m}=calcTotals(S);
 
-  // gf1 — Starter Lock: 5% off one-time
+  // gf1 â€” Starter Lock: 5% off one-time
   const gf1O = Math.round(o * 0.95);
   const gf1Save = o - gf1O;
   document.getElementById('gf1p').textContent = fmtPrice(gf1O, m);
   if(gf1Save > 0) document.getElementById('gf1s').textContent = 'saves $'+gf1Save.toLocaleString();
 
-  // gf2 — Growth Lock: 10% off + $497 priority fee
+  // gf2 â€” Growth Lock: 10% off + $497 priority fee
   const gf2Disc = Math.round(o * 0.10);
   const gf2O = Math.round(o * 0.90) + PRIORITY_FEE;
   document.getElementById('gf2p').textContent = fmtPrice(gf2O, m);
-  document.getElementById('gf2s').textContent = '10% off (−$'+gf2Disc.toLocaleString()+') + $'+PRIORITY_FEE+' priority fee';
+  document.getElementById('gf2s').textContent = '10% off (âˆ’$'+gf2Disc.toLocaleString()+') + $'+PRIORITY_FEE+' priority fee';
 
-  // gf3 — Dominate Lock: 15% off, show all-in vision (add soc7 + ad_mgmt if not already selected)
+  // gf3 â€” Dominate Lock: 15% off, show all-in vision (add soc7 + ad_mgmt if not already selected)
   const bonusItems=['soc7','ad_mgmt'];
   let bonusO=o,bonusM=m;
   bonusItems.forEach(id=>{
@@ -404,14 +404,14 @@ renderPkgLock();
     const gf3Combined = gf3O + gf3M;
     document.getElementById('gf3p').textContent = '$'+gf3Combined.toLocaleString();
     document.getElementById('gf3pe').textContent = 'all-in first month';
-    document.getElementById('gf3s').textContent = '$'+gf3O.toLocaleString()+' one-time + $'+gf3M.toLocaleString()+'/mo · saves $'+gf3Save.toLocaleString();
+    document.getElementById('gf3s').textContent = '$'+gf3O.toLocaleString()+' one-time + $'+gf3M.toLocaleString()+'/mo Â· saves $'+gf3Save.toLocaleString();
   } else {
     document.getElementById('gf3p').textContent = '$'+gf3O.toLocaleString();
     if(gf3Save > 0) document.getElementById('gf3s').textContent = 'saves $'+gf3Save.toLocaleString()+' all-in';
   }
 })();
 
-// ── Restore previously selected tier
+// â”€â”€ Restore previously selected tier
 if(S.gf){
   const el=document.querySelector('.tier[data-id="'+S.gf+'"]');
   if(el){el.classList.add('sel');applyCheckColors(el);}
@@ -427,7 +427,7 @@ function renderPkgLock(){
   if(!el) return;
   if(S.pkg && PKG_DATA[S.pkg]){
     const d=PKG_DATA[S.pkg];
-    const{m}=calcTotals(S); // monthly items (ao_ai_base/heavy, soc, etc.) from à la carte selections
+    const{m}=calcTotals(S); // monthly items (ao_ai_base/heavy, soc, etc.) from Ã  la carte selections
     el.className='pkg-lock';
     const monthlyLine = m>0
       ? `<div style="margin-top:6px"><div class="pkg-lock-price" style="font-size:15px;color:var(--td)">+ $${m.toLocaleString()}<span style="font-size:11px;font-family:var(--fm);font-weight:300">/mo</span></div><div class="pkg-lock-price-lbl">ongoing access &amp; services</div></div>`
@@ -436,24 +436,24 @@ function renderPkgLock(){
       <div class="pkg-lock-label">You're locking in</div>
       <div class="pkg-lock-name">${d.name}</div>
       <div class="pkg-lock-target">${d.target}</div>
-      <div class="pkg-lock-desc">${d.desc} Founder pricing is locked at today's rate for the life of your account — regardless of what we charge future clients.</div>
+      <div class="pkg-lock-desc">${d.desc} Founder pricing is locked at today's rate for the life of your account â€” regardless of what we charge future clients.</div>
       <div class="pkg-lock-sub">What's included in this system</div>
-      <div class="pkg-lock-items">${d.items.map(i=>`<div class="pkg-lock-item"><span class="pkg-lock-chk">✓</span><span>${i}</span></div>`).join('')}</div>
+      <div class="pkg-lock-items">${d.items.map(i=>`<div class="pkg-lock-item"><span class="pkg-lock-chk">âœ“</span><span>${i}</span></div>`).join('')}</div>
       <div class="pkg-lock-footer">
         <div>
           <div class="pkg-lock-price">$${d.price.toLocaleString()}</div>
-          <div class="pkg-lock-price-lbl">core system · one-time</div>
+          <div class="pkg-lock-price-lbl">core system Â· one-time</div>
           ${monthlyLine}
         </div>
-        <div class="pkg-lock-down">25% down — $${d.down.toLocaleString()} to start</div>
+        <div class="pkg-lock-down">25% down â€” $${d.down.toLocaleString()} to start</div>
       </div>`;
   } else if(S.items && S.items.length>0){
     const{o,m}=calcTotals(S);
     el.className='pkg-lock';
     el.innerHTML=`
       <div class="pkg-lock-label">You're locking in</div>
-      <div class="pkg-lock-name">Custom À La Carte Build</div>
-      <div class="pkg-lock-desc">${S.items.length} selected service${S.items.length!==1?'s':''} — fully customized to your business. Every rate below is locked at today's pricing for the life of your account.</div>
+      <div class="pkg-lock-name">Custom Ã€ La Carte Build</div>
+      <div class="pkg-lock-desc">${S.items.length} selected service${S.items.length!==1?'s':''} â€” fully customized to your business. Every rate below is locked at today's pricing for the life of your account.</div>
       <div class="pkg-lock-footer">
         <div>
           <div class="pkg-lock-price">${fmtPrice(o,m)}</div>
@@ -476,7 +476,7 @@ function selGF(el,id){
   el.classList.add('sel','animating');
   S.gf=id;
 
-  // Staggered check flash: gold → green pop per checkmark
+  // Staggered check flash: gold â†’ green pop per checkmark
   el.querySelectorAll('.fc').forEach((fc,i)=>{
     fc.style.animation='none';
     fc.style.color='var(--gold)';
@@ -498,7 +498,7 @@ function selGF(el,id){
   document.getElementById('lockGate').style.display='none';
 }
 
-// ── Flash all tier cards (urgent gold-pulse — fires when Next hit with no lock) ──
+// â”€â”€ Flash all tier cards (urgent gold-pulse â€” fires when Next hit with no lock) â”€â”€
 function flashTiers(){
   document.querySelectorAll('.tier').forEach((t,i)=>{
     t.classList.remove('demanding');
@@ -513,14 +513,14 @@ function flashTiers(){
 function goBack(){const q=buildQ(S);window.location.href=URL_PREV+(q?'?'+q:'');}
 
 function goNext(){
-  // Guard 1 — no cart items at all: show go-back gate
+  // Guard 1 â€” no cart items at all: show go-back gate
   if(!S.items.length && !S.pkg){
     const gb=document.getElementById('gateBlock');
     gb.style.display='block';
     gb.scrollIntoView({behavior:'smooth',block:'center'});
     return;
   }
-  // Guard 2 — cart has items but no founder lock chosen: flash cards + show inline message
+  // Guard 2 â€” cart has items but no founder lock chosen: flash cards + show inline message
   if(!S.gf){
     flashTiers();
     const lg=document.getElementById('lockGate');
@@ -528,7 +528,7 @@ function goNext(){
     lg.scrollIntoView({behavior:'smooth',block:'nearest'});
     return;
   }
-  // All clear — proceed
+  // All clear â€” proceed
   const q=buildQ(S);
   window.location.href=URL_NEXT+(q?'?'+q:'');
 }
