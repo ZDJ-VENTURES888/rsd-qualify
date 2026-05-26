@@ -116,6 +116,25 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .launch-wrap.active .launch-btn:hover{background:rgba(92,184,92,.14);transform:translateY(-2px);box-shadow:0 0 36px rgba(92,184,92,.25)}
 .launch-sub{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tm);margin-top:3px;transition:color .3s}
 .launch-wrap.active .launch-sub{color:rgba(92,184,92,.7)}
+
+/* === RSD SVG Icon System (added by patch) === */
+.fc-svg{display:inline-block;vertical-align:-2px;margin-right:8px;color:var(--gold);transition:color .35s ease,filter .35s ease,transform .35s ease;flex-shrink:0}
+.tier.act .fc-svg,.tier.selected .fc-svg,.tier:hover .fc-svg{color:var(--grn);filter:drop-shadow(0 0 4px rgba(92,184,92,.55))}
+.tier.act .fc-svg{transform:scale(1.08)}
+.sec-ico{display:inline-block;vertical-align:-3px;margin-right:10px;color:var(--gold)}
+.sec-ico-shield{color:var(--grn)}
+.tg-ico .sec-ico{margin-right:0}
+/* Cascade animation when tier becomes active */
+@keyframes fcCascade{0%{color:var(--gold);transform:scale(1)}50%{color:#7fd97f;transform:scale(1.15);filter:drop-shadow(0 0 6px rgba(92,184,92,.7))}100%{color:var(--grn);transform:scale(1.08);filter:drop-shadow(0 0 4px rgba(92,184,92,.55))}}
+.tier.act .fc-svg{animation:fcCascade .6s ease-out forwards}
+.tier.act li:nth-child(1) .fc-svg{animation-delay:0s}
+.tier.act li:nth-child(2) .fc-svg{animation-delay:.08s}
+.tier.act li:nth-child(3) .fc-svg{animation-delay:.16s}
+.tier.act li:nth-child(4) .fc-svg{animation-delay:.24s}
+.tier.act li:nth-child(5) .fc-svg{animation-delay:.32s}
+.tier.act li:nth-child(6) .fc-svg{animation-delay:.40s}
+.tier.act li:nth-child(7) .fc-svg{animation-delay:.48s}
+
 </style>
 </head>
 <body>
@@ -148,12 +167,12 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
         <div class="tdn">25% down — $1,387</div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">œ"</span>Cinematic 360° venue tour</li>
-        <li><span class="fc">œ"</span>Embedded booking CTAs</li>
-        <li><span class="fc">œ"</span>Drone aerial photo + video</li>
-        <li><span class="fc">œ"</span>StoryBrand Hero Film (1 shoot day)</li>
-        <li><span class="fc">œ"</span>90—120s hero film + 3 clips</li>
-        <li><span class="fc">œ"</span>Conversion landing page</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Cinematic 360° venue tour</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Embedded booking CTAs</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Drone aerial photo + video</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>StoryBrand Hero Film (1 shoot day)</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>90—120s hero film + 3 clips</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Conversion landing page</li>
       </ul>
     </div>
 
@@ -170,12 +189,12 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
         <div class="tdn">25% down — $1,637</div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">œ"</span>Everything in Tour2Booking"¢</li>
-        <li><span class="fc">œ"</span>360° explorable portfolio</li>
-        <li><span class="fc">œ"</span>Hero VSL landing page</li>
-        <li><span class="fc">œ"</span>Google Ads + LSA setup</li>
-        <li><span class="fc">œ"</span>StoryBrand Hero Film (3—9 min)</li>
-        <li><span class="fc">œ"</span>AlwaysOn visibility loop</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Everything in Tour2Booking"¢</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>360° explorable portfolio</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Hero VSL landing page</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Google Ads + LSA setup</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>StoryBrand Hero Film (3—9 min)</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>AlwaysOn visibility loop</li>
       </ul>
     </div>
 
@@ -191,13 +210,13 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
         <div class="tdn">25% down — $2,387</div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">œ"</span>Everything in AlwaysOn T2B</li>
-        <li><span class="fc">œ"</span>AI receptionist + text AI</li>
-        <li><span class="fc">œ"</span>Real-time answers engine</li>
-        <li><span class="fc">œ"</span>VSL funnels + landing pages</li>
-        <li><span class="fc">œ"</span>Google + Meta ads setup</li>
-        <li><span class="fc">œ"</span>Nurture + fit assessments</li>
-        <li><span class="fc">œ"</span>Custom avatar or Digital Twin</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Everything in AlwaysOn T2B</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>AI receptionist + text AI</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Real-time answers engine</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>VSL funnels + landing pages</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Google + Meta ads setup</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Nurture + fit assessments</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Custom avatar or Digital Twin</li>
       </ul>
     </div>
   </div>
@@ -228,14 +247,14 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
   <div class="tier-guar">
     <div class="tg-hdr">Guarantee Details</div>
     <div class="tg-row tg-qual">
-      <div class="tg-ico">🛡️</div>
+      <div class="tg-ico"><svg class="sec-ico" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><polygon points="11,2 4,11 9.5,11 8,18 16,8 10.5,8 12,2"></polygon></svg></div>
       <div class="tg-body">
         <div class="tg-lbl">You're Guarantee Qualified</div>
         <div class="tg-txt">Any Core Package (Tour2Booking"¢+) includes the full 21-Day Build Guarantee. We begin with deep onboarding — mapping your goals, roadmap, and scope. The 21-day clock starts at confirmed kickoff. When all agreed systems are launched and live, we guarantee 3 qualified inbound conversation engagements within 30 days of confirmed delivery — or we refund your investment in full. Know that we run a pre-launch assessment to confirm your foundation is positioned to convert before the guarantee activates.</div>
       </div>
     </div>
     <div class="tg-row tg-promo">
-      <div class="tg-ico">š¡</div>
+      <div class="tg-ico"><svg class="sec-ico" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><polygon points="11,2 4,11 9.5,11 8,18 16,8 10.5,8 12,2"></polygon></svg></div>
       <div class="tg-body">
         <div class="tg-lbl">Speed to Prosperity — 15% Early Conviction Rate</div>
         <div class="tg-txt">Not yet holding a qualifying package or base social add-on? Businesses committing to <strong>$6,000 or more</strong> in services — and ready to lock in a plan forward — qualify for our 15% early conviction rate on the full engagement. The rate is valid for <strong>7 business days</strong> from the date of your official RSD offer. Extended once, to businesses serious enough to move with intention. Know that this is not a promotional discount — it's a recognition of forward conviction on a defined path to guarantee eligibility.</div>

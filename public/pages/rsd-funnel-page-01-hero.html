@@ -90,6 +90,25 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 /* ── Next Button Charge ──────────────────────────────────────────────────── */
 @keyframes btnCharge{0%{transform:translateY(0);box-shadow:none}35%{transform:translateY(-3px);box-shadow:0 0 0 6px rgba(201,169,110,.3),0 0 22px rgba(201,169,110,.18)}75%{transform:translateY(-1px);box-shadow:0 0 0 3px rgba(201,169,110,.14)}100%{transform:translateY(0);box-shadow:0 0 16px rgba(201,169,110,.18)}}
 .btn-charged{box-shadow:0 0 16px rgba(201,169,110,.18);animation:btnCharge .8s ease 1}
+
+/* === RSD SVG Icon System (added by patch) === */
+.fc-svg{display:inline-block;vertical-align:-2px;margin-right:8px;color:var(--gold);transition:color .35s ease,filter .35s ease,transform .35s ease;flex-shrink:0}
+.tier.act .fc-svg,.tier.selected .fc-svg,.tier:hover .fc-svg{color:var(--grn);filter:drop-shadow(0 0 4px rgba(92,184,92,.55))}
+.tier.act .fc-svg{transform:scale(1.08)}
+.sec-ico{display:inline-block;vertical-align:-3px;margin-right:10px;color:var(--gold)}
+.sec-ico-shield{color:var(--grn)}
+.tg-ico .sec-ico{margin-right:0}
+/* Cascade animation when tier becomes active */
+@keyframes fcCascade{0%{color:var(--gold);transform:scale(1)}50%{color:#7fd97f;transform:scale(1.15);filter:drop-shadow(0 0 6px rgba(92,184,92,.7))}100%{color:var(--grn);transform:scale(1.08);filter:drop-shadow(0 0 4px rgba(92,184,92,.55))}}
+.tier.act .fc-svg{animation:fcCascade .6s ease-out forwards}
+.tier.act li:nth-child(1) .fc-svg{animation-delay:0s}
+.tier.act li:nth-child(2) .fc-svg{animation-delay:.08s}
+.tier.act li:nth-child(3) .fc-svg{animation-delay:.16s}
+.tier.act li:nth-child(4) .fc-svg{animation-delay:.24s}
+.tier.act li:nth-child(5) .fc-svg{animation-delay:.32s}
+.tier.act li:nth-child(6) .fc-svg{animation-delay:.40s}
+.tier.act li:nth-child(7) .fc-svg{animation-delay:.48s}
+
 </style>
 </head>
 <body>
@@ -116,14 +135,14 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
   <div class="tier-guar">
     <div class="tg-hdr">Who this applies to</div>
     <div class="tg-row tg-qual">
-      <div class="tg-ico">🛡️</div>
+      <div class="tg-ico"><svg class="sec-ico" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><polygon points="11,2 4,11 9.5,11 8,18 16,8 10.5,8 12,2"></polygon></svg></div>
       <div class="tg-body">
         <div class="tg-lbl">Guarantee Eligible</div>
         <div class="tg-txt">Clients entering on any Core Package — or a Social Content pack paired with an active digital presence — qualify for our performance guarantee. We start with a deep onboarding: understanding your immediate needs, the next two quarters, and your annual goals. From there, we identify your highest-leverage pain points and build a roadmap together. For larger scopes, full definition typically takes 6–10 weeks post-contract. The 21-day build follows — phased, tracked, and confirmed. When all agreed media and systems are launched and live: 3 qualified inbound conversations within 30 days of confirmed delivery. Full refund if not. No renegotiation. No conditions.</div>
       </div>
     </div>
     <div class="tg-row tg-promo">
-      <div class="tg-ico">⚡</div>
+      <div class="tg-ico"><svg class="sec-ico" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><polygon points="11,2 4,11 9.5,11 8,18 16,8 10.5,8 12,2"></polygon></svg></div>
       <div class="tg-body">
         <div class="tg-lbl">Speed to Prosperity — 15% Early Conviction Rate</div>
         <div class="tg-txt">Businesses committing to <strong>$6,000 or more</strong> in services — without yet holding a qualifying package or base social add-on — are building toward something real. We recognize that. For those ready to lock in a plan forward, we extend a 15% early conviction rate on the first invoice.</div>

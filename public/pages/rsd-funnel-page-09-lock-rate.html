@@ -160,6 +160,25 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .cart-t{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--gold)}
 
 @media(max-width:640px){.sec{padding:70px 14px 100px}.g3{grid-template-columns:1fr}.cart{flex-direction:column;gap:6px;text-align:center}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
+
+/* === RSD SVG Icon System (added by patch) === */
+.fc-svg{display:inline-block;vertical-align:-2px;margin-right:8px;color:var(--gold);transition:color .35s ease,filter .35s ease,transform .35s ease;flex-shrink:0}
+.tier.act .fc-svg,.tier.selected .fc-svg,.tier:hover .fc-svg{color:var(--grn);filter:drop-shadow(0 0 4px rgba(92,184,92,.55))}
+.tier.act .fc-svg{transform:scale(1.08)}
+.sec-ico{display:inline-block;vertical-align:-3px;margin-right:10px;color:var(--gold)}
+.sec-ico-shield{color:var(--grn)}
+.tg-ico .sec-ico{margin-right:0}
+/* Cascade animation when tier becomes active */
+@keyframes fcCascade{0%{color:var(--gold);transform:scale(1)}50%{color:#7fd97f;transform:scale(1.15);filter:drop-shadow(0 0 6px rgba(92,184,92,.7))}100%{color:var(--grn);transform:scale(1.08);filter:drop-shadow(0 0 4px rgba(92,184,92,.55))}}
+.tier.act .fc-svg{animation:fcCascade .6s ease-out forwards}
+.tier.act li:nth-child(1) .fc-svg{animation-delay:0s}
+.tier.act li:nth-child(2) .fc-svg{animation-delay:.08s}
+.tier.act li:nth-child(3) .fc-svg{animation-delay:.16s}
+.tier.act li:nth-child(4) .fc-svg{animation-delay:.24s}
+.tier.act li:nth-child(5) .fc-svg{animation-delay:.32s}
+.tier.act li:nth-child(6) .fc-svg{animation-delay:.40s}
+.tier.act li:nth-child(7) .fc-svg{animation-delay:.48s}
+
 </style>
 </head>
 <body>
@@ -209,9 +228,9 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
         <div class="tpe-disc" id="gf1s"></div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">œ"</span>Your à la carte selections, locked</li>
-        <li><span class="fc">œ"</span>Founder rate held for life of account</li>
-        <li><span class="fc">œ"</span>Standard delivery queue</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Your à la carte selections, locked</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Founder rate held for life of account</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Standard delivery queue</li>
         <li><span class="fc-no">—</span><span style="color:var(--tm)">Priority build lane</span></li>
         <li><span class="fc-no">—</span><span style="color:var(--tm)">Strategy review included</span></li>
       </ul>
@@ -230,10 +249,10 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
         <div class="priority-badge">+ $497 Priority Lane</div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">œ"</span>All selections, locked at 10% off</li>
-        <li><span class="fc">œ"</span>Founder rate held for life of account</li>
-        <li><span class="fc">œ"</span>Priority build lane — jump the queue</li>
-        <li><span class="fc">œ"</span>2—3 weeks faster delivery vs. standard</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>All selections, locked at 10% off</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Founder rate held for life of account</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Priority build lane — jump the queue</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>2—3 weeks faster delivery vs. standard</li>
         <li><span class="fc-no">—</span><span style="color:var(--tm)">Quarterly strategy review</span></li>
       </ul>
     </div>
@@ -249,11 +268,11 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
         <div class="tpe-disc" id="gf3s"></div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">œ"</span>All selections, locked at 15% off</li>
-        <li><span class="fc">œ"</span>Founder rate held for life of account</li>
-        <li><span class="fc">œ"</span>First-priority build slot — you're next</li>
-        <li><span class="fc">œ"</span>Quarterly strategy review (1 hr/qtr)</li>
-        <li><span class="fc">œ"</span>Priority support channel access</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>All selections, locked at 15% off</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Founder rate held for life of account</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>First-priority build slot — you're next</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Quarterly strategy review (1 hr/qtr)</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Priority support channel access</li>
       </ul>
     </div>
 
