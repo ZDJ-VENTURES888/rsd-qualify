@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RSD â€” Lock Your Founder Rate</title>
+<title>RSD "” Lock Your Founder Rate</title>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -66,7 +66,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 }
 .tier.animating{animation:tierPop .7s both}
 
-/* â”€â”€ Entrance pulse â€” fires on load to demand attention â”€â”€ */
+/* â”€â”€ Entrance pulse "” fires on load to demand attention â”€â”€ */
 @keyframes tierEntrance{
   0%  {border-color:var(--br);box-shadow:0 0 0 0 rgba(201,169,110,0)}
   20% {border-color:var(--gold);box-shadow:0 0 0 6px rgba(201,169,110,.22),0 0 28px rgba(201,169,110,.14)}
@@ -77,7 +77,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .tier.entrance{animation:tierEntrance 1.1s ease both}
 .tier.feat.entrance{animation:tierEntrance 1.1s ease both;border-color:rgba(201,169,110,.4)}
 
-/* â”€â”€ Validation flash â€” fires when Next clicked with no selection â”€â”€ */
+/* â”€â”€ Validation flash "” fires when Next clicked with no selection â”€â”€ */
 @keyframes tierDemand{
   0%  {border-color:var(--br);transform:translateY(0)}
   15% {border-color:var(--gold);transform:translateY(-4px);box-shadow:0 0 0 6px rgba(201,169,110,.28),0 0 32px rgba(201,169,110,.18)}
@@ -93,7 +93,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 /* â”€â”€ Dimmed state (no cart items) â”€â”€ */
 .tier.dimmed{opacity:.35;pointer-events:none;filter:grayscale(.4)}
 
-/* â”€â”€ Gate message â€” no items â”€â”€ */
+/* â”€â”€ Gate message "” no items â”€â”€ */
 .gate-block{background:var(--s1);border:1px solid rgba(201,169,110,.25);border-left:3px solid var(--gold);border-radius:10px;padding:24px 26px;margin-bottom:28px;text-align:center}
 .gate-icon{font-size:28px;margin-bottom:10px}
 .gate-title{font-family:var(--fd);font-size:17px;font-weight:700;color:var(--tx);margin-bottom:8px;line-height:1.4}
@@ -160,12 +160,19 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .cart-t{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--gold)}
 
 @media(max-width:640px){.sec{padding:70px 14px 100px}.g3{grid-template-columns:1fr}.cart{flex-direction:column;gap:6px;text-align:center}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
+
+/* === RSD Icon System (Page 9 cosmetic patch) === */
+.fc-svg{display:inline-block;vertical-align:-2px;margin-right:8px;color:var(--gold);transition:color .35s ease,filter .35s ease,transform .35s ease;flex-shrink:0}
+.tier.sel .fc-svg{color:var(--grn);filter:drop-shadow(0 0 4px rgba(92,184,92,.55))}
+.tier-ico{display:inline-block;vertical-align:-4px;margin-right:8px;color:var(--gold)}
+.back-ico{display:inline-block;vertical-align:-1px;margin-right:6px;color:currentColor}
+
 </style>
 </head>
 <body>
 
 <div class="prog">
-  <span class="prog-l">7 / 7 â€” Lock Rate Â· Page 9 of 11</span>
+  <span class="prog-l">7 / 7 "” Lock Rate Â· Page 9 of 11</span>
   <div class="prog-t"><div class="prog-f" style="width:81%"></div></div>
 </div>
 
@@ -175,9 +182,9 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 </div>
 
 <div class="sec">
-  <div class="sl">Step 7 â€” Founder Pricing (Limited)</div>
+  <div class="sl">Step 7 "” Founder Pricing (Limited)</div>
   <h2>Lock in today's rate.<br><span class="g">It goes up next quarter.</span></h2>
-  <p class="sub">RSD prices increase as we add capacity, refine our systems, and grow our case library. Founder partners lock the rate they choose today â€” permanently â€” for as long as the account is active. First 25 seats per tier. Once filled, that tier closes.</p>
+  <p class="sub">RSD prices increase as we add capacity, refine our systems, and grow our case library. Founder partners lock the rate they choose today "” permanently "” for as long as the account is active. First 25 seats per tier. Once filled, that tier closes.</p>
 
   <!-- â”€â”€ Package / build lock confirmation â”€â”€ -->
   <div id="pkgLock"></div>
@@ -188,11 +195,11 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
     <div class="scarcity-txt">Founder pricing is <strong>active and open now</strong>. Rates increase next quarter. Locking today means your investment never goes up, regardless of what we charge future clients.</div>
   </div>
 
-  <!-- â”€â”€ Gate: no items selected â€” go back and build first â”€â”€ -->
+  <!-- â”€â”€ Gate: no items selected "” go back and build first â”€â”€ -->
   <div class="gate-block" id="gateBlock" style="display:none">
     <div class="gate-icon">ðŸ”</div>
     <div class="gate-title">Your Rate Lock is Ready.<br>Your Build Selection Is Not.</div>
-    <div class="gate-sub">Founder pricing is reserved for clients who are serious about building something real. Before you can lock a rate, you need a build worth protecting. Head back and choose the services that match where you want to take your business â€” then come lock your rate permanently.</div>
+    <div class="gate-sub">Founder pricing is reserved for clients who are serious about building something real. Before you can lock a rate, you need a build worth protecting. Head back and choose the services that match where you want to take your business "” then come lock your rate permanently.</div>
     <button class="gate-cta" onclick="goBack()">â† Choose Your Business Path to Real Results</button>
   </div>
 
@@ -204,16 +211,16 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
       <div class="tn">Starter Lock</div>
       <div class="tt">Your picks, rate-protected for life.</div>
       <div class="tpb">
-        <div class="tp" id="gf1p">â€”</div>
+        <div class="tp" id="gf1p">"”</div>
         <div class="tpe">locked investment</div>
         <div class="tpe-disc" id="gf1s"></div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">âœ“</span>Your Ã  la carte selections, locked</li>
-        <li><span class="fc">âœ“</span>Founder rate held for life of account</li>
-        <li><span class="fc">âœ“</span>Standard delivery queue</li>
-        <li><span class="fc-no">â€”</span><span style="color:var(--tm)">Priority build lane</span></li>
-        <li><span class="fc-no">â€”</span><span style="color:var(--tm)">Strategy review included</span></li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Your Ã  la carte selections, locked</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Founder rate held for life of account</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Standard delivery queue</li>
+        <li><span class="fc-no">"”</span><span style="color:var(--tm)">Priority build lane</span></li>
+        <li><span class="fc-no">"”</span><span style="color:var(--tm)">Strategy review included</span></li>
       </ul>
     </div>
 
@@ -224,17 +231,17 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
       <div class="tn">Growth Lock</div>
       <div class="tt">Rate locked + move ahead in the build queue.</div>
       <div class="tpb">
-        <div class="tp" id="gf2p">â€”</div>
+        <div class="tp" id="gf2p">"”</div>
         <div class="tpe">locked + priority access</div>
         <div class="tpe-disc" id="gf2s"></div>
         <div class="priority-badge">+ $497 Priority Lane</div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">âœ“</span>All selections, locked at 10% off</li>
-        <li><span class="fc">âœ“</span>Founder rate held for life of account</li>
-        <li><span class="fc">âœ“</span>Priority build lane â€” jump the queue</li>
-        <li><span class="fc">âœ“</span>2â€“3 weeks faster delivery vs. standard</li>
-        <li><span class="fc-no">â€”</span><span style="color:var(--tm)">Quarterly strategy review</span></li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>All selections, locked at 10% off</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Founder rate held for life of account</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Priority build lane "” jump the queue</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>2"“3 weeks faster delivery vs. standard</li>
+        <li><span class="fc-no">"”</span><span style="color:var(--tm)">Quarterly strategy review</span></li>
       </ul>
     </div>
 
@@ -244,33 +251,33 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
       <div class="tn">Dominate Lock</div>
       <div class="tt">Everything. First in line. Maximum leverage.</div>
       <div class="tpb">
-        <div class="tp" id="gf3p">â€”</div>
+        <div class="tp" id="gf3p">"”</div>
         <div class="tpe" id="gf3pe">all-in locked</div>
         <div class="tpe-disc" id="gf3s"></div>
       </div>
       <ul class="tfl">
-        <li><span class="fc">âœ“</span>All selections, locked at 15% off</li>
-        <li><span class="fc">âœ“</span>Founder rate held for life of account</li>
-        <li><span class="fc">âœ“</span>First-priority build slot â€” you're next</li>
-        <li><span class="fc">âœ“</span>Quarterly strategy review (1 hr/qtr)</li>
-        <li><span class="fc">âœ“</span>Priority support channel access</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>All selections, locked at 15% off</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Founder rate held for life of account</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>First-priority build slot "” you're next</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Quarterly strategy review (1 hr/qtr)</li>
+        <li><span class="fc"><svg class="fc-svg" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8.5 7,12.5 13,4.5"></polyline></svg></span>Priority support channel access</li>
       </ul>
     </div>
 
   </div>
 
   <div id="gfWin" style="display:none">
-    <div class="mw">âœ“ Rate locked â€” you're in</div>
+    <div class="mw">âœ“ Rate locked "” you're in</div>
   </div>
 
   <!-- â”€â”€ Gate: items selected but no tier chosen yet â”€â”€ -->
   <div class="lock-gate" id="lockGate">
     <div class="lock-gate-title">Select Your Founder Lock to Continue</div>
-    <div class="lock-gate-sub">This is a one-time decision. The rate you choose today is the rate you keep â€” permanently. Every tier above holds your investment regardless of what RSD charges future clients. Choose the lock that matches your level of commitment to building something that compounds.</div>
+    <div class="lock-gate-sub">This is a one-time decision. The rate you choose today is the rate you keep "” permanently. Every tier above holds your investment regardless of what RSD charges future clients. Choose the lock that matches your level of commitment to building something that compounds.</div>
   </div>
 
   <div class="br">
-    <button class="bgh btn" onclick="goBack()">â† Back</button>
+    <button class="bgh btn" onclick="goBack()"><svg class="back-ico" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5,3.5 4.5,8 9.5,12.5"></polyline><line x1="4.5" y1="8" x2="12" y2="8"></line></svg> Back</button>
     <button class="bg btn" onclick="goNext()">Review My Package â†’</button>
   </div>
 
@@ -282,7 +289,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
       <div class="legend-icon">ðŸ”’</div>
       <div class="legend-body">
         <div class="legend-name">Starter Lock <span>gf1 Â· 5% off</span></div>
-        <div class="legend-desc">Your selections are locked at today's rate â€” permanently. You enter the <strong>standard build queue</strong> alongside all active projects. Standard delivery timelines apply: most builds launch within 3â€“4 weeks of kickoff. Your investment never increases as long as your account stays active, regardless of what we charge future clients.</div>
+        <div class="legend-desc">Your selections are locked at today's rate "” permanently. You enter the <strong>standard build queue</strong> alongside all active projects. Standard delivery timelines apply: most builds launch within 3"“4 weeks of kickoff. Your investment never increases as long as your account stays active, regardless of what we charge future clients.</div>
         <div class="legend-meta">Ideal for: Businesses ready to move but not in a rush. Strong choice for those building thoughtfully.</div>
       </div>
     </div>
@@ -291,7 +298,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
       <div class="legend-icon">âš¡</div>
       <div class="legend-body">
         <div class="legend-name">Growth Lock <span>gf2 Â· 10% off + $497 priority fee</span></div>
-        <div class="legend-desc">Everything in Starter Lock, plus access to the <strong>priority build lane</strong>. Your project is queued ahead of standard accounts. The $497 priority access fee is a one-time investment in speed â€” not a recurring charge. In a competitive market, launching 2â€“3 weeks earlier than your competitors is often the difference between winning the lead and losing it. Growth Lock partners also receive a dedicated build coordinator contact during their build phase.</div>
+        <div class="legend-desc">Everything in Starter Lock, plus access to the <strong>priority build lane</strong>. Your project is queued ahead of standard accounts. The $497 priority access fee is a one-time investment in speed "” not a recurring charge. In a competitive market, launching 2"“3 weeks earlier than your competitors is often the difference between winning the lead and losing it. Growth Lock partners also receive a dedicated build coordinator contact during their build phase.</div>
         <div class="legend-meta">Ideal for: Businesses in active growth mode, running ads, or entering a competitive season. The math often favors paying for the lane.</div>
       </div>
     </div>
@@ -300,12 +307,12 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
       <div class="legend-icon">ðŸ†</div>
       <div class="legend-body">
         <div class="legend-name">Dominate Lock <span>gf3 Â· 15% off Â· all-in</span></div>
-        <div class="legend-desc">The highest tier of founder access. You receive the deepest discount, <strong>first available build slot</strong> (you are literally next in the queue), a dedicated priority support channel, and a quarterly strategy review session with RSD leadership â€” 1 hour per quarter focused on performance, expansion opportunities, and positioning. Dominate partners are treated as long-term strategic accounts, not transactions.</div>
+        <div class="legend-desc">The highest tier of founder access. You receive the deepest discount, <strong>first available build slot</strong> (you are literally next in the queue), a dedicated priority support channel, and a quarterly strategy review session with RSD leadership "” 1 hour per quarter focused on performance, expansion opportunities, and positioning. Dominate partners are treated as long-term strategic accounts, not transactions.</div>
         <div class="legend-meta">Ideal for: Established operators who understand that speed, attention, and strategic alignment are worth more than the discount itself. This is a relationship tier.</div>
       </div>
     </div>
 
-    <p style="font-size:10px;color:var(--tm);margin-top:20px;line-height:1.7">Founder rates are locked at the time of down payment receipt. Lock tier cannot be downgraded after confirmation. Upgrades between tiers are permitted with difference paid. Priority lane scheduling is subject to current project load â€” RSD will confirm estimated kickoff date within 48 hours of confirmed payment. Quarterly strategy reviews begin 90 days post-launch.</p>
+    <p style="font-size:10px;color:var(--tm);margin-top:20px;line-height:1.7">Founder rates are locked at the time of down payment receipt. Lock tier cannot be downgraded after confirmation. Upgrades between tiers are permitted with difference paid. Priority lane scheduling is subject to current project load "” RSD will confirm estimated kickoff date within 48 hours of confirmed payment. Quarterly strategy reviews begin 90 days post-launch.</p>
   </div>
 
 </div>
