@@ -101,7 +101,55 @@ function chargeNext(){
     <div class="apr">$497/mo</div><div class="tg"></div>
   </div>
 
-  <div class="grav-q">
+  
+<style>
+.dt-cta-wrap{margin:36px 0 28px}
+.dt-cta{position:relative;background:linear-gradient(135deg,#141414 0%,#1a1a1a 100%);border:1px solid var(--gold);border-radius:14px;padding:30px 26px;overflow:hidden}
+.dt-cta::before{content:'''';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,var(--gold) 50%,transparent 100%)}
+.dt-cta-eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.dt-cta-eyebrow span:first-child{font-size:9px;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+.dt-cta-eyebrow span:last-child{flex:1;height:1px;background:linear-gradient(90deg,var(--gold) 0%,transparent 100%);opacity:.35}
+.dt-cta h3{font-family:var(--fd);font-size:22px;line-height:1.25;color:var(--tx);font-weight:700;margin:0 0 8px}
+.dt-cta h3 em{color:var(--gold);font-style:italic;font-weight:400}
+.dt-cta p{font-size:13px;color:var(--td);line-height:1.65;margin:0 0 18px;max-width:520px}
+.dt-cta-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px;font-size:11px;color:var(--td)}
+.dt-cta-meta strong{color:var(--gold);font-family:var(--fd);font-size:17px;font-weight:700;letter-spacing:-.01em;margin-right:6px}
+.dt-cta-meta .sep{opacity:.4}
+.dt-cta-btn{display:inline-flex;align-items:center;gap:10px;background:var(--grn);color:var(--bg);font-family:var(--fm);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;border:none;border-radius:8px;cursor:pointer;animation:greenPulse 2.2s ease-in-out infinite;text-decoration:none}
+.dt-cta-btn:hover{background:#7ec97e;animation-play-state:paused;transform:translateY(-1px)}
+.dt-cta-foot{margin-top:14px;font-size:10px;color:var(--tm);letter-spacing:.05em;text-align:center;font-style:italic;font-family:var(--fd)}
+@keyframes greenPulse{
+0%,100%{box-shadow:0 0 0 0 rgba(92,184,92,.55),0 0 24px rgba(92,184,92,.3);transform:translateY(0)}
+50%{box-shadow:0 0 0 12px rgba(92,184,92,0),0 0 32px rgba(92,184,92,.5);transform:translateY(-2px)}
+}
+@media(max-width:640px){.dt-cta{padding:22px 18px}.dt-cta h3{font-size:19px}}
+</style>
+
+<div class="dt-cta-wrap">
+<div class="dt-cta">
+<div class="dt-cta-eyebrow"><span>A La Carte - High Leverage</span><span></span></div>
+<h3>Your full clone. Your voice. <em>Infinite scale.</em></h3>
+<p>Secure your Digital Twin Avatar - media that does not sleep, ready the moments you have something to post yet you are not ready for the camera. 3 StoryBranding arcs defined by you, +3 RSD-directed videos included.</p>
+<div class="dt-cta-meta">
+<span><strong>$9,000</strong>one-time build</span>
+<span class="sep">|</span>
+<span>25% down available</span>
+<span class="sep">|</span>
+<span>Approval-gated</span>
+</div>
+<button class="dt-cta-btn" onclick="goTwin()">Secure Your Digital Twin Avatar <span style="font-size:14px">&rarr;</span></button>
+</div>
+<div class="dt-cta-foot">Optional add-on - does not interrupt your current flow</div>
+</div>
+
+<script>
+function goTwin(){
+  const q=buildQ(S);
+  window.location.href='rsd-funnel-page-08-digital-twin.html'+(q?'?'+q:'');
+}
+</script>
+
+<div class="grav-q">
     <p>"A missed call isn't a missed call. It's a missed relationship, a missed contract, and a competitor's next client."</p>
     <cite>GRAVITY Principle â€” I: Impact of Every Touchpoint</cite>
   </div>
@@ -109,7 +157,7 @@ function chargeNext(){
 
   <div class="br">
     <button class="bgh btn" onclick="goBack()">â† Back</button>
-    <button class="bg btn" id="nextBtn" onclick="goNext()">Next: Digital Twin â†’</button>
+    <button class="bg btn" id="nextBtn" onclick="goNext()">Next: Full Systems â†’</button>
   </div>
 </div>
 
@@ -118,7 +166,7 @@ function chargeNext(){
 // â•‘  RSD FUNNEL â€” Page 7 of 12: Rapid Response              â•‘
 // â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£
 const URL_PREV = 'rsd-funnel-page-06-social-ads.html';
-const URL_NEXT = 'rsd-funnel-page-08-digital-twin.html';
+const URL_NEXT = 'rsd-funnel-page-08-packages.html';
 // â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 const D_PRICE={scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,vid_authority:1800,vid_testimonial:1800,photo_half:400,photo_full:800,
