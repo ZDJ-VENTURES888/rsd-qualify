@@ -135,6 +135,12 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .tier.act li:nth-child(6) .fc-svg{animation-delay:.40s}
 .tier.act li:nth-child(7) .fc-svg{animation-delay:.48s}
 
+
+/* === RSD Tier & Back Icons (added by patch) === */
+.tier-ico{display:inline-block;vertical-align:-4px;margin-right:8px;color:var(--gold);transition:color .35s ease,filter .35s ease,transform .35s ease}
+.tier-card.act .tier-ico,.tier.act .tier-ico,.tg-row:hover .tier-ico{color:var(--grn);filter:drop-shadow(0 0 5px rgba(92,184,92,.55));transform:scale(1.05)}
+.back-ico{display:inline-block;vertical-align:-1px;margin-right:6px;color:currentColor}
+
 </style>
 </head>
 <body>
@@ -370,7 +376,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
   <div id="pkgWin" style="display:none"><div class="mw" style="justify-content:center">œ" Full system selected</div></div>
 
   <div class="br">
-    <button class="bgh btn" onclick="goBack()">† Back</button>
+    <button class="bgh btn" onclick="goBack()"><svg class="back-ico" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5,3.5 4.5,8 9.5,12.5"></polyline><line x1="4.5" y1="8" x2="12" y2="8"></line></svg> Back</button>
     <button class="bg btn" onclick="goNext()">Next: Lock My Rate →</button>
   </div>
 </div>

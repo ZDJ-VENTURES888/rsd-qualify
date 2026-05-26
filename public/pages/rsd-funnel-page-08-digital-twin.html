@@ -64,6 +64,12 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .dt-use span{display:block;font-family:var(--fd);font-style:italic;color:var(--gold);font-size:13px;margin-bottom:2px;font-weight:400}
 .dt-pay{background:var(--s1);border:1px dashed var(--ba);border-radius:8px;padding:14px 18px;margin:14px 0;font-size:12px;color:var(--td);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .dt-pay strong{color:var(--gold);font-weight:400}
+
+/* === RSD Tier & Back Icons (added by patch) === */
+.tier-ico{display:inline-block;vertical-align:-4px;margin-right:8px;color:var(--gold);transition:color .35s ease,filter .35s ease,transform .35s ease}
+.tier-card.act .tier-ico,.tier.act .tier-ico,.tg-row:hover .tier-ico{color:var(--grn);filter:drop-shadow(0 0 5px rgba(92,184,92,.55));transform:scale(1.05)}
+.back-ico{display:inline-block;vertical-align:-1px;margin-right:6px;color:currentColor}
+
 </style>
 </head>
 <body>
@@ -128,7 +134,7 @@ Cloning a person''s likeness and voice is significant. Before build begins, RSD 
 <div id="dtWin" style="display:none"><div class="mw">Twin secured - presence multiplied</div></div>
 
 <div class="br">
-<button class="bgh btn" onclick="goBack()">Back</button>
+<button class="bgh btn" onclick="goBack()"><svg class="back-ico" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5,3.5 4.5,8 9.5,12.5"></polyline><line x1="4.5" y1="8" x2="12" y2="8"></line></svg> Back</button>
 <button class="bg btn" id="nextBtn" onclick="goNext()">Next: Full Systems</button>
 </div>
 
