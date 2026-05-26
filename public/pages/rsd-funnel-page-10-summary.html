@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RSD â€” Review & Request Your Fit Call</title>
+<title>RSD — Review & Request Your Fit Call</title>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
@@ -153,7 +153,7 @@ h3{font-family:'Libre Baskerville',Georgia,serif;font-size:16px;font-weight:700;
 <body>
 
 <div class="prog">
-  <span class="prog-l">Review Â· Page 10 of 11</span>
+  <span class="prog-l">Review · Page 10 of 11</span>
   <div class="prog-t"><div class="prog-f" style="width:91%"></div></div>
 </div>
 
@@ -171,14 +171,14 @@ h3{font-family:'Libre Baskerville',Georgia,serif;font-size:16px;font-weight:700;
     </div>
   </div>
 
-  <div class="sl">Final â€” Review & Request Your Fit Call</div>
+  <div class="sl">Final — Review & Request Your Fit Call</div>
   <h2>Here's what you built.</h2>
   <p class="sub">Your custom package. Review it, then request your Launch Your Marketing / Fit Your Market call.</p>
 
   <!-- Dynamic Summary Block -->
   <div id="sumBlk"></div>
 
-  <div class="sn">25% down on installs. Monthly billed monthly.<br>Min $500 + travel for long-distance. Central Virginia based â€” serving nationwide.</div>
+  <div class="sn">25% down on installs. Monthly billed monthly.<br>Min $500 + travel for long-distance. Central Virginia based — serving nationwide.</div>
 
   <!-- Tier Badge (dynamic) -->
   <div id="tierBadge"></div>
@@ -190,7 +190,7 @@ h3{font-family:'Libre Baskerville',Georgia,serif;font-size:16px;font-weight:700;
   <div id="notesSection" class="notes-section" style="display:none">
     <div class="notes-eyebrow">Meeting Prep</div>
     <div class="notes-title">Your Fit Call Notes</div>
-    <div class="notes-helper">Auto-filled from your selections â€” edit freely before your call. Use the print button to save a PDF to bring to the meeting.</div>
+    <div class="notes-helper">Auto-filled from your selections — edit freely before your call. Use the print button to save a PDF to bring to the meeting.</div>
     <textarea class="notes-ta" id="notesTA" placeholder="Suggested notes will load here..." oninput="syncNotesPrint()"></textarea>
     <div class="notes-print" id="notesPrint"></div>
     <div class="print-btn-row">
@@ -263,7 +263,7 @@ h3{font-family:'Libre Baskerville',Georgia,serif;font-size:16px;font-weight:700;
 
     <div class="br-row">
       <button class="bgh btn" onclick="goBack()">â† Edit</button>
-      <button class="bg btn" id="submitBtn" onclick="submitForm()">Lock In My Package â†’</button>
+      <button class="bg btn" id="submitBtn" onclick="submitForm()">Lock In My Package →</button>
     </div>
   </div>
 
@@ -285,20 +285,20 @@ h3{font-family:'Libre Baskerville',Georgia,serif;font-size:16px;font-weight:700;
 
 <script>
 // â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—
-// â•‘  RSD FUNNEL â€” Page 10 of 11: Summary + Contact Form                    â•‘
-// â•‘  qualify.rsddirect.com â€” Node.js Edition                               â•‘
+// â•‘  RSD FUNNEL — Page 10 of 11: Summary + Contact Form                    â•‘
+// â•‘  qualify.rsddirect.com — Node.js Edition                               â•‘
 // â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£
 // â•‘  CONFIGURE â†“â†“â†“                                                         â•‘
 const URL_PREV   = 'rsd-funnel-page-09-lock-rate.html';
 const URL_NEXT   = 'rsd-funnel-page-11-confirm.html';
-const SUBMIT_URL = '/api/submit';   // Node.js endpoint â€” do not change
+const SUBMIT_URL = '/api/submit';   // Node.js endpoint — do not change
 // â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£
 // â•‘  EMAILJS CONFIG                                                         â•‘
 const EJS_SERVICE  = 'service_bgsc5fk';
 const EJS_TEMPLATE = 'template_71ep4pu';
 const EJS_PK       = '6OzKpW_yrm-g1htg4';
 // â•‘                                                                         â•‘
-// â•‘  EMAILJS TEMPLATE VARIABLES â€” use these in your template:              â•‘
+// â•‘  EMAILJS TEMPLATE VARIABLES — use these in your template:              â•‘
 // â•‘  {{prospect_name}}  {{business}}  {{email}}                            â•‘
 // â•‘  {{phone_office}}   {{phone_mobile}}  {{sms_opt_in}}                   â•‘
 // â•‘  {{package_selected}} {{lock_tier}}  {{qual_score}}                    â•‘
@@ -308,7 +308,7 @@ const EJS_PK       = '6OzKpW_yrm-g1htg4';
 emailjs.init({publicKey:EJS_PK});
 
 // â”€â”€ Pricing dictionaries â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-const D_NAME={scan_base:'Scan Your Space (â‰¤3k sqft)',scan_guided:'Virtual Guided Tour',vid_single:'1 Conversion Video',vid_pack:'Video Starter Pack',drone_half:'Drone â€” Half Day',drone_full:'Drone â€” Full Day',vid_authority:'Owner / Stakeholder Authority Video',vid_testimonial:'Testimonial Video',photo_half:'Product Photography â€” Half Day',photo_full:'Product Photography â€” Full Day',lp_base:'Base Landing Page',lp_conv:'Conversion Capture Page',lp_about:'About Us Page',lp_vt:'Virtual Tour Integration',lp_vid:'Brand Video Embed',lp_cal:'Calendar Booking',lp_social:'Social Feed Integration',ao_page:'AlwaysOn Conversion Page',ao_ai_base:'AI Access â€” Foundational ($49/mo)',ao_ai_heavy:'AI Access â€” Heavy User ($99/mo)',gbp_setup:'GBP Full Setup',gbp_scale:'GBP Scaling & Optimization',gbp_support:'GBP Ownership Support',meta_setup:'Meta Full Setup/Migration',meta_scale:'Meta Scaling & Audit',meta_own:'Meta Ownership Support',rev_roadmap:'Speed to 10+ Reviews Roadmap',rev_referral:'Referral Reputation System',rev_mailer:'QR-to-Google Review Mailer',rep_mkt:'Reputation Marketing',soc3:'Social â€” 3/Week',soc5:'Social â€” 5/Week',soc7:'Social â€” 7/Week',ad_mgmt:'Monthly Ad Management',mkt_active:'Active Marketing + Ad Management',rr_recep:'AI Receptionist Booking',rr_text:'Missed-Call Text Back',rr_sms:'SMS Q&A + Auto-Booking',rr_full:'Full Rapid Response Suite'};
+const D_NAME={scan_base:'Scan Your Space (â‰¤3k sqft)',scan_guided:'Virtual Guided Tour',vid_single:'1 Conversion Video',vid_pack:'Video Starter Pack',drone_half:'Drone — Half Day',drone_full:'Drone — Full Day',vid_authority:'Owner / Stakeholder Authority Video',vid_testimonial:'Testimonial Video',photo_half:'Product Photography — Half Day',photo_full:'Product Photography — Full Day',lp_base:'Base Landing Page',lp_conv:'Conversion Capture Page',lp_about:'About Us Page',lp_vt:'Virtual Tour Integration',lp_vid:'Brand Video Embed',lp_cal:'Calendar Booking',lp_social:'Social Feed Integration',ao_page:'AlwaysOn Conversion Page',ao_ai_base:'AI Access — Foundational ($49/mo)',ao_ai_heavy:'AI Access — Heavy User ($99/mo)',gbp_setup:'GBP Full Setup',gbp_scale:'GBP Scaling & Optimization',gbp_support:'GBP Ownership Support',meta_setup:'Meta Full Setup/Migration',meta_scale:'Meta Scaling & Audit',meta_own:'Meta Ownership Support',rev_roadmap:'Speed to 10+ Reviews Roadmap',rev_referral:'Referral Reputation System',rev_mailer:'QR-to-Google Review Mailer',rep_mkt:'Reputation Marketing',soc3:'Social — 3/Week',soc5:'Social — 5/Week',soc7:'Social — 7/Week',ad_mgmt:'Monthly Ad Management',mkt_active:'Active Marketing + Ad Management',rr_recep:'AI Receptionist Booking',rr_text:'Missed-Call Text Back',rr_sms:'SMS Q&A + Auto-Booking',rr_full:'Full Rapid Response Suite'};
 const D_PRICE={scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,vid_authority:1800,vid_testimonial:1800,photo_half:400,photo_full:800,
   lp_prem:3500,lp_extra_page:450,photo_1_3:350,photo_6_9:850,photo_9_12:1300,photo_vol20:2200,photo_21_30:1995,seas_spring:1850,seas_summer:1850,seas_harvest:2150,seas_winter:1650,seas_annual:6800,seas_extra:1450,lp_base:1800,lp_conv:2800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,ao_ai_base:49,ao_ai_heavy:99,gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,ad_mgmt:497,mkt_active:1800,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497,dt_avatar:9000};
 const D_TYPE={scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',vid_authority:'one',vid_testimonial:'one',photo_half:'one',photo_full:'one',lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',ao_ai_base:'mo',ao_ai_heavy:'mo',gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',mkt_active:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo',dt_avatar:'one'};
@@ -378,10 +378,10 @@ function renderTierBadge(){
   const isQualified=hasPkg||(hasSoc&&hasWeb);
   const isPromo=!isQualified&&combined>=6000;
   if(isQualified){
-    el.innerHTML=`<div class="tier-badge qual"><span class="tb-ico">ðŸ›¡ï¸</span><div class="tb-title">You're Guarantee Eligible</div><div class="tb-body">Your selection meets the performance guarantee criteria. Once your system is live, we guarantee <strong>3 qualified inbound conversations within 30 days</strong> â€” or we return your full investment. Know that we audit your foundation before activating the guarantee on your launch date.</div></div>`;
+    el.innerHTML=`<div class="tier-badge qual"><span class="tb-ico">ðŸ›¡ï¸</span><div class="tb-title">You're Guarantee Eligible</div><div class="tb-body">Your selection meets the performance guarantee criteria. Once your system is live, we guarantee <strong>3 qualified inbound conversations within 30 days</strong> — or we return your full investment. Know that we audit your foundation before activating the guarantee on your launch date.</div></div>`;
   } else if(isPromo){
     const disc=Math.round(combined*.15),discTotal=combined-disc;
-    el.innerHTML=`<div class="tier-badge promo"><span class="tb-ico">âš¡</span><div class="tb-title">Speed to Prosperity â€” 15% Early Conviction Rate</div><div class="tb-disc">Save ${disc.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0})} Â· Total ${discTotal.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0})}</div><div class="tb-body">Your combined investment of <strong>$${combined.toLocaleString()}</strong> qualifies for the 15% Early Conviction Rate. This rate is valid for <strong>7 business days</strong> from the date of your official RSD offer. Extended once, to businesses ready to move with intention. Know that this is not a promotion â€” it's a recognition of forward conviction.</div></div>`;
+    el.innerHTML=`<div class="tier-badge promo"><span class="tb-ico">âš¡</span><div class="tb-title">Speed to Prosperity — 15% Early Conviction Rate</div><div class="tb-disc">Save ${disc.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0})} · Total ${discTotal.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0})}</div><div class="tb-body">Your combined investment of <strong>$${combined.toLocaleString()}</strong> qualifies for the 15% Early Conviction Rate. This rate is valid for <strong>7 business days</strong> from the date of your official RSD offer. Extended once, to businesses ready to move with intention. Know that this is not a promotion — it's a recognition of forward conviction.</div></div>`;
   } else {
     el.innerHTML=`<div class="tier-badge found"><span class="tb-ico">ðŸ”§</span><div class="tb-title">Building Foundation</div><div class="tb-body">Your current selection is a strong starting point. Our team will review your build with you during the Fit Call and identify the fastest path to guarantee eligibility. Standard rates apply.</div></div>`;
   }
@@ -401,32 +401,32 @@ function goBack(){window.location.href=URL_PREV+'?'+buildQ();}
 
 // â”€â”€ Monthly Support â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const M_WHY={
-  ao_ai_base:'Your AI assistant handles inquiries, qualifies leads, and routes conversations â€” 24/7, no staff required.',
+  ao_ai_base:'Your AI assistant handles inquiries, qualifies leads, and routes conversations — 24/7, no staff required.',
   ao_ai_heavy:'High-volume AI engagement: booking, follow-up, and qualification running in the background while you build.',
-  rep_mkt:'Your reputation gets actively marketed â€” not just managed. Review content becomes conversion fuel.',
+  rep_mkt:'Your reputation gets actively marketed — not just managed. Review content becomes conversion fuel.',
   soc3:'3 branded posts per week keeps your audience engaged and your authority growing without you lifting a finger.',
-  soc5:'5 posts per week: consistent presence that compounds â€” turning attention into inbound pipeline over time.',
+  soc5:'5 posts per week: consistent presence that compounds — turning attention into inbound pipeline over time.',
   soc7:'Daily content output builds an audience that warms before they ever contact you.',
-  ad_mgmt:'Your ad spend is actively optimized â€” not just running. Monthly management means better return, month over month.',
-  mkt_active:'4 branded posts per week + full Meta & Google ad management â€” your entire visibility engine running without you having to think about it.',
+  ad_mgmt:'Your ad spend is actively optimized — not just running. Monthly management means better return, month over month.',
+  mkt_active:'4 branded posts per week + full Meta & Google ad management — your entire visibility engine running without you having to think about it.',
   rr_recep:'Every missed call becomes a captured lead. Your AI receptionist handles after-hours and overflow automatically.',
-  rr_text:'Missed-call text back fires within seconds â€” the fastest way to turn a near-miss into a booked conversation.',
+  rr_text:'Missed-call text back fires within seconds — the fastest way to turn a near-miss into a booked conversation.',
   rr_sms:'SMS Q&A answers questions in real time, pre-qualifies intent, and routes directly to your calendar.',
   rr_full:'Your full Rapid Response system: no lead falls through the cracks, no matter when they reach out.'
 };
 const M_SOLVES={
-  ao_ai_base:'Solves: inquiries going unanswered after hours. Your AI qualifies, responds, and routes leads 24/7 â€” no staff needed.',
+  ao_ai_base:'Solves: inquiries going unanswered after hours. Your AI qualifies, responds, and routes leads 24/7 — no staff needed.',
   ao_ai_heavy:'Solves: high-volume lead overflow. Full AI engagement handles booking, follow-up, and screening at scale.',
   rep_mkt:'Solves: reputation sitting unused. RSD actively markets your reviews so they drive conversions, not just sit on Google.',
   soc3:'Solves: inconsistent brand presence. 3 posts/week keep your authority visible and your audience warm between projects.',
-  soc5:'Solves: weak organic pipeline. 5x/week content compounds visibility â€” prospects arrive pre-sold before they call.',
+  soc5:'Solves: weak organic pipeline. 5x/week content compounds visibility — prospects arrive pre-sold before they call.',
   soc7:'Solves: cold or absent audience. Daily content builds a warm, pre-qualified audience that closes faster.',
   ad_mgmt:'Solves: wasted or stagnant ad spend. Active monthly optimization improves your cost-per-lead every 30 days.',
   mkt_active:'Solves: inconsistent content and unmanaged ad spend. RSD schedules 4 posts/week + actively manages Meta & Google campaigns so your pipeline never goes cold.',
   rr_recep:'Solves: missed calls becoming missed revenue. AI receptionist captures and routes every caller automatically.',
-  rr_text:'Solves: slow response killing deals. Missed-call text back fires in seconds â€” recovers leads before they move on.',
+  rr_text:'Solves: slow response killing deals. Missed-call text back fires in seconds — recovers leads before they move on.',
   rr_sms:'Solves: unqualified or lost leads. SMS answers questions, pre-qualifies intent, and books directly to your calendar.',
-  rr_full:'Solves: full lead leakage across channels. No contact goes unanswered â€” every touchpoint is covered.'
+  rr_full:'Solves: full lead leakage across channels. No contact goes unanswered — every touchpoint is covered.'
 };
 
 // â”€â”€ Package-bundled monthly item IDs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -434,9 +434,9 @@ const M_SOLVES={
 // They won't appear in S.items (those are Ã  la carte selections) so we
 // inject them here so the notes and monthly support block always render them.
 const PKG_MONTHLY={
-  pkg_t2b:[],                                            // Tour2Booking â€” one-time only
-  pkg_ao:['rr_full','ad_mgmt'],                          // AlwaysOn T2B â€” $497 + $497 = $994/mo
-  pkg_os:['rr_full','ad_mgmt','soc3','ao_ai_base']       // Digital Twin OS â€” $497+$497+$497+$49 = $1,540/mo
+  pkg_t2b:[],                                            // Tour2Booking — one-time only
+  pkg_ao:['rr_full','ad_mgmt'],                          // AlwaysOn T2B — $497 + $497 = $994/mo
+  pkg_os:['rr_full','ad_mgmt','soc3','ao_ai_base']       // Digital Twin OS — $497+$497+$497+$49 = $1,540/mo
 };
 
 // Helper: returns merged, deduped array of monthly item IDs
@@ -450,9 +450,9 @@ function resolveMonthlyItems(){
 }
 
 const PKG_MS_INTRO={
-  pkg_t2b:'Your Tour2Bookingâ„¢ system launches with media and presence â€” the monthly services below keep it converting after day one. Without this layer, even the best assets go quiet within weeks.',
-  pkg_ao:'AlwaysOn means exactly that. Your visibility loop, AI tools, and ad presence run continuously â€” compounding authority and inbound while your team stays focused on delivering work.',
-  pkg_os:'The Digital Twin Conversion OSâ„¢ is a living system. The monthly layer is the intelligence: AI, ads, content, and follow-up running in parallel â€” turning your digital presence into a 24/7 revenue engine.'
+  pkg_t2b:'Your Tour2Bookingâ„¢ system launches with media and presence — the monthly services below keep it converting after day one. Without this layer, even the best assets go quiet within weeks.',
+  pkg_ao:'AlwaysOn means exactly that. Your visibility loop, AI tools, and ad presence run continuously — compounding authority and inbound while your team stays focused on delivering work.',
+  pkg_os:'The Digital Twin Conversion OSâ„¢ is a living system. The monthly layer is the intelligence: AI, ads, content, and follow-up running in parallel — turning your digital presence into a 24/7 revenue engine.'
 };
 
 function renderMonthlySupport(){
@@ -466,7 +466,7 @@ function renderMonthlySupport(){
   const intro=(S.pkg&&PKG_MS_INTRO[S.pkg])||'Your monthly services keep your system active and compounding after your initial launch.';
 
   let h=`<div class="monthly-support">
-    <div class="ms-eyebrow">Monthly Investment Â· Why It's In There</div>
+    <div class="ms-eyebrow">Monthly Investment · Why It's In There</div>
     <div class="ms-title">Your System Runs While You Work</div>
     <div class="ms-body">${intro}</div>`;
 
@@ -486,7 +486,7 @@ function renderMonthlySupport(){
     <span class="ms-total-l">Monthly Total</span>
     <span class="ms-total-v">$${mT.toLocaleString()}/mo</span>
   </div>
-  <div class="ms-close">The businesses that win long-term are still running the machine 90 days after everyone else stopped. This is not overhead â€” it's the difference between a launch and a system that lasts.</div>
+  <div class="ms-close">The businesses that win long-term are still running the machine 90 days after everyone else stopped. This is not overhead — it's the difference between a launch and a system that lasts.</div>
   </div>`;
   el.innerHTML=h;
 }
@@ -499,7 +499,7 @@ const QUAL_CRITERIA=[
   'Strong physical/media capture opportunity',
   'Decision maker available',
   'Discretionary budget available',
-  'Ready to move within 30â€“60 days'
+  'Ready to move within 30—60 days'
 ];
 
 // â”€â”€ Suggested Notes Builder â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -522,7 +522,7 @@ function buildSuggestedNotes(){
   const today=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
 
   let n='';
-  n+=`RSD FIT ASSESSMENT â€” ${today}\n`;
+  n+=`RSD FIT ASSESSMENT — ${today}\n`;
   n+=`${'â”€'.repeat(44)}\n\n`;
 
   n+=`QUALIFICATION SCORE: ${score}/6\n`;
@@ -535,7 +535,7 @@ function buildSuggestedNotes(){
   n+=`  Founder Lock: ${gfLabel}\n\n`;
 
   const oneItems=S.items.filter(id=>D_TYPE[id]==='one');
-  // Use resolveMonthlyItems() â€” merges package-bundled + Ã  la carte monthly
+  // Use resolveMonthlyItems() — merges package-bundled + Ã  la carte monthly
   const moItems=resolveMonthlyItems();
   // Recalculate mT from the full resolved set (overrides the loop above for monthly)
   mT=0; for(const id of moItems) mT+=D_PRICE[id]||0;
@@ -543,10 +543,10 @@ function buildSuggestedNotes(){
   if(oneItems.length||S.pkg){
     n+=`ONE-TIME SERVICES\n`;
     for(const id of oneItems){
-      n+=`  Â· ${D_NAME[id]||id} â€” $${(D_PRICE[id]||0).toLocaleString()}\n`;
+      n+=`  · ${D_NAME[id]||id} — $${(D_PRICE[id]||0).toLocaleString()}\n`;
     }
     if(S.pkg&&PKG_PRICE[S.pkg]){
-      n+=`  Â· ${PKG_NAME[S.pkg]} (package) â€” $${PKG_PRICE[S.pkg].toLocaleString()}\n`;
+      n+=`  · ${PKG_NAME[S.pkg]} (package) — $${PKG_PRICE[S.pkg].toLocaleString()}\n`;
     }
     n+=`  ${'â”€'.repeat(32)}\n`;
     n+=`  One-Time Total: $${oT.toLocaleString()}\n`;
@@ -556,7 +556,7 @@ function buildSuggestedNotes(){
   // â”€â”€ Investment Summary â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   n+=`INVESTMENT SUMMARY\n`;
   n+=`  ${'â•'.repeat(38)}\n`;
-  n+=`  MONTH 1 â€” Setup, Build & Launch\n`;
+  n+=`  MONTH 1 — Setup, Build & Launch\n`;
   n+=`  ${'â”€'.repeat(38)}\n`;
   n+=`  One-Time Build & Setup:  $${oT.toLocaleString()}\n`;
   if(mT){
@@ -568,7 +568,7 @@ function buildSuggestedNotes(){
 
   if(mT){
   n+=`\n`;
-  n+=`  MONTH 2+ â€” Ongoing Monthly\n`;
+  n+=`  MONTH 2+ — Ongoing Monthly\n`;
   n+=`  ${'â”€'.repeat(38)}\n`;
   n+=`  Monthly Investment:      $${mT.toLocaleString()}/mo\n`;
   n+=`  ${'â•'.repeat(38)}\n\n`;
@@ -579,7 +579,7 @@ function buildSuggestedNotes(){
   for(const id of moItems){
     const pr=D_PRICE[id]||0;
     const solves=M_SOLVES[id]||'Ongoing service keeping your system active and producing results.';
-    n+=`  Â· ${D_NAME[id]||id} â€” $${pr.toLocaleString()}/mo\n`;
+    n+=`  · ${D_NAME[id]||id} — $${pr.toLocaleString()}/mo\n`;
     n+=`    ${solves}\n\n`;
   }
   } else {
@@ -587,19 +587,19 @@ function buildSuggestedNotes(){
   }
 
   n+=`MEETING FOCUS AREAS\n`;
-  if(score>=5)n+=`  â†’ Strong fit â€” move to proposal framing and close logistics.\n`;
-  else if(score>=3)n+=`  â†’ Moderate fit â€” confirm missing criteria, identify primary objection.\n`;
-  else n+=`  â†’ Early stage â€” focus on discovery, pain quantification, and fit education.\n`;
+  if(score>=5)n+=`  → Strong fit — move to proposal framing and close logistics.\n`;
+  else if(score>=3)n+=`  → Moderate fit — confirm missing criteria, identify primary objection.\n`;
+  else n+=`  → Early stage — focus on discovery, pain quantification, and fit education.\n`;
   if(missing.includes('Currently running advertising'))
-    n+=`  â†’ Confirm: are they actively advertising? What's their current monthly ad spend?\n`;
+    n+=`  → Confirm: are they actively advertising? What's their current monthly ad spend?\n`;
   if(missing.includes('Decision maker available'))
-    n+=`  â†’ Confirm: who else needs to be on the call to move forward?\n`;
+    n+=`  → Confirm: who else needs to be on the call to move forward?\n`;
   if(missing.includes('Discretionary budget available'))
-    n+=`  â†’ Address budget fit: tie investment to revenue gap and cost of inaction.\n`;
-  if(missing.includes('Ready to move within 30â€“60 days'))
-    n+=`  â†’ Address timeline: what would need to be true to move forward now?\n`;
+    n+=`  → Address budget fit: tie investment to revenue gap and cost of inaction.\n`;
+  if(missing.includes('Ready to move within 30—60 days'))
+    n+=`  → Address timeline: what would need to be true to move forward now?\n`;
   if(S.gf)
-    n+=`  â†’ Founder lock confirmed â€” emphasize permanent rate protection and seat scarcity.\n`;
+    n+=`  → Founder lock confirmed — emphasize permanent rate protection and seat scarcity.\n`;
   n+=`\n`;
 
   n+=`PERSONAL NOTES\n`;
@@ -634,7 +634,7 @@ function printReport(){
   const ph=document.getElementById('phProspect');
   if(ph){
     const nameStr=first?(first+(last?' '+last:'')):'';
-    const bizStr=biz?( nameStr?' Â· '+biz:biz):'';
+    const bizStr=biz?( nameStr?' · '+biz:biz):'';
     ph.textContent=nameStr+bizStr;
   }
   syncNotesPrint();
@@ -669,8 +669,8 @@ function buildEmailParams({first,last,email,phone,mobile,biz,smsOpt,notes,preCal
   let itemsSummary='';
   if(oneItems.length||S.pkg){
     itemsSummary+='ONE-TIME SERVICES\n';
-    for(const id of oneItems)itemsSummary+=`  Â· ${D_NAME[id]||id} â€” $${(D_PRICE[id]||0).toLocaleString()}\n`;
-    if(S.pkg&&PKG_PRICE[S.pkg])itemsSummary+=`  Â· ${PKG_NAME[S.pkg]} (package) â€” $${PKG_PRICE[S.pkg].toLocaleString()}\n`;
+    for(const id of oneItems)itemsSummary+=`  · ${D_NAME[id]||id} — $${(D_PRICE[id]||0).toLocaleString()}\n`;
+    if(S.pkg&&PKG_PRICE[S.pkg])itemsSummary+=`  · ${PKG_NAME[S.pkg]} (package) — $${PKG_PRICE[S.pkg].toLocaleString()}\n`;
     itemsSummary+=`  â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n`;
     itemsSummary+=`  One-Time Total: $${oT.toLocaleString()}\n`;
     itemsSummary+=`  25% Down:       $${dp.toLocaleString()}\n`;
@@ -678,7 +678,7 @@ function buildEmailParams({first,last,email,phone,mobile,biz,smsOpt,notes,preCal
   if(moItems.length){
     if(itemsSummary)itemsSummary+='\n';
     itemsSummary+='MONTHLY SERVICES\n';
-    for(const id of moItems)itemsSummary+=`  Â· ${D_NAME[id]||id} â€” $${(D_PRICE[id]||0).toLocaleString()}/mo\n`;
+    for(const id of moItems)itemsSummary+=`  · ${D_NAME[id]||id} — $${(D_PRICE[id]||0).toLocaleString()}/mo\n`;
     itemsSummary+=`  â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n`;
     itemsSummary+=`  Monthly Total: $${mT.toLocaleString()}/mo\n`;
   }
@@ -691,9 +691,9 @@ function buildEmailParams({first,last,email,phone,mobile,biz,smsOpt,notes,preCal
     prospect_name:`${first} ${last}`,
     business:biz||'(not provided)',
     email,
-    phone_office:phone||'â€”',
-    phone_mobile:mobile||'â€”',
-    sms_opt_in:smsOpt?'Yes â€“ opted in':'No',
+    phone_office:phone||'—',
+    phone_mobile:mobile||'—',
+    sms_opt_in:smsOpt?'Yes — opted in':'No',
     package_selected:S.pkg?PKG_NAME[S.pkg]:'Ã€ La Carte Build',
     lock_tier:S.gf?GF_NAME[S.gf]:'None selected',
     qual_score:`${qualScore}/6`,
@@ -774,7 +774,7 @@ async function submitForm(){
   if(!ejsOk&&!apiOk){
     showError('Submission failed. Please try again or email us at info@realspacedigital.net');
     btn.disabled=false;
-    btn.innerHTML='Lock In My Package â†’';
+    btn.innerHTML='Lock In My Package →';
     return;
   }
 
@@ -785,7 +785,7 @@ async function submitForm(){
   const data=apiOk?apiResult.value:{};
   const tierMsgs={
     'Guarantee Qualified':'Your package qualifies for the RSD 21-Day Performance Guarantee. A brief pre-launch audit will confirm your foundation before activation. Expect a reply within 24 hours.',
-    'Speed to Prosperity':'Your 15% Early Conviction Rate is locked in. Your official RSD offer will arrive within 24 hours â€” you have 7 business days to confirm your plan forward.',
+    'Speed to Prosperity':'Your 15% Early Conviction Rate is locked in. Your official RSD offer will arrive within 24 hours — you have 7 business days to confirm your plan forward.',
     'Building Foundation':'Our team will review your selections and reach out within 24 hours to schedule your Foundation Fit Call.',
   };
   document.getElementById('successMsg').textContent=tierMsgs[data.tier]||'Your request was received. We\'ll be in touch within 24 hours.';
