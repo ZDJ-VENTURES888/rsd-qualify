@@ -1,0 +1,132 @@
+{
+  "rsd-funnel-page-01-hero.html": {
+    "mojibake_count": 0,
+    "mojibake_types": [],
+    "empty_fc_spans": 0,
+    "empty_tg_ico": 0,
+    "missing_critical_fns": [
+      "getState",
+      "buildQ"
+    ],
+    "has_pricing_js_import": false,
+    "has_local_pkg_price": false,
+    "has_local_d_price": false,
+    "has_dt_avatar": false
+  },
+  "rsd-funnel-page-03-capture.html": {
+    "mojibake_count": 0,
+    "mojibake_types": [],
+    "empty_fc_spans": 0,
+    "empty_tg_ico": 0,
+    "missing_critical_fns": [],
+    "has_pricing_js_import": false,
+    "has_local_pkg_price": true,
+    "has_local_d_price": false,
+    "has_dt_avatar": false
+  },
+  "rsd-funnel-page-04-web-presence.html": {
+    "mojibake_count": 0,
+    "mojibake_types": [],
+    "empty_fc_spans": 0,
+    "empty_tg_ico": 0,
+    "missing_critical_fns": [],
+    "has_pricing_js_import": false,
+    "has_local_pkg_price": true,
+    "has_local_d_price": true,
+    "has_dt_avatar": false
+  },
+  "rsd-funnel-page-05-reputation.html": {
+    "mojibake_count": 0,
+    "mojibake_types": [],
+    "empty_fc_spans": 0,
+    "empty_tg_ico": 0,
+    "missing_critical_fns": [],
+    "has_pricing_js_import": false,
+    "has_local_pkg_price": true,
+    "has_local_d_price": true,
+    "has_dt_avatar": false
+  },
+  "rsd-funnel-page-06-social-ads.html": {
+    "mojibake_count": 0,
+    "mojibake_types": [],
+    "empty_fc_spans": 0,
+    "empty_tg_ico": 0,
+    "missing_critical_fns": [],
+    "has_pricing_js_import": false,
+    "has_local_pkg_price": true,
+    "has_local_d_price": true,
+    "has_dt_avatar": false
+  },
+  "rsd-funnel-page-07-rapid-response.html": {
+    "mojibake_count": 0,
+    "mojibake_types": [],
+    "empty_fc_spans": 0,
+    "empty_tg_ico": 0,
+    "missing_critical_fns": [],
+    "has_pricing_js_import": false,
+    "has_local_pkg_price": true,
+    "has_local_d_price": true,
+    "has_dt_avatar": true
+  },
+  "rsd-funnel-page-08-digital-twin.html": {
+    "mojibake_count": 0,
+    "mojibake_types": [],
+    "empty_fc_spans": 0,
+    "empty_tg_ico": 0,
+    "missing_critical_fns": [],
+    "has_pricing_js_import": false,
+    "has_local_pkg_price": true,
+    "has_local_d_price": true,
+    "has_dt_avatar": true
+  },
+  "rsd-funnel-page-08-packages.html": {
+    "mojibake_count": 0,
+    "mojibake_types": [],
+    "empty_fc_spans": 0,
+    "empty_tg_ico": 0,
+    "missing_critical_fns": [],
+    "has_pricing_js_import": false,
+    "has_local_pkg_price": true,
+    "has_local_d_price": true,
+    "has_dt_avatar": true
+  },
+  "rsd-funnel-page-09-lock-rate.html": {
+    "mojibake_count": 0,
+    "mojibake_types": [],
+    "empty_fc_spans": 0,
+    "empty_tg_ico": 0,
+    "missing_critical_fns": [],
+    "has_pricing_js_import": false,
+    "has_local_pkg_price": true,
+    "has_local_d_price": true,
+    "has_dt_avatar": true
+  },
+  "rsd-funnel-page-10-summary.html": {
+    "mojibake_count": 0,
+    "mojibake_types": [],
+    "empty_fc_spans": 0,
+    "empty_tg_ico": 0,
+    "missing_critical_fns": [
+      "calcTotals",
+      "goNext"
+    ],
+    "has_pricing_js_import": false,
+    "has_local_pkg_price": true,
+    "has_local_d_price": true,
+    "has_dt_avatar": true
+  },
+  "rsd-funnel-page-11-confirm.html": {
+    "mojibake_count": 0,
+    "mojibake_types": [],
+    "empty_fc_spans": 0,
+    "empty_tg_ico": 0,
+    "missing_critical_fns": [
+      "getState",
+      "buildQ"
+    ],
+    "has_pricing_js_import": false,
+    "has_local_pkg_price": false,
+    "has_local_d_price": false,
+    "has_dt_avatar": false
+  }
+}
