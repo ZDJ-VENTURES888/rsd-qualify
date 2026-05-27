@@ -326,7 +326,7 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 
 <script>
 // â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—
-// â•‘  RSD FUNNEL â€” Page 9 of 11: Founder Lock Rate           â•‘
+// â•‘  RSD FUNNEL "” Page 9 of 11: Founder Lock Rate           â•‘
 // â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£
 const URL_PREV = 'rsd-funnel-page-08-packages.html';
 const URL_NEXT = 'rsd-funnel-page-10-summary.html';
@@ -335,19 +335,19 @@ const URL_NEXT = 'rsd-funnel-page-10-summary.html';
 // â”€â”€ Package metadata for lock-in confirmation block
 const PKG_DATA={
   pkg_t2b:{
-    name:'Tour2Bookingâ„¢',target:'Event Venues Â· Hospitality',price:5549,down:1387,
-    desc:'A complete done-for-you conversion system â€” first click to confirmed booking. Every component built, integrated, and launched.',
-    items:['Cinematic 360Â° venue tour','Embedded booking CTAs throughout','Drone aerial photo + video','StoryBrand Hero Film (1 shoot day)','90â€“120s hero film + 3 social clips','Conversion landing page']
+    name:'Tour2Booking™',target:'Event Venues · Hospitality',price:5549,down:1387,
+    desc:'A complete done-for-you conversion system "” first click to confirmed booking. Every component built, integrated, and launched.',
+    items:['Cinematic 360° venue tour','Embedded booking CTAs throughout','Drone aerial photo + video','StoryBrand Hero Film (1 shoot day)','90"“120s hero film + 3 social clips','Conversion landing page']
   },
   pkg_ao:{
-    name:'AlwaysOn Tour2Bookingâ„¢',target:'Builders Â· Design-Build Â· Luxury Service',price:6549,down:1637,
-    desc:'Everything in Tour2Bookingâ„¢, plus an always-on visibility layer that keeps you in front of the right buyers â€” continuously.',
-    items:['Everything in Tour2Bookingâ„¢','360Â° explorable project portfolio','Hero VSL landing page','Google Ads + LSA setup','StoryBrand Hero Film (3â€“9 min)','AlwaysOn visibility loop']
+    name:'AlwaysOn Tour2Booking™',target:'Builders · Design-Build · Luxury Service',price:6549,down:1637,
+    desc:'Everything in Tour2Booking™, plus an always-on visibility layer that keeps you in front of the right buyers "” continuously.',
+    items:['Everything in Tour2Booking™','360° explorable project portfolio','Hero VSL landing page','Google Ads + LSA setup','StoryBrand Hero Film (3"“9 min)','AlwaysOn visibility loop']
   },
   pkg_os:{
-    name:'AlwaysOn Digital Twin Conversion OSâ„¢',target:'AI + Custom Integration Â· Scale-Ready',price:9549,down:2387,
-    desc:'The full intelligent booking engine â€” AI-powered, media-led, and built to run your inbound pipeline on autopilot.',
-    items:['Everything in AlwaysOn Tour2Bookingâ„¢','AI receptionist + text AI','Real-time answers engine','VSL funnels + landing pages','Google + Meta ads setup','Nurture sequences + fit assessments','Custom avatar or Digital Twin']
+    name:'AlwaysOn Digital Twin Conversion OS™',target:'AI + Custom Integration · Scale-Ready',price:9549,down:2387,
+    desc:'The full intelligent booking engine "” AI-powered, media-led, and built to run your inbound pipeline on autopilot.',
+    items:['Everything in AlwaysOn Tour2Booking™','AI receptionist + text AI','Real-time answers engine','VSL funnels + landing pages','Google + Meta ads setup','Nurture sequences + fit assessments','Custom avatar or Digital Twin']
   }
 };
 
@@ -361,7 +361,7 @@ const PRIORITY_FEE=497; // Growth Lock priority build lane fee
 function getState(){const p=new URLSearchParams(window.location.search);return{items:p.get('items')?p.get('items').split(',').filter(Boolean):[],pkg:p.get('pkg')||null,gf:p.get('gf')||null,qual:p.get('qual')?p.get('qual').split(',').map(Number):[0,0,0,0,0,0]};}
 function buildQ(s){const p=new URLSearchParams();if(s.items&&s.items.length)p.set('items',s.items.join(','));if(s.pkg)p.set('pkg',s.pkg);if(s.gf)p.set('gf',s.gf);if(s.qual&&s.qual.some(Boolean))p.set('qual',s.qual.join(','));return p.toString();}
 function calcTotals(s){let o=0,m=0;for(const id of s.items){const pr=D_PRICE[id];if(!pr)continue;if(D_TYPE[id]==='one')o+=pr;else m+=pr;}if(s.pkg&&PKG_PRICE[s.pkg])o+=PKG_PRICE[s.pkg];return{o,m};}
-function fmtPrice(o,m){let t='';if(o)t='$'+o.toLocaleString();if(o&&m)t+=' + ';if(m)t+='$'+m.toLocaleString()+'/mo';return t||'â€”';}
+function fmtPrice(o,m){let t='';if(o)t='$'+o.toLocaleString();if(o&&m)t+=' + ';if(m)t+='$'+m.toLocaleString()+'/mo';return t||'"”';}
 function updCart(s){const ct=s.items.length+(s.pkg?1:0);const{o,m}=calcTotals(s);document.getElementById('cI').innerHTML='<strong>'+ct+'</strong> item'+(ct!==1?'s':'');document.getElementById('cT').textContent=fmtPrice(o,m)||'$0';document.getElementById('cart').classList.toggle('vis',ct>0);}
 
 const S=getState();
@@ -389,19 +389,19 @@ renderPkgLock();
 (function populatePrices(){
   const{o,m}=calcTotals(S);
 
-  // gf1 â€” Starter Lock: 5% off one-time
+  // gf1 "” Starter Lock: 5% off one-time
   const gf1O = Math.round(o * 0.95);
   const gf1Save = o - gf1O;
   document.getElementById('gf1p').textContent = fmtPrice(gf1O, m);
   if(gf1Save > 0) document.getElementById('gf1s').textContent = 'saves $'+gf1Save.toLocaleString();
 
-  // gf2 â€” Growth Lock: 10% off + $497 priority fee
+  // gf2 "” Growth Lock: 10% off + $497 priority fee
   const gf2Disc = Math.round(o * 0.10);
   const gf2O = Math.round(o * 0.90) + PRIORITY_FEE;
   document.getElementById('gf2p').textContent = fmtPrice(gf2O, m);
   document.getElementById('gf2s').textContent = '10% off (âˆ’$'+gf2Disc.toLocaleString()+') + $'+PRIORITY_FEE+' priority fee';
 
-  // gf3 â€” Dominate Lock: 15% off, show all-in vision (add soc7 + ad_mgmt if not already selected)
+  // gf3 "” Dominate Lock: 15% off, show all-in vision (add soc7 + ad_mgmt if not already selected)
   const bonusItems=['soc7','ad_mgmt'];
   let bonusO=o,bonusM=m;
   bonusItems.forEach(id=>{
@@ -418,7 +418,7 @@ renderPkgLock();
     const gf3Combined = gf3O + gf3M;
     document.getElementById('gf3p').textContent = '$'+gf3Combined.toLocaleString();
     document.getElementById('gf3pe').textContent = 'all-in first month';
-    document.getElementById('gf3s').textContent = '$'+gf3O.toLocaleString()+' one-time + $'+gf3M.toLocaleString()+'/mo Â· saves $'+gf3Save.toLocaleString();
+    document.getElementById('gf3s').textContent = '$'+gf3O.toLocaleString()+' one-time + $'+gf3M.toLocaleString()+'/mo · saves $'+gf3Save.toLocaleString();
   } else {
     document.getElementById('gf3p').textContent = '$'+gf3O.toLocaleString();
     if(gf3Save > 0) document.getElementById('gf3s').textContent = 'saves $'+gf3Save.toLocaleString()+' all-in';
@@ -450,24 +450,24 @@ function renderPkgLock(){
       <div class="pkg-lock-label">You're locking in</div>
       <div class="pkg-lock-name">${d.name}</div>
       <div class="pkg-lock-target">${d.target}</div>
-      <div class="pkg-lock-desc">${d.desc} Founder pricing is locked at today's rate for the life of your account â€” regardless of what we charge future clients.</div>
+      <div class="pkg-lock-desc">${d.desc} Founder pricing is locked at today's rate for the life of your account "” regardless of what we charge future clients.</div>
       <div class="pkg-lock-sub">What's included in this system</div>
       <div class="pkg-lock-items">${d.items.map(i=>`<div class="pkg-lock-item"><span class="pkg-lock-chk">âœ“</span><span>${i}</span></div>`).join('')}</div>
       <div class="pkg-lock-footer">
         <div>
           <div class="pkg-lock-price">$${d.price.toLocaleString()}</div>
-          <div class="pkg-lock-price-lbl">core system Â· one-time</div>
+          <div class="pkg-lock-price-lbl">core system · one-time</div>
           ${monthlyLine}
         </div>
-        <div class="pkg-lock-down">25% down â€” $${d.down.toLocaleString()} to start</div>
+        <div class="pkg-lock-down">25% down "” $${d.down.toLocaleString()} to start</div>
       </div>`;
   } else if(S.items && S.items.length>0){
     const{o,m}=calcTotals(S);
     el.className='pkg-lock';
     el.innerHTML=`
       <div class="pkg-lock-label">You're locking in</div>
-      <div class="pkg-lock-name">Custom Ã€ La Carte Build</div>
-      <div class="pkg-lock-desc">${S.items.length} selected service${S.items.length!==1?'s':''} â€” fully customized to your business. Every rate below is locked at today's pricing for the life of your account.</div>
+      <div class="pkg-lock-name">Custom À La Carte Build</div>
+      <div class="pkg-lock-desc">${S.items.length} selected service${S.items.length!==1?'s':''} "” fully customized to your business. Every rate below is locked at today's pricing for the life of your account.</div>
       <div class="pkg-lock-footer">
         <div>
           <div class="pkg-lock-price">${fmtPrice(o,m)}</div>
@@ -512,7 +512,7 @@ function selGF(el,id){
   document.getElementById('lockGate').style.display='none';
 }
 
-// â”€â”€ Flash all tier cards (urgent gold-pulse â€” fires when Next hit with no lock) â”€â”€
+// â”€â”€ Flash all tier cards (urgent gold-pulse "” fires when Next hit with no lock) â”€â”€
 function flashTiers(){
   document.querySelectorAll('.tier').forEach((t,i)=>{
     t.classList.remove('demanding');
@@ -527,14 +527,14 @@ function flashTiers(){
 function goBack(){const q=buildQ(S);window.location.href=URL_PREV+(q?'?'+q:'');}
 
 function goNext(){
-  // Guard 1 â€” no cart items at all: show go-back gate
+  // Guard 1 "” no cart items at all: show go-back gate
   if(!S.items.length && !S.pkg){
     const gb=document.getElementById('gateBlock');
     gb.style.display='block';
     gb.scrollIntoView({behavior:'smooth',block:'center'});
     return;
   }
-  // Guard 2 â€” cart has items but no founder lock chosen: flash cards + show inline message
+  // Guard 2 "” cart has items but no founder lock chosen: flash cards + show inline message
   if(!S.gf){
     flashTiers();
     const lg=document.getElementById('lockGate');
@@ -542,7 +542,7 @@ function goNext(){
     lg.scrollIntoView({behavior:'smooth',block:'nearest'});
     return;
   }
-  // All clear â€” proceed
+  // All clear "” proceed
   const q=buildQ(S);
   window.location.href=URL_NEXT+(q?'?'+q:'');
 }
