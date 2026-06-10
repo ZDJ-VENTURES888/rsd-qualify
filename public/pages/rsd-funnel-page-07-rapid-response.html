@@ -7,11 +7,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0b0b0b;--s1:#141414;--sh:#1f1f1f;--br:#262626;--ba:#c9a96e;
-  --gold:#c9a96e;--gd:#a68a52;--gg:rgba(201,169,110,.12);--gg2:rgba(201,169,110,.06);
-  --tx:#e8e4dc;--td:#9a9590;--tm:#5e5955;
-  --grn:#5cb85c;--gb:rgba(92,184,92,.08);--red:#d9534f;
-  --fd:'Libre Baskerville',Georgia,serif;--fm:'JetBrains Mono',monospace;
+--bg:#0b0b0b;--s1:#141414;--sh:#1f1f1f;--br:#262626;--ba:#c9a96e;
+--gold:#c9a96e;--gd:#a68a52;--gg:rgba(201,169,110,.12);--gg2:rgba(201,169,110,.06);
+--tx:#e8e4dc;--td:#9a9590;--tm:#5e5955;
+--grn:#5cb85c;--gb:rgba(92,184,92,.08);--red:#d9534f;
+--fd:'Libre Baskerville',Georgia,serif;--fm:'JetBrains Mono',monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -40,78 +40,96 @@ h2{font-family:var(--fd);font-size:clamp(20px,4vw,30px);font-weight:700;line-hei
 .bgh{background:transparent;color:var(--td);border:1px solid var(--br)}.bgh:hover{border-color:var(--td);color:var(--tx)}
 .br{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
 .mw{display:inline-flex;align-items:center;gap:6px;background:var(--gb);color:var(--grn);font-size:11px;padding:5px 12px;border-radius:16px;margin-top:14px}
-.cart{position:fixed;bottom:0;left:0;right:0;background:var(--s1);border-top:1px solid var(--br);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;z-index:199;transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.cart{position:fixed;top:24px;left:0;right:0;background:var(--s1);border-bottom:1px solid var(--br);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;z-index:199;transform:translateY(-100%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
 .cart.vis{transform:none}
 .cart-i{font-size:12px;color:var(--td)}.cart-i strong{color:var(--gold);font-weight:400}
 .cart-t{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--gold)}
 @media(max-width:640px){.sec{padding:70px 14px 90px}.cart{flex-direction:column;gap:6px;text-align:center}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
 
-/* "€"€ GRAVITY Framework Quote "€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€ */
+/* GRAVITY Framework Quote */
 .grav-q{border-left:2px solid var(--gold);padding:14px 20px;margin:28px 0;background:var(--gg2);border-radius:0 6px 6px 0}
 .grav-q p{font-family:var(--fd);font-size:13px;font-weight:400;font-style:italic;color:var(--tx);line-height:1.85}
 .grav-q cite{font-size:9px;color:var(--tm);letter-spacing:.12em;text-transform:uppercase;margin-top:6px;display:block}
-/* "€"€ Next Button Charge "€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€"€ */
+/* Next Button Charge */
 @keyframes btnCharge{0%{transform:translateY(0);box-shadow:none}35%{transform:translateY(-3px);box-shadow:0 0 0 6px rgba(201,169,110,.3),0 0 22px rgba(201,169,110,.18)}75%{transform:translateY(-1px);box-shadow:0 0 0 3px rgba(201,169,110,.14)}100%{transform:translateY(0);box-shadow:0 0 16px rgba(201,169,110,.18)}}
 .btn-charged{box-shadow:0 0 16px rgba(201,169,110,.18);animation:btnCharge .8s ease 1}
 
-/* charge */
-function chargeNext(){
-  var btn=document.getElementById('nextBtn');
-  if(!btn||btn.dataset.charged)return;
-  btn.dataset.charged='1';
-  btn.classList.add('btn-charged');
-}
-
-/* === RSD Tier & Back Icons (added by patch) === */
+/* RSD Tier & Back Icons */
 .tier-ico{display:inline-block;vertical-align:-4px;margin-right:8px;color:var(--gold);transition:color .35s ease,filter .35s ease,transform .35s ease}
 .tier-card.act .tier-ico,.tier.act .tier-ico,.tg-row:hover .tier-ico{color:var(--grn);filter:drop-shadow(0 0 5px rgba(92,184,92,.55));transform:scale(1.05)}
 .back-ico{display:inline-block;vertical-align:-1px;margin-right:6px;color:currentColor}
+
+/* Value video (click-to-play lightbox) */
+.rr-video{margin:6px 0 30px}
+.rr-video-eyebrow{font-size:10px;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.rr-video-poster{position:relative;display:block;width:100%;border:1px solid var(--br);border-radius:12px;overflow:hidden;cursor:pointer;background:#000;aspect-ratio:16/9}
+.rr-video-poster img{width:100%;height:100%;object-fit:cover;display:block;opacity:.86;transition:opacity .3s}
+.rr-video-poster:hover img{opacity:1}
+.rr-video-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:74px;height:74px;border-radius:50%;background:rgba(201,169,110,.92);display:flex;align-items:center;justify-content:center;transition:transform .3s,background .3s}
+.rr-video-poster:hover .rr-video-play{transform:translate(-50%,-50%) scale(1.08);background:var(--gold)}
+.rr-video-play::after{content:'';border-style:solid;border-width:13px 0 13px 22px;border-color:transparent transparent transparent #0b0b0b;margin-left:5px}
+.rr-video-cap{font-size:11px;color:var(--td);margin-top:10px;line-height:1.7;font-style:italic}
+.rr-lb{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;padding:24px}
+.rr-lb.open{display:flex}
+.rr-lb-inner{position:relative;width:100%;max-width:900px;aspect-ratio:16/9}
+.rr-lb-inner iframe{width:100%;height:100%;border:0;border-radius:10px}
+.rr-lb-close{position:absolute;top:-40px;right:0;background:none;border:none;color:#e8e4dc;font-size:30px;line-height:1;cursor:pointer;font-family:inherit}
+@media(max-width:640px){.rr-lb-close{top:-34px}}
 
 </style>
 </head>
 <body>
 
 <div class="prog">
-  <span class="prog-l">5 / 8 — Rapid Response · Page 7 of 12</span>
-  <div class="prog-t"><div class="prog-f" style="width:58%"></div></div>
+<span class="prog-l">5 / 8 — Rapid Response · Page 7 of 12</span>
+<div class="prog-t"><div class="prog-f" style="width:58%"></div></div>
 </div>
 
 <div class="cart" id="cart">
-  <div class="cart-i" id="cI">0 items</div>
-  <div class="cart-t" id="cT">$0</div>
+<div class="cart-i" id="cI">0 items</div>
+<div class="cart-t" id="cT">$0</div>
 </div>
 
 <div class="sec">
-  <img src="/assets/images/SPEED%20TO%20LEAD%20(RESPONSE%20SYSTEM%20VISUAL).png" class="sec-hero" alt="Speed to Lead" onerror="this.style.display='none'">
-  <div class="sl">Step 5 — Catch Every Opportunity</div>
-  <h2>A missed call is a missed sale.<br><span class="g">RSD Rapid Response fixes that.</span></h2>
-  <p class="sub">When someone reaches out and you can't answer, Rapid Response steps in instantly.</p>
+<img src="/assets/images/SPEED%20TO%20LEAD%20(RESPONSE%20SYSTEM%20VISUAL).png" class="sec-hero" alt="Speed to Lead" onerror="this.style.display='none'">
+<div class="sl">Step 5 — Catch Every Opportunity</div>
+<h2>A missed call is a missed sale.<br><span class="g">RSD Rapid Response fixes that.</span></h2>
+<p class="sub">When someone reaches out and you can't answer, Rapid Response steps in instantly.</p>
 
-  <div class="sh">Tier 1 — AI Receptionist + Booking</div>
-  <div class="ar" data-id="rr_recep" onclick="togRow(this,'rr_recep')">
-    <div class="ai"><div class="anm">AI Receptionist Booking</div><div class="adt">Inbound calls answered by AI. Qualifies, answers questions, books appointments.</div></div>
-    <div class="apr">$397/mo</div><div class="tg"></div>
+<!-- Value video (click-to-play lightbox) -->
+<div class="rr-video">
+  <div class="rr-video-eyebrow">See It Work &mdash; The Value of Rapid Response</div>
+  <div class="rr-video-poster" onclick="openRRVideo()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openRRVideo();}" role="button" tabindex="0" aria-label="Play the Rapid Response value video">
+    <img src="/assets/images/rr-competitor-answered-first.png" alt="Your competitor answered first - RSD Rapid Response turns missed calls into booked revenue" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/P-3PtUXbx8c/hqdefault.jpg'">
+    <span class="rr-video-play" aria-hidden="true"></span>
   </div>
+  <div class="rr-video-cap">Watch how instant response turns missed calls into booked revenue &mdash; the system working so you don't have to.</div>
+</div>
 
-  <div class="sh">Tier 2 — Missed Call Q&A → Booking SMS</div>
-  <div class="ar" data-id="rr_text" onclick="togRow(this,'rr_text')">
-    <div class="ai"><div class="anm">Missed-Call Text Back</div><div class="adt">Auto text within 60 seconds of any missed call.</div></div>
-    <div class="apr">$197/mo</div><div class="tg"></div>
-  </div>
-  <div class="ar" data-id="rr_sms" onclick="togRow(this,'rr_sms')">
-    <div class="ai"><div class="anm">SMS Q&A + Auto-Booking</div><div class="adt">AI continues the conversation via text — answers, qualifies, books.</div></div>
-    <div class="apr">$297/mo</div><div class="tg"></div>
-  </div>
-  <div class="ar" data-id="rr_full" onclick="togRow(this,'rr_full')">
-    <div class="ai"><div class="anm">Full Rapid Response Suite</div><div class="adt">Everything: AI receptionist + text back + SMS Q&A + call routing.</div></div>
-    <div class="apr">$497/mo</div><div class="tg"></div>
-  </div>
+<div class="sh">Tier 1 — AI Receptionist + Booking</div>
+<div class="ar" data-id="rr_recep" onclick="togRow(this,'rr_recep')">
+<div class="ai"><div class="anm">AI Receptionist Booking</div><div class="adt">Inbound calls answered by AI. Qualifies, answers questions, books appointments.</div></div>
+<div class="apr">$397/mo</div><div class="tg"></div>
+</div>
 
-  
+<div class="sh">Tier 2 — Missed Call Q&A → Booking SMS</div>
+<div class="ar" data-id="rr_text" onclick="togRow(this,'rr_text')">
+<div class="ai"><div class="anm">Missed-Call Text Back</div><div class="adt">Auto text within 60 seconds of any missed call.</div></div>
+<div class="apr">$197/mo</div><div class="tg"></div>
+</div>
+<div class="ar" data-id="rr_sms" onclick="togRow(this,'rr_sms')">
+<div class="ai"><div class="anm">SMS Q&A + Auto-Booking</div><div class="adt">AI continues the conversation via text — answers, qualifies, books.</div></div>
+<div class="apr">$297/mo</div><div class="tg"></div>
+</div>
+<div class="ar" data-id="rr_full" onclick="togRow(this,'rr_full')">
+<div class="ai"><div class="anm">Full Rapid Response Suite</div><div class="adt">Everything: AI receptionist + text back + SMS Q&A + call routing.</div></div>
+<div class="apr">$497/mo</div><div class="tg"></div>
+</div>
+
 <style>
 .dt-cta-wrap{margin:36px 0 28px}
 .dt-cta{position:relative;background:linear-gradient(135deg,#141414 0%,#1a1a1a 100%);border:1px solid var(--gold);border-radius:14px;padding:30px 26px;overflow:hidden}
-.dt-cta::before{content:'''';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,var(--gold) 50%,transparent 100%)}
+.dt-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,var(--gold) 50%,transparent 100%)}
 .dt-cta-eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:14px}
 .dt-cta-eyebrow span:first-child{font-size:9px;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;font-weight:500}
 .dt-cta-eyebrow span:last-child{flex:1;height:1px;background:linear-gradient(90deg,var(--gold) 0%,transparent 100%);opacity:.35}
@@ -150,40 +168,57 @@ function chargeNext(){
 
 <script>
 function goTwin(){
-  const q=buildQ(S);
-  window.location.href='rsd-funnel-page-08-digital-twin.html'+(q?'?'+q:'');
+const q=buildQ(S);
+window.location.href='rsd-funnel-page-08-digital-twin.html'+(q?'?'+q:'');
 }
 </script>
 
 <div class="grav-q">
-    <p>"A missed call isn't a missed call. It's a missed relationship, a missed contract, and a competitor's next client."</p>
-    <cite>GRAVITY Principle — I: Impact of Every Touchpoint</cite>
-  </div>
-  <div id="rrWin" style="display:none"><div class="mw">œ" No more lost leads</div></div>
+<p>"A missed call isn't a missed call. It's a missed relationship, a missed contract, and a competitor's next client."</p>
+<cite>GRAVITY Principle — I: Impact of Every Touchpoint</cite>
+</div>
+<div id="rrWin" style="display:none"><div class="mw">✓ No more lost leads</div></div>
 
-  <div class="br">
-    <button class="bgh btn" onclick="goBack()"><svg class="back-ico" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5,3.5 4.5,8 9.5,12.5"></polyline><line x1="4.5" y1="8" x2="12" y2="8"></line></svg> Back</button>
-    <button class="bg btn" id="nextBtn" onclick="goNext()">Next: Full Systems →</button>
-  </div>
+<div class="br">
+<button class="bgh btn" onclick="goBack()"><svg class="back-ico" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5,3.5 4.5,8 9.5,12.5"></polyline><line x1="4.5" y1="8" x2="12" y2="8"></line></svg> Back</button>
+<button class="bg btn" id="nextBtn" onclick="goNext()">Next: Full Systems →</button>
+</div>
 </div>
 
+<!-- Value video lightbox -->
+<div class="rr-lb" id="rrLightbox" onclick="if(event.target===this)closeRRVideo()">
+  <div class="rr-lb-inner">
+    <button class="rr-lb-close" onclick="closeRRVideo()" aria-label="Close video">&times;</button>
+    <iframe id="rrLightboxFrame" src="" title="RSD Rapid Response - value video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
 <script>
-// •"•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••—
-// •'  RSD FUNNEL — Page 7 of 12: Rapid Response              •'
-// • •••••••••••••••••••••••••••••••••••••••••••••••••••••••••••£
+(function(){
+  var YT='https://www.youtube-nocookie.com/embed/P-3PtUXbx8c?rel=0&modestbranding=1&autoplay=1';
+  var lb=document.getElementById('rrLightbox');
+  var fr=document.getElementById('rrLightboxFrame');
+  window.openRRVideo=function(){ if(!lb||!fr)return; fr.src=YT; lb.classList.add('open'); document.body.style.overflow='hidden'; };
+  window.closeRRVideo=function(){ if(!lb||!fr)return; lb.classList.remove('open'); fr.src=''; document.body.style.overflow=''; };
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') window.closeRRVideo(); });
+})();
+</script>
+
+<script>
+// ============================================================
+// RSD FUNNEL - Page 7 of 12: Rapid Response
+// ============================================================
 const URL_PREV = 'rsd-funnel-page-06-social-ads.html';
 const URL_NEXT = 'rsd-funnel-page-08-packages.html';
-// •𕐕•••••••••••••••••••••••••••••••••••••••••••••••••••••••••
 
 const D_PRICE={scan_base:1299,scan_guided:1799,vid_single:500,vid_pack:1200,drone_half:350,drone_full:600,vid_authority:1800,vid_testimonial:1800,photo_half:400,photo_full:800,
-  lp_prem:3500,lp_extra_page:450,photo_1_3:350,photo_6_9:850,photo_9_12:1300,photo_vol20:2200,photo_21_30:1995,seas_spring:1850,seas_summer:1850,seas_harvest:2150,seas_winter:1650,seas_annual:6800,seas_extra:1450,lp_base:1800,lp_conv:2800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,ao_ai_base:49,ao_ai_heavy:99,gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,ad_mgmt:497,mkt_active:1800,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497,dt_avatar:9000};
+lp_prem:3500,lp_extra_page:450,photo_1_3:350,photo_6_9:850,photo_9_12:1300,photo_vol20:2200,photo_21_30:1995,seas_spring:1850,seas_summer:1850,seas_harvest:2150,seas_winter:1650,seas_annual:6800,seas_extra:1450,lp_base:1800,lp_conv:2800,lp_about:500,lp_vt:250,lp_vid:100,lp_cal:120,lp_social:250,ao_page:997,ao_ai_base:49,ao_ai_heavy:99,gbp_setup:700,gbp_scale:550,gbp_support:350,meta_setup:900,meta_scale:650,meta_own:450,rev_roadmap:497,rev_referral:397,rev_mailer:297,rep_mkt:297,soc3:497,soc5:797,soc7:1097,ad_mgmt:497,mkt_active:1800,rr_recep:397,rr_text:197,rr_sms:297,rr_full:497,dt_avatar:9000};
 const D_TYPE={scan_base:'one',scan_guided:'one',vid_single:'one',vid_pack:'one',drone_half:'one',drone_full:'one',vid_authority:'one',vid_testimonial:'one',photo_half:'one',photo_full:'one',lp_base:'one',lp_conv:'one',lp_about:'one',lp_vt:'one',lp_vid:'one',lp_cal:'one',lp_social:'one',ao_page:'one',ao_ai_base:'mo',ao_ai_heavy:'mo',gbp_setup:'one',gbp_scale:'one',gbp_support:'one',meta_setup:'one',meta_scale:'one',meta_own:'one',rev_roadmap:'one',rev_referral:'one',rev_mailer:'one',rep_mkt:'mo',soc3:'mo',soc5:'mo',soc7:'mo',ad_mgmt:'mo',mkt_active:'mo',rr_recep:'mo',rr_text:'mo',rr_sms:'mo',rr_full:'mo',dt_avatar:'one'};
 const PKG_PRICE={pkg_t2b:5549,pkg_ao:6549,pkg_os:9549};
 const RR_IDS=['rr_recep','rr_text','rr_sms','rr_full'];
 
 function getState(){const p=new URLSearchParams(window.location.search);return{items:p.get('items')?p.get('items').split(',').filter(Boolean):[],pkg:p.get('pkg')||null,gf:p.get('gf')||null,qual:p.get('qual')?p.get('qual').split(',').map(Number):[0,0,0,0,0,0]};}
 function buildQ(s){const p=new URLSearchParams();if(s.items&&s.items.length)p.set('items',s.items.join(','));if(s.pkg)p.set('pkg',s.pkg);if(s.gf)p.set('gf',s.gf);if(s.qual&&s.qual.some(Boolean))p.set('qual',s.qual.join(','));return p.toString();}
-function updCart(s){const ct=s.items.length+(s.pkg?1:0);let o=0,m=0;for(const id of s.items){const pr=D_PRICE[id];if(!pr)continue;if(D_TYPE[id]==='one')o+=pr;else m+=pr;}if(s.pkg&&PKG_PRICE[s.pkg])o+=PKG_PRICE[s.pkg];document.getElementById('cI').innerHTML='<strong>'+ct+'</strong> item'+(ct!==1?'s':'');let txt='';if(o)txt='$'+o.toLocaleString();if(o&&m)txt+=' + ';if(m)txt+='$'+m.toLocaleString()+'/mo';document.getElementById('cT').textContent=txt||'$0';document.getElementById('cart').classList.toggle('vis',ct>0);}
+function updCart(s){const ct=s.items.length+(s.pkg?1:0);let o=0,m=0;for(const id of s.items){const pr=D_PRICE[id];if(!pr)continue;if(D_TYPE[id]==='mo')m+=pr;else o+=pr;}if(s.pkg&&PKG_PRICE[s.pkg])o+=PKG_PRICE[s.pkg];document.getElementById('cI').innerHTML='<strong>'+ct+'</strong> item'+(ct!==1?'s':'');let txt='';if(o)txt='$'+o.toLocaleString();if(o&&m)txt+=' + ';if(m)txt+='$'+m.toLocaleString()+'/mo';document.getElementById('cT').textContent=txt||'$0';document.getElementById('cart').classList.toggle('vis',ct>0);}
 
 const S=getState();
 document.querySelectorAll('.ar[data-id]').forEach(a=>{if(S.items.includes(a.dataset.id))a.classList.add('act');});
